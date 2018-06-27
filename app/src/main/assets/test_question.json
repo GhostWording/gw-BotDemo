@@ -1,0 +1,34 @@
+{
+  "Type": "Leaf",
+  "Comments":"it should show the text step and then continue",
+  "Id": "ShowStepActionShowCarouselFromList",
+  "Steps": [
+    {
+      "Type": "Text",
+      "Label": {
+        "en": "ShowStepActionShowCarouselFromList:it should show one ShowCarouselFromList and then continue",
+        "fr": "ShowStepActionShowCarouselFromList:it should show one ShowCarouselFromList and then continue"
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "ShowCarouselFromList",
+      "Parameters": {
+        "Path": "/data/common/carousel/BillMurrayMovies.json"}
+    },
+    {
+      "Type": "Text",
+      "Label": {
+        "en": "ShowStepActionShowCarouselFromList:it should show another ShowCarouselFromList and then continue",
+        "fr": "ShowStepActionShowCarouselFromList:it should show another ShowCarouselFromList and then continue"
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "ShowCarouselFromList",
+      "Parameters": {
+        "Path": "/data/common/carousel/MountainsHimalaya.json"}
+    }
+
+  ]
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#fff</color>
+    <color name="red">#f00</color>
+    <color name="black">#000</color>
+    <color name="light_gray">#f3f3f3</color>
+    <color name="medium_gray">#efefef</color>
+    <color name="dark_gray">#a9a9a9</color>
+
+    <color name="transparent_white">#cfff</color>
+    <color name="blue_semi_transparent">#880084ff</color>
+    <color name="semi_transparent_black">#9000</color>
+    <color name="transparent_black">#F000</color>
+    <color name="soft_white">#efff</color>
+
+    <color name="colorPrimary">#FEC73C</color>
+    <color name="colorAccent">#2196f3</color>
+
+    <color name="selected_color">#139deb</color>
+    <color name="divider_color">#dedede</color>
+    <color name="circle_color">#d5d5d5</color>
+
+    <color name="tutorial_accent">#e91e63</color>
+
+    <color name="login_language_selection_background_color">#fff</color>
+
+    <color name="quiz_selected">#440084ff</color>
+
+    <color name="help_us_header_bg">#ebebeb</color>
+    <color name="green">#0a0</color>
+    <color name="orange">#FFA500</color>
+
+</resources>

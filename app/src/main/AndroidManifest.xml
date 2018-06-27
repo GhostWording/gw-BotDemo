@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ghostwording.hugsapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".BotDemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BotActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GifPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.EditQuoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.PickIntentionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.PickRecipientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.PicturesRecommendationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.TextsRecommendationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textimagepreviews.TranslationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ImageGalleryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chatbot.ImagePreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.wavemining.demobot.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:readPermission="com.wavemining.demobot.fileprovider.READ">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6593483d7684f7740a084641269cf04f28cf128f" />
+
+        <activity
+            android:name=".ImagePreviewActivity"
+            android:label="@string/title_activity_image_preview"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>

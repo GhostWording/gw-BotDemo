@@ -1,0 +1,21 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <FrameLayout
+        android:id="@+id/shimmer_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_command"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_chat_button"
+            android:padding="10dp"
+            android:textColor="@color/colorAccent" />
+    </FrameLayout>
+
+</layout>
+

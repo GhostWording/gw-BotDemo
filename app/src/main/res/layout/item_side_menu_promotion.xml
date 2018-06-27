@@ -1,0 +1,22 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:id="@+id/container"
+        style="@style/SlidingMenuOptionItemStyle"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/promotion_icon"
+            style="@style/SlidingMenuOptionImageStyle" />
+
+        <TextView
+            android:id="@+id/promotion_title"
+            style="@style/SlidingMenuOptionTextStyle" />
+
+    </LinearLayout>
+
+</layout>
+

@@ -1,0 +1,81 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ghostwording.hugsapp.textimagepreviews.PicturesRecommendationActivity.PicturesViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_pictures"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="@string/no_popular_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:visibility="@{viewModel.isNoData ? View.VISIBLE : View.GONE}" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_quote"
+                style="@style/ActionButtonWithTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:foreground="?android:selectableItemBackground"
+                android:gravity="center"
+                android:maxHeight="300dp"
+                android:scrollbars="vertical"
+                android:text="@{viewModel.quoteText}"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_circle_primary"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}" />
+
+    </FrameLayout>
+
+
+</layout>

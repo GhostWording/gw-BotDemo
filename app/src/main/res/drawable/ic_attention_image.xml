@@ -1,0 +1,18 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#e67eab" />
+            <size
+                android:width="50dp"
+                android:height="50dp" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_attention" />
+    </item>
+
+</layer-list>

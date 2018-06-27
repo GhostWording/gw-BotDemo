@@ -1,0 +1,332 @@
+[
+  {
+    "Id": "Brother",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000017261361_Medium.jpg",
+    "RelationTypeTag": "87F524",
+    "Gender": "H",
+    "UsualRecipient": false,
+    "SubscribableRecipient": false,
+    "PoliteForm": "T",
+    "Importance": 140,
+    "Labels": [
+      {
+        "RecipientTypeId": "Brother",
+        "Culture": "en-EN",
+        "UserLabel": "My brother",
+        "AppLabel": "Your brother"
+      },
+      {
+        "RecipientTypeId": "Brother",
+        "Culture": "es-ES",
+        "UserLabel": "Mi hermano",
+        "AppLabel": "Mi hermano"
+      },
+      {
+        "RecipientTypeId": "Brother",
+        "Culture": "fr-FR",
+        "UserLabel": "Mon frère",
+        "AppLabel": "Votre frère"
+      }
+    ]
+  },
+  {
+    "Id": "CloseFriends",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/shutterstock_97142882.jpg",
+    "RelationTypeTag": "3B9BF2",
+    "Gender": null,
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "T",
+    "Importance": 60,
+    "Labels": [
+      {
+        "RecipientTypeId": "CloseFriends",
+        "Culture": "en-EN",
+        "UserLabel": "My friends",
+        "AppLabel": "Your friends"
+      },
+      {
+        "RecipientTypeId": "CloseFriends",
+        "Culture": "es-ES",
+        "UserLabel": "Mis amigos",
+        "AppLabel": "Amigos cercanos"
+      },
+      {
+        "RecipientTypeId": "CloseFriends",
+        "Culture": "fr-FR",
+        "UserLabel": "Mes ami(e)s",
+        "AppLabel": "Vos ami(e)s"
+      }
+    ]
+  },
+  {
+    "Id": "Father",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/shutterstock_155419646.jpg",
+    "RelationTypeTag": "64C63D",
+    "Gender": "H",
+    "UsualRecipient": false,
+    "SubscribableRecipient": false,
+    "PoliteForm": "T",
+    "Importance": 120,
+    "Labels": [
+      {
+        "RecipientTypeId": "Father",
+        "Culture": "en-EN",
+        "UserLabel": "Dad",
+        "AppLabel": "Your father"
+      },
+      {
+        "RecipientTypeId": "Father",
+        "Culture": "es-ES",
+        "UserLabel": "Papá",
+        "AppLabel": "Papá"
+      },
+      {
+        "RecipientTypeId": "Father",
+        "Culture": "fr-FR",
+        "UserLabel": "Papa",
+        "AppLabel": "Votre père"
+      }
+    ]
+  },
+  {
+    "Id": "LongLostFriends",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000007513552_Medium.jpg",
+    "RelationTypeTag": "2B4F14",
+    "Gender": "",
+    "UsualRecipient": true,
+    "SubscribableRecipient": false,
+    "PoliteForm": "",
+    "Importance": 100,
+    "Labels": [
+      {
+        "RecipientTypeId": "LongLostFriends",
+        "Culture": "en-EN",
+        "UserLabel": "My long lost friends",
+        "AppLabel": "Your long lost friends"
+      },
+      {
+        "RecipientTypeId": "LongLostFriends",
+        "Culture": "es-ES",
+        "UserLabel": "Mis amigos perdidos de vista",
+        "AppLabel": "Mis amigos perdidos de vista"
+      },
+      {
+        "RecipientTypeId": "LongLostFriends",
+        "Culture": "fr-FR",
+        "UserLabel": "Mes amis perdus de vue",
+        "AppLabel": "Vos amis perdus de vue"
+      }
+    ]
+  },
+  {
+    "Id": "LoveInterestF",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/10689964_1024166667598195_7498022878122528856_n.jpg",
+    "RelationTypeTag": "47B7E9",
+    "Gender": "F",
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "",
+    "Importance": 10,
+    "Labels": [
+      {
+        "RecipientTypeId": "LoveInterestF",
+        "Culture": "en-EN",
+        "UserLabel": "The woman I fancy",
+        "AppLabel": "The woman you fancy"
+      },
+      {
+        "RecipientTypeId": "LoveInterestF",
+        "Culture": "es-ES",
+        "UserLabel": "La mujer que me gusta",
+        "AppLabel": "La mujer que me gusta"
+      },
+      {
+        "RecipientTypeId": "LoveInterestF",
+        "Culture": "fr-FR",
+        "UserLabel": "La femme qui me plaît",
+        "AppLabel": "La femme qui vous plaît"
+      }
+    ]
+  },
+  {
+    "Id": "LoveInterestM",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/1960102_835595586455305_1859447209_n.jpg",
+    "RelationTypeTag": "47B7E9",
+    "Gender": "H",
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "",
+    "Importance": 10,
+    "Labels": [
+      {
+        "RecipientTypeId": "LoveInterestM",
+        "Culture": "en-EN",
+        "UserLabel": "The man I fancy",
+        "AppLabel": "The man your fancy"
+      },
+      {
+        "RecipientTypeId": "LoveInterestM",
+        "Culture": "es-ES",
+        "UserLabel": "El hombre que me gusta",
+        "AppLabel": "El hombre que me gusta"
+      },
+      {
+        "RecipientTypeId": "LoveInterestM",
+        "Culture": "fr-FR",
+        "UserLabel": "L'homme qui me plaît",
+        "AppLabel": "L'homme qui vous plaît"
+      }
+    ]
+  },
+  {
+    "Id": "Mother",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/429082_406386959376867_154638737885025_1836095_1473293822_n.jpg",
+    "RelationTypeTag": "64C63D",
+    "Gender": "F",
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "T",
+    "Importance": 30,
+    "Labels": [
+      {
+        "RecipientTypeId": "Mother",
+        "Culture": "en-EN",
+        "UserLabel": "Mum",
+        "AppLabel": "Your mother"
+      },
+      {
+        "RecipientTypeId": "Mother",
+        "Culture": "es-ES",
+        "UserLabel": "Mamá",
+        "AppLabel": "Mamá.."
+      },
+      {
+        "RecipientTypeId": "Mother",
+        "Culture": "fr-FR",
+        "UserLabel": "Maman",
+        "AppLabel": "Votre mère"
+      }
+    ]
+  },
+  {
+    "Id": "OtherFriends",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/shutterstock_111009566.jpg",
+    "RelationTypeTag": "6E7DFB",
+    "Gender": null,
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "",
+    "Importance": 60,
+    "Labels": [
+      {
+        "RecipientTypeId": "OtherFriends",
+        "Culture": "en-EN",
+        "UserLabel": "My Facebook friends",
+        "AppLabel": "Your Facebook friends"
+      },
+      {
+        "RecipientTypeId": "OtherFriends",
+        "Culture": "es-ES",
+        "UserLabel": "Mis amigos de Facebook",
+        "AppLabel": "Amigos de Facebook"
+      },
+      {
+        "RecipientTypeId": "OtherFriends",
+        "Culture": "fr-FR",
+        "UserLabel": "Mes amis Facebook",
+        "AppLabel": "Vos amis Facebook"
+      }
+    ]
+  },
+  {
+    "Id": "Sister",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000058214822_Medium.jpg",
+    "RelationTypeTag": "87F524",
+    "Gender": "F",
+    "UsualRecipient": false,
+    "SubscribableRecipient": false,
+    "PoliteForm": "T",
+    "Importance": 150,
+    "Labels": [
+      {
+        "RecipientTypeId": "Sister",
+        "Culture": "en-EN",
+        "UserLabel": "My sister",
+        "AppLabel": "Your sister"
+      },
+      {
+        "RecipientTypeId": "Sister",
+        "Culture": "es-ES",
+        "UserLabel": "Mi hermana",
+        "AppLabel": "Su hermana"
+      },
+      {
+        "RecipientTypeId": "Sister",
+        "Culture": "fr-FR",
+        "UserLabel": "Ma sœur",
+        "AppLabel": "Votre sœur"
+      }
+    ]
+  },
+  {
+    "Id": "SweetheartF",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000008350300_Medium.jpg",
+    "RelationTypeTag": "9E2D23",
+    "Gender": "F",
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "T",
+    "Importance": 30,
+    "Labels": [
+      {
+        "RecipientTypeId": "SweetheartF",
+        "Culture": "en-EN",
+        "UserLabel": "My sweetheart",
+        "AppLabel": "Your sweetheart"
+      },
+      {
+        "RecipientTypeId": "SweetheartF",
+        "Culture": "es-ES",
+        "UserLabel": "Mi amada",
+        "AppLabel": "Esposa, compañera"
+      },
+      {
+        "RecipientTypeId": "SweetheartF",
+        "Culture": "fr-FR",
+        "UserLabel": "Ma chérie",
+        "AppLabel": "Votre chérie"
+      }
+    ]
+  },
+  {
+    "Id": "SweetheartM",
+    "ImageUrl": "http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000010603333_Medium.jpg",
+    "RelationTypeTag": "9E2D23",
+    "Gender": "H",
+    "UsualRecipient": true,
+    "SubscribableRecipient": true,
+    "PoliteForm": "T",
+    "Importance": 30,
+    "Labels": [
+      {
+        "RecipientTypeId": "SweetheartM",
+        "Culture": "en-EN",
+        "UserLabel": "My sweetheart",
+        "AppLabel": "My sweetheart"
+      },
+      {
+        "RecipientTypeId": "SweetheartM",
+        "Culture": "es-ES",
+        "UserLabel": "Mi amado",
+        "AppLabel": "Esposo, compañero"
+      },
+      {
+        "RecipientTypeId": "SweetheartM",
+        "Culture": "fr-FR",
+        "UserLabel": "Mon chéri",
+        "AppLabel": "Votre chéri"
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextColor="@color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/iv_gif_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/btn_send"
+                style="@style/ActionButtonWithTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_main_button"
+                android:text="@string/send" />
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</layout>

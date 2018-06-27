@@ -1,0 +1,44 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_share"
+                style="@style/ActionButtonWithTextStyle"
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="@string/send"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/btn_back"
+                style="@style/ActionButtonWithTextStyle"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

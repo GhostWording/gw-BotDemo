@@ -1,0 +1,1022 @@
+[
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 5,
+    "HasImage": true,
+    "ImagePath": "cvd/fbfriend",
+    "IntentionId": "2E2986",
+    "UpdateDate": "2016-12-16T13:51:19.993",
+    "SortOrder": 170,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/10406436_1051564041525124_3832381646842635029_n.jpg",
+    "Culture": "en-EN",
+    "Description": null,
+    "Labels": [
+      {
+        "IntentionId": "2E2986",
+        "Culture": "en-EN",
+        "Label": "Mood and status",
+        "Slug": "facebook-status"
+      },
+      {
+        "IntentionId": "2E2986",
+        "Culture": "es-ES",
+        "Label": "Estados de facebook",
+        "Slug": "estados-de-facebook"
+      },
+      {
+        "IntentionId": "2E2986",
+        "Culture": "fr-FR",
+        "Label": "Humeur et statut",
+        "Slug": "statuts-facebook"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,35AE93,3B9BF2,47B7E9,64C63D,6E7DFB,87F524",
+    "Slug": "facebook-status",
+    "SlugPrototypeLink": "facebook-status",
+    "Label": "Mood and status",
+    "MostRecentTextUpdate": "2017-10-06T09:32:37",
+    "MostRecentTextUpdateEpoch": 1507282357,
+    "WeightingCoefficient": 100,
+    "Recurring": "true",
+    "Impersonal": "true"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 10,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-think-of-you",
+    "IntentionId": "016E91",
+    "UpdateDate": "2017-06-06T13:49:17.003",
+    "SortOrder": 6,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/1469997_10203571992841951_1190615554680040228_n.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/think.json",
+    "Labels": [
+      {
+        "IntentionId": "016E91",
+        "Culture": "en-EN",
+        "Label": "I think of you",
+        "Slug": "I-think-of-you"
+      },
+      {
+        "IntentionId": "016E91",
+        "Culture": "es-ES",
+        "Label": "Te pienso",
+        "Slug": "te-pienso"
+      },
+      {
+        "IntentionId": "016E91",
+        "Culture": "fr-FR",
+        "Label": "Je pense à toi",
+        "Slug": "je-pense-a-toi"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,87F524,9E2D23,BCA601",
+    "Slug": "I-think-of-you",
+    "SlugPrototypeLink": "I-think-of-you",
+    "Label": "I think of you",
+    "MostRecentTextUpdate": "2017-09-21T16:54:57",
+    "MostRecentTextUpdateEpoch": 1506012897,
+    "WeightingCoefficient": 100,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 15,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-miss-you",
+    "IntentionId": "8ED62C",
+    "UpdateDate": "2017-06-06T09:38:58.193",
+    "SortOrder": 9,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/302560_441589152544948_505119604_n.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/miss.json",
+    "Labels": [
+      {
+        "IntentionId": "8ED62C",
+        "Culture": "en-EN",
+        "Label": "I miss you",
+        "Slug": "I-miss-you"
+      },
+      {
+        "IntentionId": "8ED62C",
+        "Culture": "es-ES",
+        "Label": "Me haces falta",
+        "Slug": "me-haces-falta"
+      },
+      {
+        "IntentionId": "8ED62C",
+        "Culture": "fr-FR",
+        "Label": "Tu me manques",
+        "Slug": "tu-me-manques"
+      }
+    ],
+    "RelationTypeIds": [
+      "47B7E9",
+      "9E2D23"
+    ],
+    "RelationTypesString": "47B7E9,9E2D23",
+    "Slug": "I-miss-you",
+    "SlugPrototypeLink": "I-miss-you",
+    "Label": "I miss you",
+    "MostRecentTextUpdate": "2017-09-04T11:32:21",
+    "MostRecentTextUpdateEpoch": 1504524741,
+    "WeightingCoefficient": 100,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 20,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-love-you",
+    "IntentionId": "5CDCF2",
+    "UpdateDate": "2017-06-06T09:38:43.117",
+    "SortOrder": 7,
+    "MediaUrl": "http://gw-static.azurewebsites.net/specialoccasions/I-love-you/default/small/10458721_551136204997654_4146967533972430126_n.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/love.json",
+    "Labels": [
+      {
+        "IntentionId": "5CDCF2",
+        "Culture": "en-EN",
+        "Label": "I love you",
+        "Slug": "I-love-you"
+      },
+      {
+        "IntentionId": "5CDCF2",
+        "Culture": "es-ES",
+        "Label": "Te amo",
+        "Slug": "te-amo"
+      },
+      {
+        "IntentionId": "5CDCF2",
+        "Culture": "fr-FR",
+        "Label": "Je t'aime",
+        "Slug": "je-t-aime"
+      }
+    ],
+    "RelationTypeIds": [
+      "303895",
+      "47B7E9",
+      "64C63D",
+      "9E2D23"
+    ],
+    "RelationTypesString": "303895,47B7E9,64C63D,9E2D23",
+    "Slug": "I-love-you",
+    "SlugPrototypeLink": "I-love-you",
+    "Label": "I love you",
+    "MostRecentTextUpdate": "2017-09-29T10:41:33",
+    "MostRecentTextUpdateEpoch": 1506681693,
+    "WeightingCoefficient": 100,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 30,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/good-morning",
+    "IntentionId": "030FD0",
+    "UpdateDate": "2017-06-06T09:39:24.187",
+    "SortOrder": 200,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/shutterstock_151777982.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/morning.json",
+    "Labels": [
+      {
+        "IntentionId": "030FD0",
+        "Culture": "en-EN",
+        "Label": "Good morning",
+        "Slug": "good-morning"
+      },
+      {
+        "IntentionId": "030FD0",
+        "Culture": "es-ES",
+        "Label": "Buenos días",
+        "Slug": "buenos-días"
+      },
+      {
+        "IntentionId": "030FD0",
+        "Culture": "fr-FR",
+        "Label": "Bonjour",
+        "Slug": "bonjour"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,3B9BF2,47B7E9,64C63D,87F524,9E2D23",
+    "Slug": "good-morning",
+    "SlugPrototypeLink": "good-morning",
+    "Label": "Good morning",
+    "MostRecentTextUpdate": "2017-09-26T10:35:39",
+    "MostRecentTextUpdateEpoch": 1506422139,
+    "WeightingCoefficient": 40,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 40,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/good-night",
+    "IntentionId": "D392C1",
+    "UpdateDate": "2017-06-06T09:39:46.537",
+    "SortOrder": 60,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000060269518_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/night.json",
+    "Labels": [
+      {
+        "IntentionId": "D392C1",
+        "Culture": "en-EN",
+        "Label": "Good night",
+        "Slug": "good-night"
+      },
+      {
+        "IntentionId": "D392C1",
+        "Culture": "es-ES",
+        "Label": "Buenas noches",
+        "Slug": "buenas-noches"
+      },
+      {
+        "IntentionId": "D392C1",
+        "Culture": "fr-FR",
+        "Label": "Bonne nuit",
+        "Slug": "bonne-nuit"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,3B9BF2,47B7E9,64C63D,87F524,9E2D23",
+    "Slug": "good-night",
+    "SlugPrototypeLink": "good-night",
+    "Label": "Good night",
+    "MostRecentTextUpdate": "2017-09-01T16:07:43.44",
+    "MostRecentTextUpdateEpoch": 1504282063,
+    "WeightingCoefficient": 40,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 41,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/poems",
+    "IntentionId": "43B296",
+    "UpdateDate": "2017-02-27T11:31:33.603",
+    "SortOrder": 1000,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000018142046_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": null,
+    "Labels": [
+      {
+        "IntentionId": "43B296",
+        "Culture": "en-EN",
+        "Label": "Poems",
+        "Slug": "poems"
+      },
+      {
+        "IntentionId": "43B296",
+        "Culture": "es-ES",
+        "Label": "Poemas",
+        "Slug": "poemas"
+      },
+      {
+        "IntentionId": "43B296",
+        "Culture": "fr-FR",
+        "Label": "Poèmes",
+        "Slug": "poemes"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "2B4F14",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,2B4F14,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "poems",
+    "SlugPrototypeLink": "poems",
+    "Label": "Poems",
+    "MostRecentTextUpdate": "2017-10-06T15:05:06",
+    "MostRecentTextUpdateEpoch": 1507302306,
+    "WeightingCoefficient": 100,
+    "Recurring": "true",
+    "Impersonal": "true"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 42,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/happy-birthday",
+    "IntentionId": "A730B4",
+    "UpdateDate": "2017-06-06T09:32:48.49",
+    "SortOrder": 11,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000002415327_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/birthday.json",
+    "Labels": [
+      {
+        "IntentionId": "A730B4",
+        "Culture": "en-EN",
+        "Label": "Happy birthday",
+        "Slug": "happy-birthday"
+      },
+      {
+        "IntentionId": "A730B4",
+        "Culture": "es-ES",
+        "Label": "Feliz cumpleanos",
+        "Slug": "feliz-cumpleanos"
+      },
+      {
+        "IntentionId": "A730B4",
+        "Culture": "fr-FR",
+        "Label": "Bon anniversaire",
+        "Slug": "joyeux-anniversaire"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "2B4F14",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,2B4F14,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "happy-birthday",
+    "SlugPrototypeLink": "happy-birthday",
+    "Label": "Happy birthday",
+    "MostRecentTextUpdate": "2017-06-10T18:41:00.157",
+    "MostRecentTextUpdateEpoch": 1497120060,
+    "WeightingCoefficient": 100,
+    "Recurring": "false",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 45,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/jokes",
+    "IntentionId": "0B1EA1",
+    "UpdateDate": "2017-06-06T09:33:50.263",
+    "SortOrder": 12,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/318478_278939402217337_118683324_n.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/jokes.json",
+    "Labels": [
+      {
+        "IntentionId": "0B1EA1",
+        "Culture": "en-EN",
+        "Label": "Jokes",
+        "Slug": "jokes"
+      },
+      {
+        "IntentionId": "0B1EA1",
+        "Culture": "es-ES",
+        "Label": "Humor",
+        "Slug": "humor"
+      },
+      {
+        "IntentionId": "0B1EA1",
+        "Culture": "fr-FR",
+        "Label": "Un peu d'humour",
+        "Slug": "humour"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "2B4F14",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,2B4F14,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "jokes",
+    "SlugPrototypeLink": "jokes",
+    "Label": "Jokes",
+    "MostRecentTextUpdate": "2017-09-12T08:54:50",
+    "MostRecentTextUpdateEpoch": 1505206490,
+    "WeightingCoefficient": 60,
+    "Recurring": "true",
+    "Impersonal": "true"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 50,
+    "HasImage": true,
+    "ImagePath": "cvd/fbfriend",
+    "IntentionId": "950C3C",
+    "UpdateDate": "2017-06-06T09:34:08.14",
+    "SortOrder": 110,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/209405-1000-14471607885805610-R3L8T8D-990-29apr14_085355.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/howareyou.json",
+    "Labels": [
+      {
+        "IntentionId": "950C3C",
+        "Culture": "en-EN",
+        "Label": "How are you",
+        "Slug": "how-are-you"
+      },
+      {
+        "IntentionId": "950C3C",
+        "Culture": "es-ES",
+        "Label": "¿Cómo estás?",
+        "Slug": "como-estas-tu"
+      },
+      {
+        "IntentionId": "950C3C",
+        "Culture": "fr-FR",
+        "Label": "Comment vas-tu",
+        "Slug": "comment-vas-tu"
+      }
+    ],
+    "RelationTypeIds": [
+      "2B4F14",
+      "303895",
+      "3B9BF2",
+      "420A3E",
+      "64C63D",
+      "87F524",
+      "BCA601"
+    ],
+    "RelationTypesString": "2B4F14,303895,3B9BF2,420A3E,64C63D,87F524,BCA601",
+    "Slug": "how-are-you",
+    "SlugPrototypeLink": "how-are-you",
+    "Label": "How are you",
+    "MostRecentTextUpdate": "2017-06-10T18:53:52.877",
+    "MostRecentTextUpdateEpoch": 1497120832,
+    "WeightingCoefficient": 100,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 55,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-like-you",
+    "IntentionId": "64B504",
+    "UpdateDate": "2017-06-06T09:34:51.22",
+    "SortOrder": 8,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000013907982_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/like.json",
+    "Labels": [
+      {
+        "IntentionId": "64B504",
+        "Culture": "en-EN",
+        "Label": "I like you",
+        "Slug": "I-like-you"
+      },
+      {
+        "IntentionId": "64B504",
+        "Culture": "es-ES",
+        "Label": "Me gustas",
+        "Slug": "me-gustas"
+      },
+      {
+        "IntentionId": "64B504",
+        "Culture": "fr-FR",
+        "Label": "Tu me plais",
+        "Slug": "tu-me-plais"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "47B7E9",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,47B7E9,9E2D23",
+    "Slug": "I-like-you",
+    "SlugPrototypeLink": "I-like-you",
+    "Label": "I like you",
+    "MostRecentTextUpdate": "2017-09-04T11:50:20",
+    "MostRecentTextUpdateEpoch": 1504525820,
+    "WeightingCoefficient": 50,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 58,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/you-are-the-best",
+    "IntentionId": "8FB4AF",
+    "UpdateDate": "2017-08-03T14:43:30.307",
+    "SortOrder": 80,
+    "MediaUrl": "http://gw-static.azurewebsites.net/cvd/parent/stockparent/small/teddy-bear-trompe-l-oeil.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/best.json",
+    "Labels": [
+      {
+        "IntentionId": "8FB4AF",
+        "Culture": "en-EN",
+        "Label": "You're the best",
+        "Slug": "you-are-the-best"
+      },
+      {
+        "IntentionId": "8FB4AF",
+        "Culture": "es-ES",
+        "Label": "Usted es el mejor",
+        "Slug": "usted-es-el-mejor"
+      },
+      {
+        "IntentionId": "8FB4AF",
+        "Culture": "fr-FR",
+        "Label": "Tu es le/la meilleur(e)",
+        "Slug": "tu-es-le-meilleur"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23",
+    "Slug": "you-are-the-best",
+    "SlugPrototypeLink": "you-are-the-best",
+    "Label": "You're the best",
+    "MostRecentTextUpdate": "2017-06-10T18:53:33.533",
+    "MostRecentTextUpdateEpoch": 1497120813,
+    "WeightingCoefficient": 30,
+    "Recurring": "true",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 60,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/come-over-for-dinner",
+    "IntentionId": "D19840",
+    "UpdateDate": "2017-06-06T13:47:16.88",
+    "SortOrder": 22,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000001544349_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/wantdinner.json",
+    "Labels": [
+      {
+        "IntentionId": "D19840",
+        "Culture": "en-EN",
+        "Label": "Come over for dinner",
+        "Slug": "come-over-for-dinner"
+      },
+      {
+        "IntentionId": "D19840",
+        "Culture": "es-ES",
+        "Label": "Invitacion a cenar en casa",
+        "Slug": "invitacion-a-cenar-en-casa"
+      },
+      {
+        "IntentionId": "D19840",
+        "Culture": "fr-FR",
+        "Label": "Venez dîner",
+        "Slug": "venez-diner-a-la-maison"
+      }
+    ],
+    "RelationTypeIds": [
+      "35AE93",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "BCA601"
+    ],
+    "RelationTypesString": "35AE93,3B9BF2,47B7E9,64C63D,87F524,BCA601",
+    "Slug": "come-over-for-dinner",
+    "SlugPrototypeLink": "come-over-for-dinner",
+    "Label": "Come over for dinner",
+    "MostRecentTextUpdate": "2016-11-28T22:11:57",
+    "MostRecentTextUpdateEpoch": 1480371117,
+    "WeightingCoefficient": 10,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 70,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-am-late",
+    "IntentionId": "9B2C8B",
+    "UpdateDate": "2017-06-06T09:34:30.233",
+    "SortOrder": 13,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/p89QGfp.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/late.json",
+    "Labels": [
+      {
+        "IntentionId": "9B2C8B",
+        "Culture": "en-EN",
+        "Label": "I am late",
+        "Slug": "I-am-late"
+      },
+      {
+        "IntentionId": "9B2C8B",
+        "Culture": "es-ES",
+        "Label": "Voy tarde",
+        "Slug": "voy-tarde"
+      },
+      {
+        "IntentionId": "9B2C8B",
+        "Culture": "fr-FR",
+        "Label": "Je suis en retard",
+        "Slug": "je-suis-en-retard"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "35AE93",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,35AE93,3B9BF2,47B7E9,64C63D,87F524,9E2D23",
+    "Slug": "I-am-late",
+    "SlugPrototypeLink": "I-am-late",
+    "Label": "I am late",
+    "MostRecentTextUpdate": "2015-10-17T13:47:55.127",
+    "MostRecentTextUpdateEpoch": 1445089675,
+    "WeightingCoefficient": 100,
+    "Recurring": "false",
+    "Impersonal": "true"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 90,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/I-am-here-for-you",
+    "IntentionId": "03B6E4",
+    "UpdateDate": "2016-11-27T12:17:41.92",
+    "SortOrder": 26,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/10646873_599816080129666_5894380577519318970_n.jpg",
+    "Culture": "en-EN",
+    "Description": "Lorsque vos amis ont besoin de support..",
+    "Labels": [
+      {
+        "IntentionId": "03B6E4",
+        "Culture": "en-EN",
+        "Label": "I am here for you",
+        "Slug": "I-am-here-for-you"
+      },
+      {
+        "IntentionId": "03B6E4",
+        "Culture": "es-ES",
+        "Label": "Estoy contigo",
+        "Slug": "estoy-contigo"
+      },
+      {
+        "IntentionId": "03B6E4",
+        "Culture": "fr-FR",
+        "Label": "Je suis là pour toi",
+        "Slug": "je-suis-la-pour-toi"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,3B9BF2,420A3E,47B7E9,64C63D,87F524,9E2D23",
+    "Slug": "I-am-here-for-you",
+    "SlugPrototypeLink": "I-am-here-for-you",
+    "Label": "I am here for you",
+    "MostRecentTextUpdate": "2017-09-08T16:26:36.817",
+    "MostRecentTextUpdateEpoch": 1504887996,
+    "WeightingCoefficient": 20,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 110,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/would-you-care-for-a-drink",
+    "IntentionId": "916FFC",
+    "UpdateDate": "2017-06-06T13:48:31.403",
+    "SortOrder": 20,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000013147680_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/wantdrink.json",
+    "Labels": [
+      {
+        "IntentionId": "916FFC",
+        "Culture": "en-EN",
+        "Label": "Would you care for a drink",
+        "Slug": "would-you-care-for-a-drink"
+      },
+      {
+        "IntentionId": "916FFC",
+        "Culture": "es-ES",
+        "Label": "Vamos a tomar algo",
+        "Slug": "vamos-a-tomar-algo"
+      },
+      {
+        "IntentionId": "916FFC",
+        "Culture": "fr-FR",
+        "Label": "Prenons un verre",
+        "Slug": "prenons-un-verre"
+      }
+    ],
+    "RelationTypeIds": [
+      "2B4F14",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "2B4F14,303895,35AE93,3B9BF2,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "would-you-care-for-a-drink",
+    "SlugPrototypeLink": "would-you-care-for-a-drink",
+    "Label": "Would you care for a drink",
+    "MostRecentTextUpdate": "2017-09-04T11:53:54",
+    "MostRecentTextUpdateEpoch": 1504526034,
+    "WeightingCoefficient": 40,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 150,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/thank-you",
+    "IntentionId": "1778B7",
+    "UpdateDate": "2017-07-26T14:15:04.617",
+    "SortOrder": 14,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/160H.jpg",
+    "Culture": "en-EN",
+    "Description": "/common/giphycontent/thankyou.json",
+    "Labels": [
+      {
+        "IntentionId": "1778B7",
+        "Culture": "en-EN",
+        "Label": "Thank you",
+        "Slug": "thank-you"
+      },
+      {
+        "IntentionId": "1778B7",
+        "Culture": "es-ES",
+        "Label": "Gracias",
+        "Slug": "gracias"
+      },
+      {
+        "IntentionId": "1778B7",
+        "Culture": "fr-FR",
+        "Label": "Merci",
+        "Slug": "merci"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "thank-you",
+    "SlugPrototypeLink": "thank-you",
+    "Label": "Thank you",
+    "MostRecentTextUpdate": "2017-08-10T13:52:17.517",
+    "MostRecentTextUpdateEpoch": 1502373137,
+    "WeightingCoefficient": 20,
+    "Recurring": "both",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 160,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/let-me-introduce-myself",
+    "IntentionId": "D1A4ED",
+    "UpdateDate": "2017-06-09T17:02:09.687",
+    "SortOrder": 214,
+    "MediaUrl": "http://az767698.vo.msecnd.net/specialoccasions/let-me-introduce-myself/default/small/iStock_000027124506_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": "Partout sur Internet, on vous demande de vous présenter en quelques lignes.",
+    "Labels": [
+      {
+        "IntentionId": "D1A4ED",
+        "Culture": "en-EN",
+        "Label": "Let me introduce myself",
+        "Slug": "let-me-introduce-myself"
+      },
+      {
+        "IntentionId": "D1A4ED",
+        "Culture": "es-ES",
+        "Label": "Me presento",
+        "Slug": "me-presento"
+      },
+      {
+        "IntentionId": "D1A4ED",
+        "Culture": "fr-FR",
+        "Label": "Je me présente",
+        "Slug": "je-me-presente"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "35AE93",
+      "47B7E9",
+      "6E7DFB"
+    ],
+    "RelationTypesString": "0F4F3F1021,35AE93,47B7E9,6E7DFB",
+    "Slug": "let-me-introduce-myself",
+    "SlugPrototypeLink": "let-me-introduce-myself",
+    "Label": "Let me introduce myself",
+    "MostRecentTextUpdate": "2017-09-01T09:56:16.017",
+    "MostRecentTextUpdateEpoch": 1504259776,
+    "WeightingCoefficient": 100,
+    "Recurring": "false",
+    "Impersonal": "false"
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 175,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/have-a-nice-trip",
+    "IntentionId": "EEDAC3",
+    "UpdateDate": "2016-11-27T13:03:28.97",
+    "SortOrder": 1000,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/9682_346520508802338_271896173_n.jpg",
+    "Culture": "en-EN",
+    "Description": "Bon voyage",
+    "Labels": [
+      {
+        "IntentionId": "EEDAC3",
+        "Culture": "en-EN",
+        "Label": "Have a nice trip",
+        "Slug": "have-a-nice-trip"
+      },
+      {
+        "IntentionId": "EEDAC3",
+        "Culture": "es-ES",
+        "Label": "Buen viaje",
+        "Slug": "buen-viaje"
+      },
+      {
+        "IntentionId": "EEDAC3",
+        "Culture": "fr-FR",
+        "Label": "Bon voyage",
+        "Slug": "bon-voyage"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23"
+    ],
+    "RelationTypesString": "0F4F3F1021,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23",
+    "Slug": "have-a-nice-trip",
+    "SlugPrototypeLink": "have-a-nice-trip",
+    "Label": "Have a nice trip",
+    "MostRecentTextUpdate": "2016-12-05T12:22:04",
+    "MostRecentTextUpdateEpoch": 1480940524,
+    "WeightingCoefficient": 0,
+    "Recurring": null,
+    "Impersonal": null
+  },
+  {
+    "AreaId": "D1FC26",
+    "SortOrderInArea": 180,
+    "HasImage": true,
+    "ImagePath": "specialoccasions/happy-new-year",
+    "IntentionId": "938493",
+    "UpdateDate": "2016-11-27T12:19:00.857",
+    "SortOrder": 59,
+    "MediaUrl": "http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/iStock_000027379262_Medium.jpg",
+    "Culture": "en-EN",
+    "Description": null,
+    "Labels": [
+      {
+        "IntentionId": "938493",
+        "Culture": "en-EN",
+        "Label": "Happy new year",
+        "Slug": "happy-new-year"
+      },
+      {
+        "IntentionId": "938493",
+        "Culture": "es-ES",
+        "Label": "Feliz ano",
+        "Slug": "feliz-ano"
+      },
+      {
+        "IntentionId": "938493",
+        "Culture": "fr-FR",
+        "Label": "Bonne année",
+        "Slug": "bonne-annee"
+      }
+    ],
+    "RelationTypeIds": [
+      "0F4F3F1021",
+      "2B4F14",
+      "303895",
+      "35AE93",
+      "3B9BF2",
+      "420A3E",
+      "47B7E9",
+      "64C63D",
+      "6E7DFB",
+      "87F524",
+      "9E2D23",
+      "BCA601"
+    ],
+    "RelationTypesString": "0F4F3F1021,2B4F14,303895,35AE93,3B9BF2,420A3E,47B7E9,64C63D,6E7DFB,87F524,9E2D23,BCA601",
+    "Slug": "happy-new-year",
+    "SlugPrototypeLink": "happy-new-year",
+    "Label": "Happy new year",
+    "MostRecentTextUpdate": "2016-06-01T16:45:21",
+    "MostRecentTextUpdateEpoch": 1464799521,
+    "WeightingCoefficient": 100,
+    "Recurring": "false",
+    "Impersonal": "true"
+  }
+]

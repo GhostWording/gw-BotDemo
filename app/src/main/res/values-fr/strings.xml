@@ -1,0 +1,298 @@
+<resources>
+
+    <string name="select_category">Choisissez le type de messages</string>
+    <string name="network_error">Pas de réseau. Réessayez plus tard svp !</string>
+    <string name="my_profile">Réglages</string>
+    <string name="text_edit_text">Modifier le texte</string>
+    <string name="send">Envoyer</string>
+    <string name="settings_gender">JE SUIS</string>
+    <string name="settings_age">MON AGE</string>
+    <string name="settings_language">MA LANGUE</string>
+    <string name="settings_notifications">MES NOTIFICATIONS</string>
+
+    <string name="processing_image">Traitement de l\'image en cours</string>
+    <string name="processing_image_error">Pas assez de mémoire pour créer l\'image</string>
+
+    <string name="daily_suggestion">Idées du jour</string>
+
+    <string-array name="gender">
+        <item>Un homme</item>
+        <item>Une femme</item>
+    </string-array>
+
+    <string name="english_language">Anglais</string>
+    <string name="french_language">Français</string>
+    <string name="spanish_language">Espagnol</string>
+
+    <string-array name="notifications_frequency">
+        <item>Une idée de message par jour</item>
+        <item>Une tous les 2 jours</item>
+        <item>Une par semaine</item>
+    </string-array>
+
+    <string-array name="relationship_statuses">
+        <item>Je vis seul(e)</item>
+        <item>J\'habite avec quelqu\'un</item>
+    </string-array>
+
+    <string name="make_me_slide">Faites-moi glisser svp</string>
+    <string name="send_without_text">Envoyer la photo sans texte</string>
+    <string name="choose_picture">Choisissez une photo svp</string>
+
+    <string name="gender_title">Je suis</string>
+    <string name="gender_man">un homme</string>
+    <string name="gender_woman">une femme</string>
+
+    <string name="share_to_facebook_wall">Poster sur Facebook</string>
+
+    <string name="quiz_question">Comment aimeriez-vous que l\'on vous dise \"%s\"</string>
+
+    <string name="continue_without_connection">Continuer sans connexion</string>
+
+    <string name="tutorial_match_message_with_photo">Faites glisser les photos et les textes vers la gauche pour obtenir la combinaison désirée.</string>
+    <string name="tutorial_send_as_love_postcard">Quand une photo et un texte se marient bien, envoyez !</string>
+    <string name="tutorial_choose_favorite_type_of_messages">Choisissez un type de message dans le menu</string>
+
+    <string name="text_recommend">Photos populaires pour ce texte…</string>
+
+    <string name="save_image_hint">La photo a été sauvegardée dans le répertoire de téléchargement</string>
+
+    <string name="back_exit_hint">Click BACK again to exit</string>
+
+    <!-- Status hero special -->
+
+    <!-- Humour special -->
+
+    <!-- LBDL special -->
+
+    <string name="recipients_settings_title">Mes destinataires usuels</string>
+    <string name="recipients_saved">Vos destinataires préférés ont été actualisés</string>
+    <string name="menu_choose_recipient">Choisir un destinataire</string>
+    <string name="close">Fermer</string>
+    <string name="quiz_results">Ce que les autres aiment</string>
+
+    <string name="share_dialog_email">par email</string>
+    <string name="share_dialog_text_message">par sms</string>
+    <string name="share_dialog_messenger">avec Messenger</string>
+    <string name="share_dialog_facebook">sur mon mur Facebook</string>
+    <string name="share_dialog_as_postcard">comme image avec…</string>
+    <string name="share_dialog_separate">comme texte + pj avec…</string>
+    <string name="share_dialog_instagram">sur Instagram</string>
+    <string name="share_dialog_line">avec Line</string>
+    <string name="share_dialog_wechat">avec WeChat</string>
+    <string name="share_dialog_snapchat">avec Snapchat</string>
+    <string name="share_dialog_twitter">avec Twitter</string>
+
+    <string name="popular_texts_title">Voir les textes populaires pour dire...</string>
+    <string name="popular_pictures_title">Voir les photos populaires pour dire...</string>
+    <string name="popular_texts_say">Choisissez un texte pour dire %s</string>
+    <string name="popular_images_say">Photos populaires pour dire %s</string>
+    <string name="quiz">Mon style de messages</string>
+    <string name="invite_facebook">Inviter des amis</string>
+    <string name="click_to_add_text">ou choisir un texte pour l\'ajouter</string>
+    <string name="popular_texts">Textes populaires</string>
+    <string name="popular_images">Photos populaires</string>
+    <string name="share_dialog_whatsapp">avec WhatsApp</string>
+    <string name="quiz_hint">Touchez un message pour l\'envoyer</string>
+    <string name="quiz_main_title">Ce que vous aimez recevoir</string>
+    <string name="of">sur</string>
+    <string name="settings_relationship">SITUATION SENTIMENTALE</string>
+    <string name="quiz_list_hint">Comment aimez-vous que les choses soient dites ? Aidez-nous à vous faire de meilleures suggestions !</string>
+    <string name="no_data">Pas de photo populaire pour ce texte. Cliquez sur le texte pour l\'envoyer</string>
+    <string name="quiz_list_title">Ce que vous aimez recevoir</string>
+    <string name="click_to_open_menu">Appuyez pour ouvrir le menu</string>
+    <string name="share_dialog_whatsapp_postcard">en mode carte postale</string>
+    <string name="share_dialog_viber">avec Viber</string>
+    <string name="share_dialog_skype">avec Skype</string>
+    <string name="help_us">Aider/Donner</string>
+    <string name="help_us_share">Partager sur Facebook</string>
+    <string name="help_us_rating">Laisser un gentil commentaire sur le store</string>
+    <string name="help_us_try_other_apps">Essayer une de nos autres applications</string>
+    <string name="help_us_title">Aidez-vous svp</string>
+    <string name="print_send_as_postcard">Envoyer en carte postale papier (2€)</string>
+    <string name="print_send_as_postcard_with_flowers">Envoyer avec des fleurs (12€)</string>
+    <string name="print_send_as_postcard_with_chocolate">Envoyer avec des chocolats (9€)</string>
+    <string name="print_on_shirt">Imprimer sur un T-Shirt (8€)</string>
+    <string name="print_on_mug">Imprimer sur une choppe (mug) (8€)</string>
+    <string name="share_dialog_print_and_send">imprimer et envoyer...</string>
+    <string name="oops">Options bonus</string>
+    <string name="not_implemented_message">Cette option n\'est pas prête. Nous avons débloqué 2 options bonus (gratuites) à la place</string>
+    <string name="print_and_send">Imprimer et envoyer</string>
+    <string name="touch_image_to_send">Appuyer sur une photo pour l\'envoyer avec le texte</string>
+    <string name="menu_choose_theme">Choisir un thème photo</string>
+
+    <string name="add_mbti">Mon type MBTI</string>
+    <string name="mbti_group_question">Connaissez-vous votre type MBTI ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="mbti_no">Non, voir plus d\'information</string>
+    <string name="mbti_please_choose_group">Merci de choisir votre profil</string>
+    <string name="mbti_google_message">Vous pouvez trouver plus d\'information sur la façon d\'évaluer votre tempérament en cherchant \"test MBTI\" ou \"Jung test\" sur Google.</string>
+    <string name="mbti_google_suggestions">Quand vous aurez fait le test, vous pourrez choisir l\'un de ces 16 groupes. Cela nous permettra de vous faire de super suggestions de messages !</string>
+    <string name="search_now">Chercher maintenant</string>
+    <string name="please_login_facebook">Merci de vous connecter avec Facebook pour activer la recherche.</string>
+    <string name="thank_you">Merci</string>
+    <string name="help_us_rating_question">Quelle note nous donnez-vous ?</string>
+    <string name="rate_on_store">Mettre une note sur le store</string>
+    <string name="not_now">Pas maintenant</string>
+    <string name="not_implemented_stickers_message">Merci pour votre gentillesse !\nLes stickers bonus ont été libérés</string>
+    <string name="share_dialog_wallpaper">en fond d\'écran</string>
+    <string name="set_as_wallpaper_question">Voulez-vous utiliser cette photo en fonds d\'écran pour votre téléphone</string>
+    <string name="remove_all">Tout supprimer?</string>
+
+    <string name="mbti_people_like_you">Quelques utilisateurs de profil %s</string>
+    <string name="mbti_favorite_stickers">Les stickers préférés des %s</string>
+    <string name="mbti_favorite_messages">Les messages préférés des %s</string>
+    <string name="mbti_people_opposite">Des utilisateurs de profil opposé (%s)</string>
+    <string name="mbti_stickers_opposite">Les stickers préférés des %s</string>
+    <string name="mbti_messages_opposite">Les messages préférés des %s</string>
+    <string name="mbti_people_title">Quelques %s</string>
+    <string name="mbti_images_title">Stickers préférés des %s</string>
+    <string name="mbti_messages_title">Messages préférés des %s</string>
+
+    <string name="pick_animal">Un animal</string>
+    <string name="pick_animal_title">Cliquez votre animal préféré</string>
+    <string name="pick_landscape">Un paysage</string>
+    <string name="pick_landscape_title">Cliquez votre paysage préféré</string>
+    <string name="pick_flower_title">Cliquez votre fleur préférée</string>
+    <string name="pick_flower">Une fleur</string>
+    <string name="pick_presentation">Une intro</string>
+    <string name="no_data_yet">Pas assez de données. Merci de revenir dans quelques jours</string>
+    <string name="favorites">Récent</string>
+    <string name="most_popular_menu">Populaires</string>
+    <string name="unlock_sticker">Stickers bonus</string>
+    <string name="unlock_theme_title">Quels stickers voulez-vous ?</string>
+    <string name="unlock_dialog_title">Gagner ces stickers en</string>
+    <string name="witch_most_popular">Lequel plaît le plus ?</string>
+    <string name="guess_success">%s a été libéré</string>
+    <string name="guess_fail">Pas de chance</string>
+    <string name="what_you_like_to_hear">Quel message préférez-vous ?</string>
+
+    <string-array name="ordering_popular">
+        <item>Les plus populaires</item>
+        <item>Populaires chez les hommes</item>
+        <item>Populaires chez les femmes</item>
+    </string-array>
+
+    <string name="guess_most_popular_sticker">Devinant le plus populaire</string>
+    <string name="answer_questions">Choisissant une chose que vous aimez</string>
+    <string name="unlock_with_questions">Choisir une chose qui vous plaît</string>
+    <string name="try_other_theme">Essayer un autre thème</string>
+    <string name="choose_type_of_question">Ajouter à vos préférences</string>
+
+    <string name="your_communication_style">Vos messages préférés</string>
+    <string name="additional_relation_type"></string>
+    <string name="add_text">Ajouter un texte</string>
+    <string name="unlock_other_theme">Débloquer un autre thème</string>
+    <string name="see_theme_now">Voir \"%s\" maintenant</string>
+    <string name="pick_presentation_title">Si vous deviez vous présenter</string>
+    <string name="very_bad">TRES MAUVAIS</string>
+    <string name="very_good">TRES BIEN</string>
+    <string name="would_you_like_to_see">Voulez-vous voir</string>
+    <string name="unlock_this_profile">Pour voir ce profil</string>
+    <string name="please_choose">Merci de choisir...</string>
+    <string name="unlock">Débloquer</string>
+    <string name="unlock_by_donation">Partageant sur Facebook</string>
+    <string name="intention_i_think_of_you">Je pense à toi</string>
+    <string name="intention_i_miss_you">Tu me manques</string>
+    <string name="intention_i_love_you">Je t\'aime</string>
+    <string name="intention_pairs">Paires</string>
+    <string name="intention_flowers">Fleurs</string>
+    <string name="favorites_images">Stickers</string>
+    <string name="favorites_texts">Textes</string>
+    <string name="settings_questions">MON PROFILE PSYCHOLOGIQUE</string>
+    <string name="skip">PASSER</string>
+    <string name="skip_bot">Passer</string>
+    <string name="next">Suivant</string>
+    <string name="daily_suggestions">Idées du jour</string>
+    <string name="preview">Aperçu</string>
+    <string name="edit">Modifier</string>
+    <string name="intention_good_night">Bonne nuit</string>
+    <string name="settings_preview">Prévisualisation des messages</string>
+    <string name="bubble_mode">Bulle</string>
+    <string name="translations">Traduction auto</string>
+    <string name="use_messenger">Utiliser Messenger</string>
+    <string name="as_main_sharing_option">comme moyen de partage principal</string>
+    <string name="along_with_other_choices">avec d\'autres choix (WhatsApp, mur Facebook,...)</string>
+    <string name="recipients_tab">Destinataires</string>
+    <string name="swipe_left_or_right_to_change_category">Faites glisser pour changer de page</string>
+    <string name="hint_tap_category">Cliquez la catégorie de messages de votre choix</string>
+    <string name="hint_share_image">Clicker un texte pour le joindre à la photo</string>
+    <string name="hint_swipe_left">Faites glisser les textes pour voir les options</string>
+    <string name="trending_messages">Messages en vogue</string>
+    <string name="touch_to_send">Toucher pour envoyer</string>
+    <string name="usefull_messages">Messages utiles</string>
+    <string name="message_hint_better_ideas">Pour améliorer les suggestions je peux choisir </string>
+    <string name="play">Ecouter</string>
+    <string name="no_popular_content">Pas d\'image populaire pour ce texte. Cliquez sur le texte pour l\'envoyer !</string>
+    <string name="ideas">Idées</string>
+    <string name="hint_edit_translate">Editer, traduire, changer d\'image</string>
+    <string name="which_one_sent_it">Devinez qui a envoyé le message</string>
+    <string name="which_one_you_prefer">Quel message préférez-vous ?</string>
+    <string name="send_message_completed">Message envoyé avec succès \n Revenez svp demain pour voir comme il a été accueilli</string>
+    <string name="incoming_message">Nouveau message</string>
+    <string name="send_message">Envoyer un message</string>
+    <string name="register">Démarrer</string>
+    <string name="battle_stickers_registration">Battle stickers est un jeu humoristique pour célibataires.\n\nLes hommes courtisent les femmes avec des autocollants et des messages drôles ou poétiques.\n\nLes femmes évaluent ce qu\'elles reçoivent et essayent de deviner qui l\'a envoyé.</string>
+    <string name="translation_warning">Les traductions auto sont souvent maladroites</string>
+    <string name="sticker_pals_receive_stickers">Autoriser les alter ego à envoyer des stickers ?</string>
+    <string name="suggestions_hint">Voir des idées pour</string>
+    <string name="recipient_mother">Maman</string>
+    <string name="recipient_friend">Mes ami(e)s</string>
+    <string name="recipient_sweetheart">Ma chérie</string>
+    <string name="notifications_for">Recevoir des idées pour</string>
+    <string name="ideas_for">Idées pour</string>
+    <string name="error_loading_daily_ideas">Idées du jour indisponibles. Allez-voir svp une autre rubrique</string>
+    <string name="recipient_facebook_friends">Mes amis Facebook</string>
+    <string name="humour_mode_off">Mode humour désactivé</string>
+    <string name="humour_mode_on">Mode humour activé</string>
+    <string name="search_no_results">Aucun résultat trouvé</string>
+    <string name="ask_huggy_message">Bonjour%s</string>
+    <string name="ask_huggy_message_hint">Appuyez sur le message pour le transférer</string>
+    <string name="no_results_ask_huggy">Parle-moi stp !</string>
+    <string name="filter_user_country">Seulement les utilisateurs en %s</string>
+    <string name="retry">Réessayer</string>
+    <string name="thank_you_that_help">\"Merci ! Cela nous aidera à améliorer les suggestions.</string>
+    <string name="command_images">%s: Images</string>
+    <string name="command_messages">%s: Messages</string>
+    <string name="stickers_pals">Alter ego</string>
+    <string name="rating_man">Hommes</string>
+    <string name="rating_woman">Femmes</string>
+    <string name="filters">Filtres</string>
+    <string name="filter_answers">Quelles devraient être leurs réponses</string>
+    <string name="apply">APPLIQUER</string>
+    <string name="hint_type_message">Entrez votre message...</string>
+    <string name="show_another">Voir un autre</string>
+    <string name="gif_composer">Choisissez de 2 à 6 images</string>
+    <string name="view_title">Voir</string>
+    <string name="share_more">plus...</string>
+    <string name="sticker_pals_placeholder_hint">Lorsque vous envoyez au moins 2 autocollants, vous pouvez voir les utilisateurs avec des profils similaires</string>
+    <string name="send_sticker_now">Envoyer un sticker maintenant</string>
+    <string name="animated_gif">Gif animé</string>
+    <string name="please_choose_language">--- Choisissez une langue svp</string>
+    <string name="show_something_else">Montrer quelque chose d\'autre</string>
+    <string name="new_title">Nouveau</string>
+    <string name="share_later">plus tard...</string>
+    <string name="feedback_title">Quelles nouvelles fonctionnalités devrions-nous ajouter?</string>
+    <string name="send_later">Envoyer plus tard</string>
+    <string name="reminder_title">Pour qui est le message</string>
+    <string name="time_to_message">C\'est l\'heure du message pour</string>
+    <string name="show_menu">Voir le menu</string>
+    <string name="vote">Voter</string>
+    <string name="thank_you_for_voting">Merci d\'avoir voté!</string>
+    <string name="web_site_url"></string>
+    <string name="send_daily">Envoyer quotidiennement</string>
+    <string name="send_daily_on">Envoyer quotidiennement: oui</string>
+    <string name="promo">NOUVEAU</string>
+    <string name="btn_try_me">Essaie-moi</string>
+    <string name="talk_to_me">Parle-moi</string>
+    <string name="welcome_back">Heureux de te revoir!</string>
+    <string name="btn_skip_label">Sans opinion</string>
+    <string name="settings_privacy_policy">CONDITIONS GENERALES</string>
+    <string name="follow_us">Suivez-vous</string>
+    <string name="gif_custom_title">Emojis animés</string>
+    <string name="label_continue">CONTINUER</string>
+    <string name="tap_to_send">Cliquer pour envoyer</string>
+    <string name="start">COMMENCER</string>
+    <string name="back">RETOUR</string>
+</resources>

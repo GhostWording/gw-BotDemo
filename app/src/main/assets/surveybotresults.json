@@ -1,0 +1,60 @@
+{
+  "SurveyBot": [
+    {
+      "ID": "totalVoters",
+      "Label": {
+        "fr": "{value} personnes ont voté",
+        "en": "{value} people voted",
+        "es": "{value} personas han votado"
+      }
+    },
+    {
+      "ID": "percentVotersAgree",
+      "Label": {
+        "fr": "{value}% ont choisi comme toi",
+        "en": "{value}% chose like you",
+        "es": "El {value}% han votado como tú"
+      }
+    },
+    {
+      "ID": "percentVotersAgreeMen",
+      "Label": {
+        "fr": "Hommes : {value}%",
+        "en": "Men: {value}%",
+        "es": "Hombres: {value}%"
+      }
+    },
+    {
+      "ID": "percentVotersAgreeWomen",
+      "Label": {
+        "fr": "- Femmes : {value}%",
+        "en": "Women: {value}%",
+        "es": "Mujeres: {value}%"
+      }
+    },
+    {
+      "ID": "percentVotersAgreeCountry",
+      "Label": {
+        "fr": "{country} : {value}%",
+        "en": "{country}: {value}%",
+        "es": "{country}: {value}%"
+      }
+    },
+    {
+      "key": "percentVotersAgreeLessThan40",
+      "Label": {
+        "fr": "- Moins de 40 ans : {value}%",
+        "en": "- Younger people: {value}%",
+        "es": "- Menores de 40 años: {value}%"
+      }
+    },
+    {
+      "key": "percentVotersAgree40AndOver",
+      "Label": {
+        "fr": "40 ans et plus : {value}%",
+        "en": "people over 40: {value}%",
+        "es": "mayores de 40 años: {value}%"
+      }
+    }
+  ]
+}

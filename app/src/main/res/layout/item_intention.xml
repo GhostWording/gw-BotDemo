@@ -1,0 +1,25 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:id="@+id/container"
+        style="@style/SlidingMenuOptionItemStyle"
+        android:layout_marginTop="0dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/intention_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:id="@+id/intention_title"
+            style="@style/SlidingMenuOptionTextStyle" />
+
+    </LinearLayout>
+
+</layout>
+

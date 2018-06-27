@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--application keys-->
+    <string name="facebook_app_id">186645512138080</string>
+    <string name="google_analytics_id">UA-47718196-24</string>
+
+    <!-- app promo -->
+    <string name="app_facebook_promo_link">https://fb.me/1577751189211521</string>
+    <string name="app_promo_image">http://gw-static.azurewebsites.net/cvd/icons/lbdl/small/icon.png</string>
+    <string name="apple_store_id"></string>
+    <string name="app_icon_relative_url">cvd/icons/lbdl/xsmall/logo4small.jpg</string>
+    <string name="web_site_url">www.stickerprofiling.com</string>
+
+    <!-- api parameters. Run tests from network package to check them. -->
+    <string name="app_area_id">HumourApp</string>
+    <string name="app_area_bonus">StickersBonus</string>
+    <string name="app_area_analytics">HumourApp</string>
+    <string name="application_name">PopularStickers</string>
+    <string name="picture_area">sweetheart</string>
+    <string name="quiz_area">stickers</string>
+
+    <!-- filters -->
+    <string name="relation_type">9E2D23</string>
+    <string name="additional_relation_type"></string>
+    <bool name="filter_messages_by_polite_form">true</bool>
+
+    <!-- Recipient type -->
+    <string name="default_recipient_type">Sweetheart</string>
+    <bool name="is_recipient_gender_related">true</bool>
+
+    <!-- logic -->
+    <bool name="should_ask_user_gender">true</bool>
+    <bool name="facebook_messenger_integration">false</bool>
+    <bool name="ask_mbti_on_start">false</bool>
+
+    <!-- Language
+    0 - English
+    1 - French
+    2 - Spanish
+    -->
+    <integer name="default_language">1</integer>
+    <bool name="use_phone_language">false</bool>
+
+    <!-- ADS -->
+    <string name="admob_app_id">ca-app-pub-7822741681642396~1123841464</string>
+    <string name="admob_native_unit_id">ca-app-pub-7822741681642396/7228681581</string>
+
+</resources>
