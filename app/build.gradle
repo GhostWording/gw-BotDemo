@@ -19,8 +19,8 @@ android {
         applicationId "com.wavemining.demobot"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 12
-        versionName "1.1.2"
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true
     }
 

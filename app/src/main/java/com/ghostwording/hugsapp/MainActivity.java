@@ -10,9 +10,12 @@ import com.ghostwording.hugsapp.databinding.ActivityMainBinding;
 import com.ghostwording.hugsapp.io.ApiClient;
 import com.ghostwording.hugsapp.utils.AppConfiguration;
 import com.ghostwording.hugsapp.utils.LocaleManager;
+import com.ghostwording.hugsapp.utils.Logger;
 import com.ghostwording.hugsapp.utils.PrefManager;
 import com.ghostwording.hugsapp.utils.Utils;
 import com.ghostwording.hugsapp.widget.SingleSelectionGroupView;
+
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

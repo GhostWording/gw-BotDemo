@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ghostwording.hugsapp.R;
 import com.ghostwording.hugsapp.analytics.AnalyticsHelper;
@@ -49,11 +50,8 @@ public class ChatbotFragment extends Fragment {
         chatAdapter.setAvatarImage(botAvatarResource);
         binding.recyclerMenuItems.setAdapter(chatAdapter);
         binding.recyclerMenuItems.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         scrollToBottom();
-
         binding.recyclerMenuItems.post(() -> showBotQuestion());
-
         return rootView;
     }
 
@@ -72,47 +70,31 @@ public class ChatbotFragment extends Fragment {
 
     public void showBotQuestion() {
         if (chatAdapter.getBotCommandsView() == null || getActivity() == null) return;
-        //if (AppConfiguration.isTestMode()) {
-        //    loadTestSequence();
-        //} else {
         loadNextSequenceUsingApi();
-        //}
-    }
-
-    private void loadTestSequence() {
-        chatAdapter.getBotCommandsView().clearCommand();
-        new SequenceHandler(botName, chatAdapter, AppConfiguration.getTestSequence(), () -> showBotQuestion()).startStep();
     }
 
     private void loadNextSequenceUsingApi() {
         chatAdapter.getBotCommandsView().showLoadingView();
-        BotSequence preloadedBotSequence = PrefManager.instance().getBotSequence(botName);
-        if (!PrefManager.instance().isBotUsed(botName) && preloadedBotSequence != null) {
-            showSequence(preloadedBotSequence);
-        } else if (!AppConfiguration.isDisabledBotRequests(botName)) {
-            ApiClient.getInstance().botService.getNextSequence(new SequenceRequest(botName)).enqueue(new retrofit2.Callback<BotSequence>() {
-                @Override
-                public void onResponse(Call<BotSequence> call, Response<BotSequence> response) {
-                    if (!response.isSuccessful()) {
-                        try {
-                            if (response.errorBody().string().contains(AppConfiguration.ERROR_NO_SEQUENCES)) {
-                                AppConfiguration.disableBotRequests(botName);
-                            }
-                        } catch (Exception e) {
-                            Logger.e(e.toString());
+        ApiClient.getInstance().botService.getNextSequence(new SequenceRequest(botName)).enqueue(new retrofit2.Callback<BotSequence>() {
+            @Override
+            public void onResponse(Call<BotSequence> call, Response<BotSequence> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        if (response.errorBody().string().contains(AppConfiguration.ERROR_NO_SEQUENCES)) {
+                            AppConfiguration.disableBotRequests(botName);
                         }
+                    } catch (Exception e) {
+                        Logger.e(e.toString());
                     }
-                    showSequence(response.body());
                 }
+                showSequence(response.body());
+            }
 
-                @Override
-                public void onFailure(Call<BotSequence> call, Throwable t) {
-                    showSequence(null);
-                }
-            });
-        } else {
-            showSequence(null);
-        }
+            @Override
+            public void onFailure(Call<BotSequence> call, Throwable t) {
+                showSequence(null);
+            }
+        });
     }
 
     private void showSequence(BotSequence botSequence) {
@@ -120,9 +102,8 @@ public class ChatbotFragment extends Fragment {
             new SequenceHandler(botName, chatAdapter, botSequence, () -> showBotQuestion()).startStep();
             PrefManager.instance().setLastSequenceId(botName, botSequence.getId());
         } else {
-            chatAdapter.getBotCommandsView().clearCommand();
-            chatAdapter.addMessage(new ChatMessage(BotQuestionsManager.instance().getStringRandomQuestion(), false));
-            new SequenceHandler(botName, chatAdapter, AppConfiguration.getDefaultCommands(), () -> showBotQuestion()).startStep();
+            Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
+            getActivity().finish();
         }
     }
 
