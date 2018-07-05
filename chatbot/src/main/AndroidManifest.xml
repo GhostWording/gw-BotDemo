@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ghostwording.chatbot">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.ghostwording.chatbot.ChatBotApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.ghostwording.chatbot.BotActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.GifPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.EditQuoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.PickIntentionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.PickRecipientActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.PicturesRecommendationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.TextsRecommendationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.textimagepreviews.TranslationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.ImageGalleryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ghostwording.chatbot.chatbot.ImagePreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.wavemining.demobot.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:readPermission="com.wavemining.demobot.fileprovider.READ">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name="com.ghostwording.chatbot.ImagePreviewActivity"
+            android:label="@string/title_activity_image_preview"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>
