@@ -1,4 +1,4 @@
-package com.ghostwording.chatbot;
+package com.ghostwording.chatbot.textimagepreviews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
+import com.ghostwording.chatbot.BaseActivity;
+import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.databinding.ActivityImagePreviewBinding;
 import com.ghostwording.chatbot.dialog.ShareDialog;
 

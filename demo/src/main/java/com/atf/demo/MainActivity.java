@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
             });
         });
 
-        AppConfiguration.setBotName("britishmuseum");
-        startActivity(new Intent(MainActivity.this, BotActivity.class));
+        //AppConfiguration.setBotName("britishmuseum");
+        //startActivity(new Intent(MainActivity.this, BotActivity.class));
     }
 }

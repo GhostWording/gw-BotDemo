@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.ghostwording.chatbot.GifPreviewActivity;
+import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;

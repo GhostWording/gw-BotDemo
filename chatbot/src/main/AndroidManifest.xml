@@ -18,7 +18,7 @@
             android:name="com.ghostwording.chatbot.BotActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghostwording.chatbot.GifPreviewActivity"
+            android:name="com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ghostwording.chatbot.textimagepreviews.EditQuoteActivity"
@@ -39,7 +39,7 @@
             android:name="com.ghostwording.chatbot.textimagepreviews.TranslationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghostwording.chatbot.ImageGalleryActivity"
+            android:name="com.ghostwording.chatbot.textimagepreviews.ImageGalleryActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ghostwording.chatbot.chatbot.ImagePreviewActivity"
@@ -57,7 +57,7 @@
         </provider>
 
         <activity
-            android:name="com.ghostwording.chatbot.ImagePreviewActivity"
+            android:name="com.ghostwording.chatbot.textimagepreviews.ImagePreviewActivity"
             android:label="@string/title_activity_image_preview"
             android:theme="@style/AppTheme" />
     </application>

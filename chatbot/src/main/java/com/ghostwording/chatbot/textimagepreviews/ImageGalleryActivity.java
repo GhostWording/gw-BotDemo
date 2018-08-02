@@ -1,4 +1,4 @@
-package com.ghostwording.chatbot;
+package com.ghostwording.chatbot.textimagepreviews;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 
-import com.ghostwording.chatbot.adapters.ImagesAdapter;
+import com.ghostwording.chatbot.BaseActivity;
+import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.databinding.ActivityImageGalleryBinding;
 import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.Callback;
 import com.ghostwording.chatbot.io.service.PictureService;
 import com.ghostwording.chatbot.model.listeners.ImageSelectedListener;
-import com.ghostwording.chatbot.textimagepreviews.TextsRecommendationActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;

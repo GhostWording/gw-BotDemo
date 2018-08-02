@@ -1,4 +1,4 @@
-package com.ghostwording.chatbot.adapters;
+package com.ghostwording.chatbot.textimagepreviews;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,6 @@ import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.model.PopularImages;
 import com.ghostwording.chatbot.model.listeners.ImageSelectedListener;
-import com.ghostwording.chatbot.textimagepreviews.TextsRecommendationActivity;
 import com.ghostwording.chatbot.utils.Utils;
 
 import java.util.ArrayList;

@@ -20,9 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.ghostwording.chatbot.GifPreviewActivity;
+import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
@@ -39,7 +37,6 @@ import com.ghostwording.chatbot.utils.Utils;
 import com.ghostwording.chatbot.utils.UtilsUI;
 import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,10 +54,6 @@ import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.BOT_SEQUE
 import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.BOT_TEXT_MESSAGE;
 import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.BOT_VIDEO;
 import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.USER_MESSAGE;
-import static com.ghostwording.chatbot.chatbot.SequenceHandler.ContentType.IMAGE;
-import static com.ghostwording.chatbot.chatbot.SequenceHandler.StepTypes.LINK;
-import static com.ghostwording.chatbot.chatbot.SequenceHandler.StepTypes.VIDEO;
-import static com.ghostwording.chatbot.textimagepreviews.TranslationActivity.QUOTE;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder> {
 

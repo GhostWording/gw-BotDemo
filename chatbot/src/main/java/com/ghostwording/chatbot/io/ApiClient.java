@@ -24,6 +24,7 @@ import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -97,8 +98,8 @@ public class ApiClient {
         Locale locale = Locale.getDefault();
         final String acceptLanguage = locale.getLanguage() + "-" + locale.getLanguage().toUpperCase();
 
-        //HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        //logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         return new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
@@ -122,7 +123,7 @@ public class ApiClient {
                     }
                     return response;
                 })
-                //.addInterceptor(logging)
+                .addInterceptor(logging)
                 .addNetworkInterceptor(chain -> {
                     Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()

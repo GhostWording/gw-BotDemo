@@ -3,10 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BotDemo.iml" filepath="$PROJECT_DIR$/BotDemo.iml" />
-      <module fileurl="file://D:\Projects\Android\OliverApps\BotDemo\BotDemo\chatbot\app.iml" filepath="D:\Projects\Android\OliverApps\BotDemo\BotDemo\chatbot\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chatbot/app.iml" filepath="$PROJECT_DIR$/chatbot/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/chatbot/chatbot.iml" filepath="$PROJECT_DIR$/chatbot/chatbot.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
-      <module fileurl="file://D:\Projects\Android\OliverApps\BotDemo\BotDemo\demo\demo.iml" filepath="D:\Projects\Android\OliverApps\BotDemo\BotDemo\demo\demo.iml" />
     </modules>
   </component>
 </project>

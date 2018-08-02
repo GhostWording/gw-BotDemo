@@ -1,4 +1,4 @@
-package com.ghostwording.chatbot;
+package com.ghostwording.chatbot.textimagepreviews;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.databinding.ActivityGifPreviewBinding;
 import com.ghostwording.chatbot.dialog.ShareGifDialog;
