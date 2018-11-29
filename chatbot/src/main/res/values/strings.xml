@@ -497,4 +497,5 @@
     <string name="hint_botname">Please enter a bot name</string>
     <string name="error_bot_loading">This bot is unavailable</string>
     <string name="no_more_sequences">No sequences to show</string>
+    <string name="scroll_for_more"><![CDATA[scroll for more --->]]></string>
 </resources>

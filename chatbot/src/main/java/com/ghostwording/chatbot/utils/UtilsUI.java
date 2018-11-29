@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -16,9 +14,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 
+import androidx.annotation.StringRes;
 import pl.droidsonroids.gif.GifImageView;
 
 public class UtilsUI {

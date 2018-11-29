@@ -1,17 +1,19 @@
 package com.ghostwording.chatbot.chatbot;
 
-import android.databinding.DataBindingUtil;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.ghostwording.chatbot.ChatBotApplication;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
@@ -20,6 +22,7 @@ import com.ghostwording.chatbot.chatbot.model.SearchRequest;
 import com.ghostwording.chatbot.databinding.FragmentChatbotBinding;
 import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.Callback;
+import com.ghostwording.chatbot.io.DataLoader;
 import com.ghostwording.chatbot.model.DailySuggestion;
 import com.ghostwording.chatbot.model.recipients.Recipient;
 import com.ghostwording.chatbot.model.requests.SequenceRequest;
@@ -31,6 +34,8 @@ import com.ghostwording.chatbot.utils.PrefManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -39,8 +44,38 @@ public class ChatbotFragment extends Fragment {
     private ChatAdapter chatAdapter;
     private FragmentChatbotBinding binding;
     private @DrawableRes
-    Integer botAvatarResource = R.drawable.ic_huggy_avatar;
+    Integer botAvatarResource = com.ghostwording.chatbot.R.drawable.ic_huggy_avatar;
     private String botName = AppConfiguration.getBotName();
+    private String sequenceId;
+
+    private SequenceHandler.SequenceListener sequenceListener = new SequenceHandler.SequenceListener() {
+        @Override
+        protected void onSequenceEnd(boolean exit) {
+            if (sequenceId != null) {
+                if (getActivity() != null) {
+                    finish();
+                }
+            } else {
+                showBotQuestion();
+            }
+        }
+
+        @Override
+        protected void hideTypingBar() {
+            binding.containerInputMessage.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected void showTypingBar() {
+            binding.containerInputMessage.setVisibility(View.VISIBLE);
+        }
+    };
+
+    public static ChatbotFragment newInstance(String sequenceId) {
+        ChatbotFragment chatbotFragment = new ChatbotFragment();
+        chatbotFragment.sequenceId = sequenceId;
+        return chatbotFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,8 +86,53 @@ public class ChatbotFragment extends Fragment {
         binding.recyclerMenuItems.setAdapter(chatAdapter);
         binding.recyclerMenuItems.setLayoutManager(new LinearLayoutManager(getActivity()));
         scrollToBottom();
-        binding.recyclerMenuItems.post(() -> showBotQuestion());
+        if (sequenceId != null) {
+            binding.recyclerMenuItems.post(() -> showInitialQuestion());
+        } else {
+            binding.recyclerMenuItems.post(() -> showBotQuestion());
+        }
+        setupListeners();
         return rootView;
+    }
+
+    private void setupListeners() {
+        binding.btnSend.setOnClickListener(view -> {
+            String messageText = binding.edMessage.getText().toString();
+            if (messageText.length() == 0) return;
+
+            AnalyticsHelper.sendEvent(AnalyticsHelper.Events.HUGGY_USER_INPUT, messageText);
+
+            chatAdapter.addMessage(new ChatMessage(messageText, true));
+            binding.edMessage.setText("");
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(binding.edMessage.getWindowToken(), 0);
+
+            showBotSuggestionsForUserInput(messageText);
+        });
+    }
+
+    private void showInitialQuestion() {
+        if (AppConfiguration.isTestMode()) {
+            new SequenceHandler(botName, chatAdapter, AppConfiguration.getTestSequence(), sequenceListener).startStep();
+            return;
+        }
+        loadAndShowSequence(sequenceId);
+    }
+
+    public void loadAndShowSequence(String sequenceId) {
+        chatAdapter.getBotCommandsView().showLoadingView();
+        DataLoader.instance().loadSequenceById(sequenceId)
+                .subscribe(botSequence -> new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener).startStep()
+                        , throwable -> {
+                            Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                );
+    }
+
+    private void finish() {
+        Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
+        getActivity().finish();
     }
 
     public void scrollToBottom() {
@@ -99,22 +179,21 @@ public class ChatbotFragment extends Fragment {
 
     private void showSequence(BotSequence botSequence) {
         if (botSequence != null && botSequence.getId() != null) {
-            new SequenceHandler(botName, chatAdapter, botSequence, new SequenceHandler.SequenceListener() {
-                @Override
-                protected void onSequenceEnd() {
-                    showBotQuestion();
-                }
-            }).startStep();
+            new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener).startStep();
             PrefManager.instance().setLastSequenceId(botName, botSequence.getId());
         } else {
-            Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
-            getActivity().finish();
+            finish();
         }
     }
 
     private void showBotSuggestionsForUserInput(final String message) {
-        chatAdapter.getBotCommandsView().showLoadingView();
-        checkSequenceSuggestion(message);
+        if (AppConfiguration.isWaitingForInput()) {
+            AppConfiguration.setWaitForInput(false);
+            ChatBotApplication.getUserInputSubject().onNext(message);
+        } else {
+            chatAdapter.getBotCommandsView().showLoadingView();
+            checkSequenceSuggestion(message);
+        }
     }
 
     private void checkSequenceSuggestion(String query) {

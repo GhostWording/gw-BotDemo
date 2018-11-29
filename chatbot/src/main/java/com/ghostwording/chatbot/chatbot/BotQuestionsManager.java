@@ -1,7 +1,6 @@
 package com.ghostwording.chatbot.chatbot;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ghostwording.chatbot.ChatBotApplication;
 import com.ghostwording.chatbot.R;
@@ -19,6 +18,8 @@ import com.ghostwording.chatbot.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BotQuestionsManager {
 

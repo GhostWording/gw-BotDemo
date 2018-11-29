@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
+
+import androidx.core.content.FileProvider;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +52,14 @@ public class PostCardRenderer {
         return FileProvider.getUriForFile(context,
                 "com.wavemining.demobot.fileprovider",
                 new File(context.getExternalFilesDir(null) + "/" + shareFileName));
+    }
+
+    public static Observable<Boolean> requestDownloadGif(final Context context, final String fileUrl, final String fileName) {
+        return Observable.create((ObservableOnSubscribe<Boolean>) subscriber -> {
+            File file = downloadFile(context, fileUrl, fileName);
+            subscriber.onNext(file != null);
+            subscriber.onComplete();
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public static Observable<Bitmap> renderPostCardPreviewImage(final Context context, final String imagePath, final String quoteText, final boolean isBubble) {

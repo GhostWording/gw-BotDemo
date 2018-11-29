@@ -2,11 +2,12 @@ package com.ghostwording.chatbot.dialog;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -2,7 +2,6 @@ package com.ghostwording.chatbot.textimagepreviews;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,8 @@ import com.ghostwording.chatbot.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.BindingHolder> {
 

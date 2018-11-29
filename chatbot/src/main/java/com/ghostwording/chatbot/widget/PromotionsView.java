@@ -2,7 +2,7 @@ package com.ghostwording.chatbot.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;

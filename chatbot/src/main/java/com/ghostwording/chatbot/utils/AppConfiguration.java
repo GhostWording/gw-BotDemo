@@ -51,6 +51,8 @@ public class AppConfiguration {
     private static BotSequence sTestSequence;
     private static HashMap<String, Boolean> sDisabledBotRequests = new HashMap<>();
     private static Promotions sPromotions;
+    private static boolean sIsBotWaitingForInput = false;
+    private static boolean sIsAnimateButtons = true;
 
     public static void create(Context context) {
         deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -69,6 +71,14 @@ public class AppConfiguration {
         sTestSequence = new Gson().fromJson(AssetsManager.getStringFromAssetFile(context, "test_question.json"), BotSequence.class);
     }
 
+    public static boolean isAnimateButtons() {
+        if (sIsAnimateButtons) {
+            sIsAnimateButtons = false;
+            return true;
+        }
+        return false;
+    }
+
     public static void setPromotions(Promotions promotions) {
         sPromotions = promotions;
     }
@@ -79,6 +89,14 @@ public class AppConfiguration {
 
     public static BotSequence getTestSequence() {
         return sTestSequence;
+    }
+
+    public static boolean isWaitingForInput() {
+        return sIsBotWaitingForInput;
+    }
+
+    public static void setWaitForInput(boolean isWaitForInput) {
+        sIsBotWaitingForInput = isWaitForInput;
     }
 
     public static boolean isDisabledBotRequests(String botName) {

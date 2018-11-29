@@ -1,6 +1,6 @@
 package com.ghostwording.chatbot.textimagepreviews;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -10,7 +10,6 @@ import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.databinding.ActivityEditQuoteBinding;
 import com.ghostwording.chatbot.dialog.ShareDialog;
 import com.ghostwording.chatbot.model.texts.Quote;
-import com.ghostwording.chatbot.utils.Utils;
 
 public class EditQuoteActivity extends BaseActivity {
 

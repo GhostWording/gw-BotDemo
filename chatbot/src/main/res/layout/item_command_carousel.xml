@@ -21,8 +21,9 @@
                 android:layout_height="130dp" />
 
             <LinearLayout
+                android:id="@+id/container_text"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/bg_intention_item"
                 android:orientation="vertical"
                 android:padding="0dp">
@@ -62,6 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:padding="5dp"
                         android:textColor="@color/colorAccent" />
                 </FrameLayout>
 

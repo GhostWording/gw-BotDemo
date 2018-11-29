@@ -17,6 +17,9 @@ public interface PopularService {
     @GET("{areaId}/popularimages/intention/{intentionId}?maxrank=12")
     Call<List<PopularImages>> getPopularImages(@Path("areaId") String areaId, @Path("intentionId") String intentionId);
 
+    @GET("General/popularimages/intention/{intentionId}?maxrank=12")
+    Call<List<PopularImages>> getPopularImages(@Path("intentionId") String intentionId);
+
     @GET("{areaId}/populartexts/intention/{intentionId}?maxrank=12")
     Call<List<PopularTexts>> getPopularTexts(@Path("areaId") String areaId, @Path("intentionId") String intentionId);
 
@@ -25,6 +28,9 @@ public interface PopularService {
 
     @GET("{areaId}/matchingimages/prototypeids/{prototypeId}?maxrank=8")
     Call<List<PopularImages>> getPopularImagesForText(@Path("areaId") String areaId, @Path("prototypeId") String prototypeId);
+
+    @GET("General/matchingimages/prototypeids/{prototypeId}?maxrank=8")
+    Call<List<PopularImages>> getPopularImagesForText(@Path("prototypeId") String prototypeId);
 
     @GET("{areaId}/popularimages/UserProperty/MBTISelected/{mbtiType}?maxrank=12")
     Call<List<PopularImages>> getImagesByMbtiType(@Path("areaId") String areaId, @Path("mbtiType") String mbtiType);

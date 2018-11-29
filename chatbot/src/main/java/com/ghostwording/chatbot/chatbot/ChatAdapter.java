@@ -1,11 +1,8 @@
 package com.ghostwording.chatbot.chatbot;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.DisplayMetrics;
@@ -20,6 +17,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.ghostwording.chatbot.dialog.GifPreviewDialog;
+import com.ghostwording.chatbot.io.ApiClient;
+import com.ghostwording.chatbot.io.Callback;
+import com.ghostwording.chatbot.io.DataLoader;
+import com.ghostwording.chatbot.model.GifResponse;
 import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
@@ -40,6 +44,11 @@ import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import pl.droidsonroids.gif.GifImageView;
 
 import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.BOT_CARD_MESSAGE;
@@ -106,16 +115,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         chatMessages.add(chatMessages.size() - 1, message);
         notifyItemInserted(chatMessages.size() - 2);
         recyclerView.scrollToPosition(chatMessages.size() - 1);
-    }
-
-    public String getLastMessage() {
-        if (chatMessages.size() > 1) {
-            ChatMessage chatMessage = chatMessages.get(chatMessages.size() - 2);
-            if (chatMessage.getBotMessage() != null) {
-                return chatMessage.getBotMessage().getPrototypeId();
-            }
-        }
-        return null;
     }
 
     public void setCommands(BotSequence sequence, SequenceHandler.CommandListener commandListener) {
@@ -246,6 +245,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         }
 
         if (chatMessage.getQuote() != null) {
+            if (holder.btnNotification != null) {
+                holder.btnNotification.setVisibility(View.GONE);
+            }
             holder.tvMessage.setText(chatMessage.getQuote().getContent());
             holder.rowView.setOnClickListener(view -> BotQuestionsManager.instance().openMessagePreview(activity, chatMessage.getQuote()));
             return;
@@ -257,16 +259,39 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         }
 
         if (chatMessage.getMessage() != null) {
+            if (chatMessage.getStep() != null && chatMessage.getStep().getAnimatedGifTranslation() != null) {
+                ApiClient.getInstance().giffyService.getGifByIds(chatMessage.getStep().getAnimatedGifTranslation().getPath()).enqueue(new Callback<GifResponse>(activity) {
+                    @Override
+                    public void onDataLoaded(@Nullable GifResponse result) {
+                        if (result != null && result.getData().size() > 0) {
+                            GifResponse.GifImage gifImage = result.getData().get(0);
+                            int gifWidth = Integer.parseInt(gifImage.getImages().getFixedHeight().getWidth());
+                            int gifHeight = Integer.parseInt(gifImage.getImages().getFixedHeight().getHeight());
+                            holder.btnNotification.setOnClickListener(view -> {
+                                double heightCoef = (width - Utils.convertDpToPixel(30, activity)) / (gifWidth * 1.0);
+                                int height = (int) (gifHeight * heightCoef);
+                                GifPreviewDialog.show(activity, gifImage.getImages().getFixedHeight().getUrl(), height);
+                            });
+                        }
+                    }
+                });
+                holder.btnNotification.setVisibility(View.VISIBLE);
+            } else {
+                if (holder.btnNotification != null) {
+                    holder.btnNotification.setVisibility(View.GONE);
+                }
+            }
             holder.tvMessage.setText(chatMessage.getMessage());
             holder.rowView.setOnClickListener(null);
             return;
         }
 
+
         if (chatMessage.getBotMessage() != null) {
             ChatMessage.BotMessage botMessage = chatMessage.getBotMessage();
             holder.tvMessage.setText(botMessage.getContent());
             Glide.with(activity)
-                    .load(botMessage.getImageLink())
+                    .load(DataLoader.getImageUrl(activity, botMessage.getImageLink()))
                     .bitmapTransform(new CenterCrop(activity), new RoundedCornersTransformation(activity, 15, 0, RoundedCornersTransformation.CornerType.ALL))
                     .crossFade()
                     .into(holder.ivImage);
@@ -283,17 +308,28 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     }
 
     private void initImageMessage(ImageMessage imageMessage, BindingHolder holder) {
-        Glide.with(activity)
-                .load(imageMessage.imageUrl)
-                .centerCrop()
-                .crossFade()
-                .into(holder.ivImage);
+        holder.ivImage.setImageBitmap(null);
+        Glide.with(activity).load(DataLoader.getImageUrl(activity, imageMessage.imageUrl)).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                double heightCoef;
+                if (imageMessage.fullWidth) {
+                    heightCoef = (width - Utils.convertDpToPixel(20, activity)) / (resource.getWidth() * 1.0);
+                } else {
+                    heightCoef = (Utils.convertDpToPixel(200, activity)) / (resource.getWidth() * 1.0);
+                }
+                int height = (int) (resource.getHeight() * heightCoef);
+                holder.ivImage.getLayoutParams().height = height;
+                holder.ivImage.setImageBitmap(resource);
+            }
+        });
         holder.rowView.setOnClickListener(view -> ImagePreviewActivity.start(activity, imageMessage.imageUrl));
     }
 
     private void initCarouselMessage(CarouselMessage carouselMessage, ViewGroup view) {
         view.removeAllViews();
         View commandsContainerView = LayoutInflater.from(view.getContext()).inflate(R.layout.item_bot_commands, null);
+        commandsContainerView.findViewById(R.id.tv_scroll_for_more).setVisibility(View.VISIBLE);
         LinearLayout llCommands = commandsContainerView.findViewById(R.id.container_commands);
         for (BotSequence.CarouselElements carouselElement : carouselMessage.getElements()) {
             addCarouselItem(carouselElement, llCommands);
@@ -304,6 +340,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     private void initCarouselMessage(SuggestionsModel suggestionsModel, ViewGroup view) {
         view.removeAllViews();
         View commandsContainerView = LayoutInflater.from(view.getContext()).inflate(R.layout.item_bot_commands, null);
+        commandsContainerView.findViewById(R.id.tv_scroll_for_more).setVisibility(View.VISIBLE);
         LinearLayout llCommands = commandsContainerView.findViewById(R.id.container_commands);
         for (int i = 0; i < Math.min(suggestionsModel.numberOfCards, suggestionsModel.suggestions.size()); i++) {
             addCarouselItem(suggestionsModel.suggestions.get(i), llCommands);
@@ -317,9 +354,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         TextView tvTitle = menuItem.findViewById(R.id.intention_title);
         TextView tvSubtitle = menuItem.findViewById(R.id.intention_subtitle);
         Glide.with(activity)
-                .load(carouselElement.getPicturePath())
+                .load(DataLoader.getImageUrl(activity, carouselElement.getPicturePath()))
                 .bitmapTransform(new CenterCrop(activity), new RoundedCornersTransformation(activity, 13, 0, RoundedCornersTransformation.CornerType.TOP))
                 .into(ivIntentionImage);
+
         if (carouselElement.getTitle() != null) {
             tvTitle.setVisibility(View.VISIBLE);
             tvTitle.setText(carouselElement.getTitle());
@@ -332,6 +370,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         } else {
             tvSubtitle.setVisibility(View.GONE);
         }
+        if (carouselElement.getTitle() != null && carouselElement.getTitle().equals(".")) {
+            menuItem.findViewById(R.id.container_text).setVisibility(View.GONE);
+        }
         menuItem.setOnClickListener(view -> ImagePreviewActivity.start(activity, carouselElement.getPicturePath()));
         container.addView(menuItem);
     }
@@ -340,7 +381,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         View menuItem = LayoutInflater.from(container.getContext()).inflate(R.layout.item_command_card_view, null);
         ImageView ivIntentionImage = menuItem.findViewById(R.id.intention_image);
         Glide.with(activity)
-                .load(dailySuggestion.getImageLink())
+                .load(DataLoader.getImageUrl(activity, dailySuggestion.getImageLink()))
                 .bitmapTransform(new CenterCrop(activity), new RoundedCornersTransformation(activity, 13, 0, RoundedCornersTransformation.CornerType.TOP))
                 .into(ivIntentionImage);
         menuItem.findViewById(R.id.intention_title).setVisibility(View.GONE);
@@ -361,9 +402,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
 
     private void initSequenceCarouselMessage(BotSequence botSequence, View view) {
         ImageView ivIntentionImage = view.findViewById(R.id.intention_image);
-        UtilsUI.loadImageRoundedCorners(ivIntentionImage, botSequence.getCarouselElements().getPicturePath());
-        ((TextView) view.findViewById(R.id.intention_title)).setText(botSequence.getCarouselElements().getTitle());
+        TextView tvTitle = view.findViewById(R.id.intention_title);
         TextView tvSubtitle = view.findViewById(R.id.intention_subtitle);
+        UtilsUI.loadImageRoundedCorners(ivIntentionImage, botSequence.getCarouselElements().getPicturePath());
+        if (botSequence.getCarouselElements().getTitle() == null || botSequence.getCarouselElements().getTitle().equals(".")) {
+            tvTitle.setVisibility(View.GONE);
+        } else {
+            tvTitle.setVisibility(View.VISIBLE);
+            tvTitle.setText(botSequence.getCarouselElements().getTitle());
+        }
         if (botSequence.getCarouselElements().getSubtitle() != null) {
             tvSubtitle.setVisibility(View.VISIBLE);
             tvSubtitle.setText(botSequence.getCarouselElements().getSubtitle());
@@ -436,12 +483,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         private ImageView ivImage;
         private View rowView;
         private ImageView ivAvatar;
+        private View btnNotification;
 
         public BindingHolder(View rowView) {
             super(rowView);
             this.rowView = rowView;
             tvMessage = rowView.findViewById(R.id.tv_message);
             ivImage = rowView.findViewById(R.id.iv_image);
+            btnNotification = rowView.findViewById(R.id.iv_notification);
             View avatarView = rowView.findViewById(R.id.iv_avatar);
             if (avatarView != null) {
                 ivAvatar = (ImageView) avatarView;

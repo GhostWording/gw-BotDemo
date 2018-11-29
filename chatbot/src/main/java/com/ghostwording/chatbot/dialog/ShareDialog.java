@@ -2,9 +2,10 @@ package com.ghostwording.chatbot.dialog;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
+
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,7 @@ import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.databinding.DialogSendChooserBinding;
 import com.ghostwording.chatbot.databinding.ItemSideMenuPromotionBinding;
-import com.ghostwording.chatbot.model.PictureSource;
 import com.ghostwording.chatbot.model.texts.Quote;
-import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.Utils;
 import com.ghostwording.chatbot.utils.UtilsShare;

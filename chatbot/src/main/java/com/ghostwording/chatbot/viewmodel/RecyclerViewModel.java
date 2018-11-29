@@ -1,7 +1,7 @@
 package com.ghostwording.chatbot.viewmodel;
 
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
 
 public class RecyclerViewModel {
 

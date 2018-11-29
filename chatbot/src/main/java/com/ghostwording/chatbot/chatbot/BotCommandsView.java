@@ -1,9 +1,13 @@
 package com.ghostwording.chatbot.chatbot;
 
 import android.app.Activity;
-import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -15,6 +19,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
+import com.ghostwording.chatbot.io.DataLoader;
 import com.ghostwording.chatbot.model.intentions.Intention;
 import com.ghostwording.chatbot.model.intentions.IntentionAreaComparator;
 import com.ghostwording.chatbot.model.intentions.IntentionSelectedListener;
@@ -27,6 +32,8 @@ import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.DrawableRes;
 
 public class BotCommandsView {
 
@@ -159,15 +166,55 @@ public class BotCommandsView {
         LinearLayout llCommands = commandsContainerView.findViewById(R.id.container_commands);
 
         for (final BotSequence command : commands) {
-            if (command.getCarouselElements() != null) {
-                addCarouselItem(llCommands, command, view -> commandListener.onCommandChoose(command));
-            } else if (command.getCommandPicture() != null) {
-                addMenuItemWithImage(llCommands, command, view -> commandListener.onCommandChoose(command));
-            } else {
-                addMenuItem(llCommands, command.getLabel(), view -> commandListener.onCommandChoose(command));
+            if (command != null) {
+                if (command.getCarouselElements() != null) {
+                    if (commands.size() > 2) {
+                        commandsContainerView.findViewById(R.id.tv_scroll_for_more).setVisibility(View.VISIBLE);
+                    }
+                    addCarouselItem(llCommands, command, view -> commandListener.onCommandChoose(command));
+                } else if (command.getCommandPicture() != null) {
+                    addMenuItemWithImage(llCommands, command, view -> commandListener.onCommandChoose(command));
+                } else {
+                    addMenuItem(llCommands, command.getLabel(), view -> commandListener.onCommandChoose(command));
+                }
             }
         }
+
+        if (AppConfiguration.isAnimateButtons()) {
+            animateButtons(llCommands);
+        }
         container.addView(commandsContainerView);
+    }
+
+    private void animateButtons(ViewGroup buttonsLayout) {
+        for (int i = 0; i < buttonsLayout.getChildCount(); i++) {
+            View view = buttonsLayout.getChildAt(i);
+            startViewAnimation(view, (i + 1) * 1000);
+        }
+        buttonsLayout.postDelayed(() -> animateButtons(buttonsLayout), 5000);
+    }
+
+    private void startViewAnimation(View view, long offset) {
+        Animation anim1 = new ScaleAnimation(
+                1f, 0.75f,
+                1f, 0.75f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        anim1.setDuration(500);
+        Animation anim2 = new ScaleAnimation(
+                1f, 1.25f,
+                1f, 1.25f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+        anim2.setStartOffset(500);
+        anim2.setDuration(500);
+
+        AnimationSet animationSet = new AnimationSet(false);
+        animationSet.setStartOffset(offset);
+        animationSet.addAnimation(anim1);
+        animationSet.addAnimation(anim2);
+        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
+        view.startAnimation(animationSet);
     }
 
     public void clearCommand() {
@@ -180,12 +227,16 @@ public class BotCommandsView {
     private View addCarouselItem(LinearLayout llCommands, BotSequence command, View.OnClickListener onClickListener) {
         View menuItem = layoutInflater.inflate(R.layout.item_command_carousel, null);
         ImageView ivIntentionImage = menuItem.findViewById(R.id.intention_image);
+        TextView tvTitle = menuItem.findViewById(R.id.intention_title);
+        TextView tvSubtitle = menuItem.findViewById(R.id.intention_subtitle);
+        if (command.getCarouselElements().getTitle() != null && command.getCarouselElements().getTitle().equals(".")) {
+            tvTitle.setVisibility(View.GONE);
+        }
         Glide.with(activity)
-                .load(command.getCarouselElements().getPicturePath())
+                .load(DataLoader.getImageUrl(activity, command.getCarouselElements().getPicturePath()))
                 .bitmapTransform(new CenterCrop(activity), new RoundedCornersTransformation(activity, 13, 0, RoundedCornersTransformation.CornerType.TOP))
                 .into(ivIntentionImage);
-        ((TextView) menuItem.findViewById(R.id.intention_title)).setText(command.getCarouselElements().getTitle());
-        TextView tvSubtitle = menuItem.findViewById(R.id.intention_subtitle);
+        tvTitle.setText(command.getCarouselElements().getTitle());
         if (command.getCarouselElements().getSubtitle() != null) {
             tvSubtitle.setVisibility(View.VISIBLE);
             tvSubtitle.setText(command.getCarouselElements().getSubtitle());
@@ -202,7 +253,7 @@ public class BotCommandsView {
         View menuItem = layoutInflater.inflate(R.layout.item_command_card_view, null);
         ImageView ivIntentionImage = menuItem.findViewById(R.id.intention_image);
         Glide.with(activity)
-                .load(command.getCommandPicture())
+                .load(DataLoader.getImageUrl(activity, command.getCommandPicture()))
                 .bitmapTransform(new CenterCrop(activity), new RoundedCornersTransformation(activity, 13, 0, RoundedCornersTransformation.CornerType.TOP))
                 .into(ivIntentionImage);
         ((TextView) menuItem.findViewById(R.id.intention_title)).setText(command.getLabel());

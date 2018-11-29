@@ -29,6 +29,7 @@ public class ChatMessage {
     private CarouselMessage carouselMessage;
     private ImageMessage imageMessage;
     private Quote quote;
+    private BotSequence.Step step;
 
     public final boolean isSelf;
     public final ChatMessageType messageType;
@@ -135,6 +136,14 @@ public class ChatMessage {
         }
         gifMessage = gifImageModel;
         isSelf = false;
+    }
+
+    public BotSequence.Step getStep() {
+        return step;
+    }
+
+    public void setStep(BotSequence.Step step) {
+        this.step = step;
     }
 
     public Link getLink() {

@@ -1,8 +1,10 @@
 package com.ghostwording.chatbot.widget;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
+import androidx.databinding.DataBindingUtil;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;

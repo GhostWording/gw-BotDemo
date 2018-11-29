@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
 import com.ghostwording.chatbot.ChatBotApplication;
@@ -26,6 +25,8 @@ import com.ghostwording.chatbot.textimagepreviews.TranslationActivity;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Utils {
 

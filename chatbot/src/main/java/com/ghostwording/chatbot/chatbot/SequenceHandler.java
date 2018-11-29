@@ -1,11 +1,13 @@
 package com.ghostwording.chatbot.chatbot;
 
 import android.os.Handler;
-import android.support.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.ghostwording.chatbot.ChatBotApplication;
+import com.ghostwording.chatbot.io.DataLoader;
+import com.ghostwording.chatbot.model.texts.QuoteLanguageComparator;
 import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
@@ -33,10 +35,14 @@ import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.PrefManager;
 import com.ghostwording.chatbot.utils.Utils;
+import com.ghostwording.chatbot.utils.UtilsMessages;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import androidx.annotation.Nullable;
 
 import static com.ghostwording.chatbot.chatbot.SequenceHandler.ContentType.GIF;
 import static com.ghostwording.chatbot.chatbot.SequenceHandler.ContentType.IMAGE;
@@ -53,6 +59,7 @@ public class SequenceHandler {
         String VIDEO = "Video";
         String PAUSE = "Pause";
         String LINK = "ShowPersistentLink";
+        String WAIT_FOR_USER_INPUT = "WaitForUserInput";
     }
 
     public interface ContentType {
@@ -82,10 +89,17 @@ public class SequenceHandler {
         String REDIRECT = "RedirectTo";
         String HIDE_TYPING_BAR = "TypingBarHide";
         String SHOW_TYPING_BAR = "TypingBarShow";
+        String FEEDBACK = "Feedback";
+        String EXIT = "Exit";
+        String EXECUTE_FRAGMENT = "NativeExecuteFragment";
+        String EXECUTE_FRAGMENT2 = "ExecuteFragment";
+        String SHOW_TEXT_PROTOTYPE = "ShowTextForPrototype";
+        String SHOW_CARD_PROTOTYPE = "ShowCardForPrototype";
+        String WAIT_FOR_USER_INPUT = "WaitForUserInput";
     }
 
     public static abstract class SequenceListener {
-        protected abstract void onSequenceEnd();
+        protected abstract void onSequenceEnd(boolean exit);
 
         protected void hideTypingBar() {
 
@@ -111,6 +125,7 @@ public class SequenceHandler {
     private int currentLevel = 0;
     private Handler handler = new Handler();
     private Handler autoSelectHandler = new Handler();
+    private Handler userInputWaitHandler = new Handler();
     private String botName;
 
     public SequenceHandler(String botName, ChatAdapter chatAdapter, BotSequence botSequence, SequenceListener sequenceListener) {
@@ -128,8 +143,6 @@ public class SequenceHandler {
             sequenceText = botSequence.getSteps().get(botSequence.getSteps().size() - 1).getLabel();
         }
         AnalyticsHelper.sendEvent(masterSequence.getMasterGroup(), AnalyticsHelper.Events.HUGGY_SEQUENCE_START, botSequence.getId(), sequenceText);
-
-        preloadStepGifs(botSequence);
     }
 
     public void startStep() {
@@ -155,6 +168,9 @@ public class SequenceHandler {
         switch (step.getType()) {
             case StepTypes.VIDEO:
                 handleVideoStep(step);
+                break;
+            case StepTypes.WAIT_FOR_USER_INPUT:
+                waitForUserInput(step);
                 break;
             case StepTypes.ACTION:
                 handleActionStep(step);
@@ -185,7 +201,7 @@ public class SequenceHandler {
         currentStep = 0;
         if (currentSequence.getCommands() != null) {
             for (BotSequence botSequence : currentSequence.getCommands()) {
-                if (botSequence.getAutoSelect() != null) {
+                if (botSequence != null && botSequence.getAutoSelect() != null) {
                     autoSelectHandler.postDelayed(() -> handleCommand(botSequence), botSequence.getAutoSelect().getMs());
                 }
             }
@@ -194,34 +210,35 @@ public class SequenceHandler {
         } else if (currentSequence.getLinksToFragment() != null) {
             showFragment(currentSequence.getLinksToFragment());
         } else if (currentSequence.getLinksTo() != null) {
-            rootSequence = currentSequence;
+            rootSequence = currentSequence.getLinksTo();
             currentSequence = currentSequence.getLinksTo();
             startStep();
         } else {
-            sequenceListener.onSequenceEnd();
+            sequenceListener.onSequenceEnd(false);
         }
+    }
+
+    private void executeFragmentStep(BotSequence.Step step) {
+        chatAdapter.getBotCommandsView().showLoadingView();
+        DataLoader.instance().loadSequenceById(step.getParameters().getFragmentPath()).subscribe(botSequence -> new SequenceHandler(botName, chatAdapter, botSequence, new SequenceHandler.SequenceListener() {
+            @Override
+            protected void onSequenceEnd(boolean exit) {
+                if (exit) {
+                    sequenceListener.onSequenceEnd(true);
+                } else {
+                    startStep();
+                }
+            }
+        }).startStep(), throwable -> startStep());
     }
 
     private void showFragment(BotSequence.LinksToFragment linksToFragment) {
         chatAdapter.getBotCommandsView().showLoadingView();
-        FragmentRequest fragmentRequest;
-        if (linksToFragment.getTags() != null) {
-            fragmentRequest = new FragmentRequest(botName, currentSequence.getId(), linksToFragment.getTags());
-        } else {
-            fragmentRequest = new FragmentRequest(botName, currentSequence.getId(), linksToFragment.getFragmentPath());
-        }
-        ApiClient.getInstance().botService.getFragment(fragmentRequest).enqueue(new Callback<BotSequence>(chatAdapter.getActivity()) {
-            @Override
-            public void onDataLoaded(@Nullable BotSequence botSequence) {
-                if (botSequence != null) {
-                    rootSequence = currentSequence;
-                    currentSequence = botSequence;
-                    startStep();
-                } else {
-                    sequenceListener.onSequenceEnd();
-                }
-            }
-        });
+        DataLoader.instance().loadSequenceById(linksToFragment.getFragmentPath()).subscribe(botSequence -> {
+            rootSequence = botSequence;
+            currentSequence = botSequence;
+            startStep();
+        }, throwable -> sequenceListener.onSequenceEnd(false));
     }
 
     public void handleCommand(BotSequence command) {
@@ -230,7 +247,7 @@ public class SequenceHandler {
         currentLevel++;
         if (command == null) {
             chatAdapter.addMessage(new ChatMessage(chatAdapter.getActivity().getString(R.string.skip_bot), true));
-            sequenceListener.onSequenceEnd();
+            sequenceListener.onSequenceEnd(false);
             return;
         }
 
@@ -239,20 +256,46 @@ public class SequenceHandler {
         AnalyticsHelper.sendEvent(masterSequence.getMasterGroup(), AnalyticsHelper.Events.HUGGY_SEQUENCE_NEXT, command.getId(), masterSequence.getId(), String.valueOf(currentLevel));
 
         if (command.getCarouselElements() != null) {
-            chatAdapter.addMessage(new ChatMessage(command, true));
+            if (currentSequence.isDisplayLargeCard()) {
+                chatAdapter.addMessage(new ChatMessage(new ImageMessage(command.getCarouselElements().getPicturePath(), true)));
+                chatAdapter.addMessage(new ChatMessage(command.getLabel(), true));
+            } else if (currentSequence.isDisplayTextOnly()) {
+                chatAdapter.addMessage(new ChatMessage(command.getLabel(), true));
+            } else {
+                chatAdapter.addMessage(new ChatMessage(command, true));
+            }
         } else {
             chatAdapter.addMessage(new ChatMessage(command.getLabel(), true));
         }
-
+        rootSequence = currentSequence;
         currentSequence = command;
-        preloadStepGifs(currentSequence);
-        startStep();
+        if (currentSequence.getSteps() == null || currentStep >= currentSequence.getSteps().size()) {
+            onStepsEnd();
+        } else {
+            startStep();
+        }
     }
 
     private void handleActionStep(BotSequence.Step step) {
         switch (step.getName().trim()) {
+            case Actions.EXIT:
+                sequenceListener.onSequenceEnd(true);
+                break;
+            case Actions.EXECUTE_FRAGMENT:
+            case Actions.EXECUTE_FRAGMENT2:
+                executeFragmentStep(step);
+                break;
             case Actions.VOTE:
                 doVoteAction();
+                break;
+            case Actions.WAIT_FOR_USER_INPUT:
+                waitForUserInput(step);
+                break;
+            case Actions.SHOW_TEXT_PROTOTYPE:
+                showTextFromPrototype(step);
+                break;
+            case Actions.SHOW_CARD_PROTOTYPE:
+                showCardPrototype(step);
                 break;
             case Actions.HIDE_TYPING_BAR:
                 sequenceListener.hideTypingBar();
@@ -263,7 +306,7 @@ public class SequenceHandler {
                 startStep();
                 break;
             case Actions.REDIRECT:
-                RedirectionManager.handleRedirectAction(chatAdapter.getActivity(), step);
+                ChatBotApplication.instance().getRedirectionManager().handleRedirectAction(chatAdapter.getActivity(), step);
                 startStep();
                 break;
             case Actions.SHOW_SURVEY_RESULTS:
@@ -312,8 +355,25 @@ public class SequenceHandler {
                 Utils.rateManually(chatAdapter.getActivity());
                 startStep();
                 break;
+            case Actions.FEEDBACK:
+                AnalyticsHelper.sendEvent(AnalyticsHelper.Categories.APP, AnalyticsHelper.Events.FEEDBACK, step.getParameters().getSequenceId(), step.getParameters().getFeedbackValue());
+                startStep();
+                break;
             default:
                 startStep();
+        }
+    }
+
+    private void waitForUserInput(BotSequence.Step step) {
+        AppConfiguration.setWaitForInput(true);
+        ChatBotApplication.getUserInputSubject().subscribe(s -> startStep());
+        if (step.getAutoSkip() != null) {
+            userInputWaitHandler.postDelayed(() -> {
+                if (AppConfiguration.isWaitingForInput()) {
+                    AppConfiguration.setWaitForInput(false);
+                    startStep();
+                }
+            }, step.getAutoSkip().getMs());
         }
     }
 
@@ -486,7 +546,9 @@ public class SequenceHandler {
                 }, 1000);
             }
         }, throwable -> {
-            Logger.e(throwable.getMessage());
+            for (int i = 0; i < throwable.getStackTrace().length; i++) {
+                Logger.e(throwable.getStackTrace()[i].toString());
+            }
             startStep();
         });
     }
@@ -836,27 +898,27 @@ public class SequenceHandler {
         });
     }
 
-    private void preloadStepGifs(BotSequence botSequence) {
-        if (botSequence != null && botSequence.getSteps() != null) {
-            for (BotSequence.Step step : botSequence.getSteps()) {
-                if (step.getType().equals(StepTypes.GIF)) {
-                    ApiClient.getInstance().giffyService.getGifByIds(step.getParameters().getPath()).enqueue(new Callback<GifResponse>(chatAdapter.getActivity()) {
-                        @Override
-                        public void onDataLoaded(@Nullable GifResponse result) {
-                            if (result != null && result.getData().size() > 0) {
-                                GifResponse.GifImage gifImage = result.getData().get(0);
-                                Glide.with(chatAdapter.getActivity()).load(gifImage.getImages().getFixedHeight().getUrl())
-                                        .downloadOnly(new SimpleTarget<File>() {
-                                            @Override
-                                            public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
-                                            }
-                                        });
-                            }
-                        }
-                    });
+    private void showTextFromPrototype(BotSequence.Step step) {
+        chatAdapter.getBotCommandsView().showLoadingView();
+        ApiClient.getInstance().coreApiService.getQuotesFromRealizations(AppConfiguration.getAppAreaId(), step.getParameters().getPrototypeId()).enqueue(new Callback<List<Quote>>(chatAdapter.getActivity()) {
+            @Override
+            public void onDataLoaded(@Nullable List<Quote> result) {
+                if (result != null && result.size() > 0) {
+                    result = UtilsMessages.filterQuotes(result, PrefManager.instance().getSelectedGender(), false);
+                    Collections.sort(result, new QuoteLanguageComparator());
+                    chatAdapter.addMessage(new ChatMessage(result.get(0)));
                 }
+                startStep();
             }
-        }
+        });
+    }
+
+    private void showCardPrototype(BotSequence.Step step) {
+        chatAdapter.getBotCommandsView().showLoadingView();
+        DataManager.loadImageCardFromPrototype(step).subscribe(botMessage -> {
+            chatAdapter.addMessage(new ChatMessage(botMessage));
+            startStep();
+        }, throwable -> startStep());
     }
 
 }

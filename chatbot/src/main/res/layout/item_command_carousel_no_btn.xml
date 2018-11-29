@@ -21,6 +21,7 @@
                 android:layout_height="130dp" />
 
             <LinearLayout
+                android:id="@+id/container_text"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/bg_intention_item"
@@ -45,9 +46,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/black"
                     android:textSize="10sp" />
 

@@ -1,0 +1,25 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/iv_gif_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/btn_close"
+            style="@style/ActionButtonWithTextStyle"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="@string/close" />
+
+    </LinearLayout>
+
+</layout>

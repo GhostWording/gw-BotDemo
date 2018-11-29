@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WaveMining Chatbot Demo</string>
+    <string name="hint_fragment_name">Please enter a fragment name</string>
+    <string name="error_fill_bot_name">Please fill only a bot name or a fragment name</string>
 </resources>

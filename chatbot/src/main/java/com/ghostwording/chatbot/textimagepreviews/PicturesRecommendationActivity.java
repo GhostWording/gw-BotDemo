@@ -1,11 +1,12 @@
 package com.ghostwording.chatbot.textimagepreviews;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableBoolean;
+import androidx.databinding.ObservableField;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.widget.Toast;

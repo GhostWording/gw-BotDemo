@@ -1,8 +1,9 @@
 package com.ghostwording.chatbot.textimagepreviews;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 
 import com.ghostwording.chatbot.BaseActivity;
 import com.ghostwording.chatbot.R;

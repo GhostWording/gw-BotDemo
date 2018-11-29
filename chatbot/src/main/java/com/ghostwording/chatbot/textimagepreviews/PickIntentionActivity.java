@@ -1,9 +1,10 @@
 package com.ghostwording.chatbot.textimagepreviews;
 
-import android.databinding.DataBindingUtil;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 
 import com.ghostwording.chatbot.BaseActivity;
 import com.ghostwording.chatbot.R;

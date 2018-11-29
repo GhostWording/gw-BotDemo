@@ -1,9 +1,10 @@
 package com.ghostwording.chatbot.textimagepreviews;
 
-import android.databinding.DataBindingUtil;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import com.ghostwording.chatbot.model.texts.TranslationLanguage;
 import com.ghostwording.chatbot.model.texts.TranslationResult;
 import com.ghostwording.chatbot.utils.PostCardRenderer;
 import com.ghostwording.chatbot.utils.PrefManager;
-import com.ghostwording.chatbot.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

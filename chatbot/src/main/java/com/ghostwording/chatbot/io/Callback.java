@@ -1,8 +1,9 @@
 package com.ghostwording.chatbot.io;
 
 import android.app.Activity;
-import android.databinding.ObservableBoolean;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.ObservableBoolean;
 
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.utils.Logger;

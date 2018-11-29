@@ -1,6 +1,6 @@
 package com.ghostwording.chatbot.viewmodel;
 
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 
 import com.ghostwording.chatbot.model.PopularImages;
 

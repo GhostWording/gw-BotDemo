@@ -8,7 +8,9 @@ import android.content.res.Resources;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.analytics.GhostAnalytics;
 import com.ghostwording.chatbot.chatbot.BotQuestionsManager;
+import com.ghostwording.chatbot.chatbot.RedirectionManager;
 import com.ghostwording.chatbot.io.ApiClient;
+import com.ghostwording.chatbot.io.DataLoader;
 import com.ghostwording.chatbot.io.QuotesLoader;
 import com.ghostwording.chatbot.model.texts.Quote;
 import com.ghostwording.chatbot.utils.AppConfiguration;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import io.reactivex.subjects.PublishSubject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,18 +32,30 @@ import retrofit2.Response;
 public class ChatBotApplication extends Application {
 
     private static ChatBotApplication instance;
+    private static PublishSubject<String> userInput;
+    protected RedirectionManager redirectionManager;
 
     public static ChatBotApplication instance() {
         return instance;
+    }
+
+    public static PublishSubject<String> getUserInputSubject() {
+        return userInput;
+    }
+
+    public RedirectionManager getRedirectionManager() {
+        return redirectionManager;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        userInput = PublishSubject.create();
+        createRedirectionManager();
         AppConfiguration.create(getApplicationContext());
         PrefManager.createInstance(getApplicationContext());
+        DataLoader.init(getApplicationContext());
         QuotesLoader.init(getApplicationContext());
         UtilsLocalNotifications.loadNotifications();
         GhostAnalytics.create(getApplicationContext());
@@ -58,6 +73,11 @@ public class ChatBotApplication extends Application {
         AnalyticsHelper.sendOneTimeEvent(AnalyticsHelper.Events.FIRST_LAUNCH);
         AnalyticsHelper.sendEvent(AnalyticsHelper.Events.APP_LAUNCH);
         updateBotQuestions();
+    }
+
+    protected void createRedirectionManager() {
+        redirectionManager = (activity, step) -> {
+        };
     }
 
     @Override

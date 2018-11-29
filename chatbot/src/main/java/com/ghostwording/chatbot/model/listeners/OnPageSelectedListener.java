@@ -1,6 +1,6 @@
 package com.ghostwording.chatbot.model.listeners;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 
 public abstract class OnPageSelectedListener implements ViewPager.OnPageChangeListener {
 

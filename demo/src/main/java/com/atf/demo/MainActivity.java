@@ -1,7 +1,9 @@
 package com.atf.demo;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -39,7 +41,20 @@ public class MainActivity extends BaseActivity {
 
         binding.btnStart.setOnClickListener(view -> {
             String botName = binding.etBotname.getText().toString();
-            PrefManager.instance().setHuggyShown(false);
+            String sequenceName = binding.etFragmentName.getText().toString();
+
+            if (!botName.isEmpty() && !sequenceName.isEmpty()) {
+                Toast.makeText(MainActivity.this, R.string.error_fill_bot_name, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if (!sequenceName.isEmpty()) {
+                Intent intent = new Intent(MainActivity.this, BotActivity.class);
+                intent.putExtra(BotActivity.SEQUENCE_ID, sequenceName);
+                startActivity(intent);
+                return;
+            }
+
             PrefManager.instance().setLastSequenceId(botName, null);
             AppConfiguration.setBotName(botName);
             ApiClient.getInstance().testDevService.clearBotHistory(binding.etBotname.getText().toString(), AppConfiguration.getDeviceId()).enqueue(new retrofit2.Callback<ResponseBody>() {
@@ -58,8 +73,5 @@ public class MainActivity extends BaseActivity {
                 }
             });
         });
-
-        //AppConfiguration.setBotName("britishmuseum");
-        //startActivity(new Intent(MainActivity.this, BotActivity.class));
     }
 }

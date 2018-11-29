@@ -3,10 +3,11 @@ package com.ghostwording.chatbot.textimagepreviews;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.ghostwording.chatbot.R;

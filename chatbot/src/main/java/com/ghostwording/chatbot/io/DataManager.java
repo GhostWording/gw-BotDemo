@@ -7,10 +7,12 @@ import com.ghostwording.chatbot.model.GifIdsResponse;
 import com.ghostwording.chatbot.model.GifImages;
 import com.ghostwording.chatbot.model.GifResponse;
 import com.ghostwording.chatbot.model.MediaModel;
+import com.ghostwording.chatbot.model.PopularImages;
 import com.ghostwording.chatbot.model.VotingCounters;
 import com.ghostwording.chatbot.model.WeightAble;
 import com.ghostwording.chatbot.model.texts.PopularTexts;
 import com.ghostwording.chatbot.model.texts.Quote;
+import com.ghostwording.chatbot.model.texts.QuoteLanguageComparator;
 import com.ghostwording.chatbot.model.texts.QuoteShareComparator;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
@@ -77,6 +79,34 @@ public class DataManager {
             } catch (Exception ex) {
                 Logger.e(ex.toString());
             }
+            subscriber.onComplete();
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<ChatMessage.BotMessage> loadImageCardFromPrototype(BotSequence.Step step) {
+        return Observable.create((ObservableOnSubscribe<ChatMessage.BotMessage>) subscriber -> {
+            String prototypeId = step.getParameters().getPrototypeId();
+            ChatMessage.BotMessage result = new ChatMessage.BotMessage();
+            List<Quote> quotes = ApiClient.getInstance().coreApiService.getQuotesFromRealizations(AppConfiguration.getAppAreaId(), prototypeId).execute().body();
+            quotes = UtilsMessages.filterQuotes(quotes, PrefManager.instance().getSelectedGender(), false);
+            Collections.sort(quotes, new QuoteLanguageComparator());
+            Quote selectedMessage = quotes.get(0);
+            result.setPrototypeId(selectedMessage.getPrototypeId());
+            result.setTextId(selectedMessage.getTextId());
+            result.setContent(selectedMessage.getContent());
+
+            if (step.getParameters().getDefaultImage() != null) {
+                result.setImageLink(step.getParameters().getDefaultImage().getImagePath());
+            } else {
+                List<PopularImages> popularImages = ApiClient.getInstance().popularService.getPopularImagesForText(selectedMessage.getPrototypeId()).execute().body();
+                if (popularImages == null || popularImages.size() == 0) {
+                    popularImages = ApiClient.getInstance().popularService.getPopularImages(selectedMessage.getIntentionId()).execute().body();
+                }
+                List<PopularImages.Image> images = popularImages.get(0).getImages();
+                result.setImageLink(images.get(new Random().nextInt(images.size())).getImageLink());
+            }
+
+            subscriber.onNext(result);
             subscriber.onComplete();
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }

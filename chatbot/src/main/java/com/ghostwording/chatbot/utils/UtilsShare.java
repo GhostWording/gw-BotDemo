@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.Nullable;
 
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
@@ -17,6 +16,7 @@ import com.ghostwording.chatbot.model.texts.Quote;
 
 import java.io.File;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;

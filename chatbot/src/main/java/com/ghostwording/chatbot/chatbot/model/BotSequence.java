@@ -24,6 +24,9 @@ public class BotSequence {
     @SerializedName("Commands")
     @Expose
     private List<BotSequence> commands = null;
+    @SerializedName("DisplayCardAfterSelection")
+    @Expose
+    private String displayCardAfterSelection;
     @SerializedName("LinksTo")
     @Expose
     private BotSequence linksTo = null;
@@ -60,6 +63,18 @@ public class BotSequence {
     @SerializedName("MasterOrder")
     @Expose
     private Integer masterOrder = null;
+
+    public String getDisplayCardAfterSelection() {
+        return displayCardAfterSelection;
+    }
+
+    public boolean isDisplayLargeCard() {
+        return displayCardAfterSelection != null && displayCardAfterSelection.equals("FullScreenWidth");
+    }
+
+    public boolean isDisplayTextOnly() {
+        return displayCardAfterSelection != null && displayCardAfterSelection.equals("None");
+    }
 
     public AutoSelect getAutoSelect() {
         return autoSelect;
@@ -222,6 +237,9 @@ public class BotSequence {
         @SerializedName("Type")
         @Expose
         private String type;
+        @SerializedName("AutoSkip")
+        @Expose
+        private AutoSelect autoSkip;
         @SerializedName("Label")
         @Expose
         private Label label;
@@ -249,6 +267,17 @@ public class BotSequence {
         @SerializedName("Rule")
         @Expose
         private String rule;
+        @SerializedName("AnimatedGifTranslation")
+        @Expose
+        private Parameters animatedGifTranslation;
+
+        public AutoSelect getAutoSkip() {
+            return autoSkip;
+        }
+
+        public Parameters getAnimatedGifTranslation() {
+            return animatedGifTranslation;
+        }
 
         public Parameters getImage() {
             return image;
@@ -302,6 +331,13 @@ public class BotSequence {
         @SerializedName("es")
         @Expose
         private String es;
+        @SerializedName("zh")
+        @Expose
+        private String zh;
+
+        public String getZh() {
+            return zh;
+        }
 
         public String getEn() {
             return en;
@@ -342,6 +378,18 @@ public class BotSequence {
 
     public class Parameters {
 
+        @SerializedName("SequenceId")
+        @Expose
+        private String sequenceId;
+        @SerializedName("FragmentToOpen")
+        @Expose
+        private String fragmentToOpen;
+        @SerializedName("FragmentPath")
+        @Expose
+        private String fragmentPath;
+        @SerializedName("FeedbackValue")
+        @Expose
+        private String feedbackValue;
         @SerializedName("Display")
         @Expose
         private String display;
@@ -381,6 +429,50 @@ public class BotSequence {
         @SerializedName("NumberOfCards")
         @Expose
         private Integer numberOfCards;
+        @SerializedName("PeriodPath")
+        @Expose
+        private String periodPath;
+        @SerializedName("ArtworkPath")
+        @Expose
+        private String artworkPath;
+        @SerializedName("PrototypeId")
+        @Expose
+        private String prototypeId;
+        @SerializedName("DefaultImage")
+        @Expose
+        private DefaultImage defaultImage;
+
+        public DefaultImage getDefaultImage() {
+            return defaultImage;
+        }
+
+        public String getPrototypeId() {
+            return prototypeId;
+        }
+
+        public String getArtworkPath() {
+            return artworkPath;
+        }
+
+        public String getFragmentToOpen() {
+            return fragmentToOpen;
+        }
+
+        public String getFragmentPath() {
+            return fragmentPath;
+        }
+
+        public String getPeriodPath() {
+            return periodPath;
+        }
+
+        public String getSequenceId() {
+            return sequenceId;
+        }
+
+        public String getFeedbackValue() {
+            return feedbackValue;
+        }
 
         public String getImageUrl() {
             if (source.equals("Internal")) {
@@ -447,6 +539,24 @@ public class BotSequence {
 
         public void setPath(String path) {
             this.path = path;
+        }
+
+    }
+
+    public class DefaultImage {
+
+        @SerializedName("Source")
+        @Expose
+        private String source;
+        @SerializedName("Path")
+        @Expose
+        private String path;
+
+        public String getImagePath() {
+            if (!source.equals("Web")) {
+                return PictureService.HOST_URL + path;
+            }
+            return path;
         }
 
     }

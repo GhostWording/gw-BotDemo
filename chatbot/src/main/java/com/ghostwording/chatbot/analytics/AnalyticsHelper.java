@@ -252,6 +252,7 @@ public class AnalyticsHelper {
         String HUGS_VIEW_REACHED = "ViewINeedHugs";
         String SEND_HUG_REACHED = "ViewSendAHug";
         String TALK_TO_ME_REACHED = "ViewTalkToMe";
+        String FEEDBACK = "Feedback";
     }
 
     public interface Parameters {

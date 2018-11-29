@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.Window;
 
-public class BaseDialog extends android.support.v4.app.DialogFragment {
+import androidx.fragment.app.DialogFragment;
+
+public class BaseDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

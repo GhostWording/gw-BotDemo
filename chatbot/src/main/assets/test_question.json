@@ -1,34 +1,155 @@
 {
-  "Type": "Leaf",
-  "Comments":"it should show the text step and then continue",
-  "Id": "ShowStepActionShowCarouselFromList",
+  "Type": "Node",
+  "Id": "MonaDuplicates",
   "Steps": [
     {
       "Type": "Text",
       "Label": {
-        "en": "ShowStepActionShowCarouselFromList:it should show one ShowCarouselFromList and then continue",
-        "fr": "ShowStepActionShowCarouselFromList:it should show one ShowCarouselFromList and then continue"
+        "en": "Here's a cool fact for you: the Mona Lisa is the most copied painting in the world!",
+        "fr": "Cest aussi sûrement le tableau le plus parodié...",
+        "es": "",
+        "zh": ""
       }
     },
     {
       "Type": "Action",
-      "Name": "ShowCarouselFromList",
+      "Name": "ShowTextForPrototype",
+      "Comment": "Say good morning",
       "Parameters": {
-        "Path": "/data/common/carousel/BillMurrayMovies.json"}
+        "PrototypeId": "63B92D"
+      }
     },
     {
       "Type": "Text",
       "Label": {
-        "en": "ShowStepActionShowCarouselFromList:it should show another ShowCarouselFromList and then continue",
-        "fr": "ShowStepActionShowCarouselFromList:it should show another ShowCarouselFromList and then continue"
+        "en": "This includes some pretty funny parodies...",
+        "fr": "Cest aussi sûrement le tableau le plus parodié...",
+        "es": "",
+        "zh": ""
+      }
+    },
+    {
+      "Type": "Text",
+      "Label": {
+        "en": "How are you?"
       }
     },
     {
       "Type": "Action",
-      "Name": "ShowCarouselFromList",
+      "Name": "TypingBarShow"
+    },
+    {
+      "Type": "WaitForUserInput",
+      "AutoSkip": {
+        "ms": 20000
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "TypingBarHide"
+    },
+    {
+      "Type": "Text",
+      "Label": {
+        "en": "Great to hear!"
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "ShowCardForPrototype",
+      "Comment": "Say good morning",
       "Parameters": {
-        "Path": "/data/common/carousel/MountainsHimalaya.json"}
+        "PrototypeId": "63B92D",
+        "DefaultImage": {
+          "Width": 1632,
+          "Height": 2284,
+          "Source": "Web",
+          "Path": "http://az767698.vo.msecnd.net/museums/artquest/small/chessmen.jpg"
+        }
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "ShowCardForPrototype",
+      "Comment": "Say good morning",
+      "Parameters": {
+        "PrototypeId": "63B92D",
+        "DefaultImage": {
+          "Width": 1632,
+          "Height": 2284,
+          "Source": "Internal",
+          "Path": "museums/artquest/small/chessmen.jpg"
+        }
+      }
+    },
+    {
+      "Type": "Action",
+      "Name": "ShowCardForPrototype",
+      "Comment": "Say you're the best",
+      "Parameters": {
+        "PrototypeId": "587DD3"
+      }
+    },
+    {
+      "Type": "Text",
+      "Label": {
+        "en": "What do you think of them?",
+        "fr": "Et il attire plus de 6 millions de visiteurs par an !",
+        "es": "",
+        "zh": ""
+      }
     }
-
+  ],
+  "Commands": [
+    {
+      "Type": "Node",
+      "Id": "MonaDuplicatesFunny",
+      "ElementValue": "1",
+      "CommandLabel": {
+        "en": "Funny!",
+        "fr": "C'est énorme !",
+        "es": "",
+        "zh": ""
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "😆 Right?! But there are some serious ones, too!",
+            "fr": "En effet ! Tu te demandes sûrement pourquoi cette peinture est si célèbre",
+            "es": "",
+            "zh": ""
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "FragmentPath": "MonaDuplicates2"
+      }
+    },
+    {
+      "Type": "Node",
+      "Id": "MonaDuplicatesWeird",
+      "ElementValue": "1",
+      "CommandLabel": {
+        "en": "Weird!",
+        "fr": "C'est énorme !",
+        "es": "",
+        "zh": ""
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "In that case, check out these more serious copies...",
+            "fr": "En effet ! Tu te demandes sûrement pourquoi cette peinture est si célèbre",
+            "es": "",
+            "zh": ""
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "FragmentPath": "MonaDuplicates2"
+      }
+    }
   ]
 }
