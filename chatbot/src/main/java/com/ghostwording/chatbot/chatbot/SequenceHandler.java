@@ -1,6 +1,8 @@
 package com.ghostwording.chatbot.chatbot;
 
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -32,6 +34,7 @@ import com.ghostwording.chatbot.model.texts.PopularTexts;
 import com.ghostwording.chatbot.model.texts.Quote;
 import com.ghostwording.chatbot.textimagepreviews.PickHelper;
 import com.ghostwording.chatbot.utils.AppConfiguration;
+import com.ghostwording.chatbot.utils.LocaleManager;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.PrefManager;
 import com.ghostwording.chatbot.utils.Utils;
@@ -39,7 +42,9 @@ import com.ghostwording.chatbot.utils.UtilsMessages;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import androidx.annotation.Nullable;
@@ -127,6 +132,7 @@ public class SequenceHandler {
     private Handler autoSelectHandler = new Handler();
     private Handler userInputWaitHandler = new Handler();
     private String botName;
+    private TextToSpeech tts;
 
     public SequenceHandler(String botName, ChatAdapter chatAdapter, BotSequence botSequence, SequenceListener sequenceListener) {
         this.chatAdapter = chatAdapter;
@@ -135,7 +141,7 @@ public class SequenceHandler {
         this.masterSequence = botSequence;
         this.sequenceListener = sequenceListener;
         this.botName = botName;
-
+        initTts();
         AnalyticsHelper.setScreenName(masterSequence.getLocation());
         AnalyticsHelper.setImageTextContext(masterSequence.getId());
         String sequenceText = null;
@@ -179,8 +185,7 @@ public class SequenceHandler {
                 handleImageStep(step);
                 break;
             case StepTypes.TEXT:
-                chatAdapter.addMessage(new ChatMessage(step.getLabel(), false));
-                startStep();
+                handleTextStep(step.getLabel());
                 break;
             case StepTypes.GIF:
                 handleGifStep(step);
@@ -194,6 +199,17 @@ public class SequenceHandler {
                 break;
             default:
                 startStep();
+        }
+    }
+
+    private void handleTextStep(String stepText) {
+        chatAdapter.addMessage(new ChatMessage(stepText, false));
+        if (AppConfiguration.isPlayText()) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "TextMessage");
+            tts.speak(stepText, TextToSpeech.QUEUE_FLUSH, map);
+        } else {
+            startStep();
         }
     }
 
@@ -239,6 +255,29 @@ public class SequenceHandler {
             currentSequence = botSequence;
             startStep();
         }, throwable -> sequenceListener.onSequenceEnd(false));
+    }
+
+    private void initTts() {
+        tts = new TextToSpeech(ChatBotApplication.instance().getApplicationContext(), status -> {
+
+        });
+        tts.setLanguage(LocaleManager.getLocale(ChatBotApplication.instance().getResources()));
+        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+                startStep();
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+        });
     }
 
     public void handleCommand(BotSequence command) {

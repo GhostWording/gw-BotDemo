@@ -17,11 +17,13 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/app_name">
 
-            <View
-                android:id="@+id/btn_developer_mode"
-                android:layout_width="25dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right" />
+            <ImageView
+                android:id="@+id/btn_play_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="15dp"
+                android:src="@drawable/ic_play_arrow_white_24dp" />
 
         </androidx.appcompat.widget.Toolbar>
 

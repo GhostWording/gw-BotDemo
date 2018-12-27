@@ -53,6 +53,7 @@ public class AppConfiguration {
     private static Promotions sPromotions;
     private static boolean sIsBotWaitingForInput = false;
     private static boolean sIsAnimateButtons = true;
+    private static boolean sIsPlayText = false;
 
     public static void create(Context context) {
         deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -69,6 +70,14 @@ public class AppConfiguration {
         }.getType());
         sSurveyBotStrings = new Gson().fromJson(AssetsManager.getStringFromAssetFile(context, "surveybotresults.json"), SurveyBotStrings.class);
         sTestSequence = new Gson().fromJson(AssetsManager.getStringFromAssetFile(context, "test_question.json"), BotSequence.class);
+    }
+
+    public static boolean isPlayText() {
+        return sIsPlayText;
+    }
+
+    public static void setIsPlayText(boolean isPlayText) {
+        sIsPlayText = isPlayText;
     }
 
     public static boolean isAnimateButtons() {
