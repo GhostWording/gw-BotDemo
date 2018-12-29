@@ -60,4 +60,17 @@ public class LocaleManager {
         Configuration config = res.getConfiguration();
         return Build.VERSION.SDK_INT >= 24 ? config.getLocales().get(0) : config.locale;
     }
+
+    public static Locale getTtsLocale(Context context) {
+        String language = getLanguage(context);
+        if (language.contains("en")) {
+            return Locale.US;
+        } else if (language.contains("fr")) {
+            return Locale.CANADA_FRENCH;
+        } else if (language.contains("es")) {
+            return new Locale("es", "ES");
+        } else {
+            return new Locale(language, language.toUpperCase());
+        }
+    }
 }

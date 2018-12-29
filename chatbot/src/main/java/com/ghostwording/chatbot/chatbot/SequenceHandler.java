@@ -114,6 +114,9 @@ public class SequenceHandler {
 
         }
 
+        protected void playText(String text) {
+
+        }
     }
 
     public interface CommandListener {
@@ -132,7 +135,6 @@ public class SequenceHandler {
     private Handler autoSelectHandler = new Handler();
     private Handler userInputWaitHandler = new Handler();
     private String botName;
-    private TextToSpeech tts;
 
     public SequenceHandler(String botName, ChatAdapter chatAdapter, BotSequence botSequence, SequenceListener sequenceListener) {
         this.chatAdapter = chatAdapter;
@@ -141,7 +143,6 @@ public class SequenceHandler {
         this.masterSequence = botSequence;
         this.sequenceListener = sequenceListener;
         this.botName = botName;
-        initTts();
         AnalyticsHelper.setScreenName(masterSequence.getLocation());
         AnalyticsHelper.setImageTextContext(masterSequence.getId());
         String sequenceText = null;
@@ -205,9 +206,7 @@ public class SequenceHandler {
     private void handleTextStep(String stepText) {
         chatAdapter.addMessage(new ChatMessage(stepText, false));
         if (AppConfiguration.isPlayText()) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "TextMessage");
-            tts.speak(stepText, TextToSpeech.QUEUE_FLUSH, map);
+            sequenceListener.playText(stepText);
         } else {
             startStep();
         }
@@ -255,29 +254,6 @@ public class SequenceHandler {
             currentSequence = botSequence;
             startStep();
         }, throwable -> sequenceListener.onSequenceEnd(false));
-    }
-
-    private void initTts() {
-        tts = new TextToSpeech(ChatBotApplication.instance().getApplicationContext(), status -> {
-
-        });
-        tts.setLanguage(LocaleManager.getLocale(ChatBotApplication.instance().getResources()));
-        tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String utteranceId) {
-
-            }
-
-            @Override
-            public void onDone(String utteranceId) {
-                startStep();
-            }
-
-            @Override
-            public void onError(String utteranceId) {
-
-            }
-        });
     }
 
     public void handleCommand(BotSequence command) {

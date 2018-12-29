@@ -7,6 +7,9 @@ import androidx.databinding.DataBindingUtil;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +31,12 @@ import com.ghostwording.chatbot.model.recipients.Recipient;
 import com.ghostwording.chatbot.model.requests.SequenceRequest;
 import com.ghostwording.chatbot.model.texts.Quote;
 import com.ghostwording.chatbot.utils.AppConfiguration;
+import com.ghostwording.chatbot.utils.LocaleManager;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.PrefManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
@@ -47,6 +52,9 @@ public class ChatbotFragment extends Fragment {
     Integer botAvatarResource = com.ghostwording.chatbot.R.drawable.ic_huggy_avatar;
     private String botName = AppConfiguration.getBotName();
     private String sequenceId;
+    private TextToSpeech textToSpeech;
+    private SequenceHandler currentSequence;
+    private Handler handler = new Handler();
 
     private SequenceHandler.SequenceListener sequenceListener = new SequenceHandler.SequenceListener() {
         @Override
@@ -61,6 +69,13 @@ public class ChatbotFragment extends Fragment {
         }
 
         @Override
+        protected void playText(String text) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "TextMessage");
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+        }
+
+        @Override
         protected void hideTypingBar() {
             binding.containerInputMessage.setVisibility(View.GONE);
         }
@@ -70,6 +85,27 @@ public class ChatbotFragment extends Fragment {
             binding.containerInputMessage.setVisibility(View.VISIBLE);
         }
     };
+
+    private void initTts() {
+        textToSpeech = new TextToSpeech(ChatBotApplication.instance().getApplicationContext(), status -> Logger.e("result : " + status));
+        textToSpeech.setLanguage(LocaleManager.getTtsLocale(getContext()));
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+                handler.post(() -> currentSequence.startStep());
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+        });
+    }
 
     public static ChatbotFragment newInstance(String sequenceId) {
         ChatbotFragment chatbotFragment = new ChatbotFragment();
@@ -86,6 +122,7 @@ public class ChatbotFragment extends Fragment {
         binding.recyclerMenuItems.setAdapter(chatAdapter);
         binding.recyclerMenuItems.setLayoutManager(new LinearLayoutManager(getActivity()));
         scrollToBottom();
+        initTts();
         if (sequenceId != null) {
             binding.recyclerMenuItems.post(() -> showInitialQuestion());
         } else {
@@ -113,7 +150,8 @@ public class ChatbotFragment extends Fragment {
 
     private void showInitialQuestion() {
         if (AppConfiguration.isTestMode()) {
-            new SequenceHandler(botName, chatAdapter, AppConfiguration.getTestSequence(), sequenceListener).startStep();
+            currentSequence = new SequenceHandler(botName, chatAdapter, AppConfiguration.getTestSequence(), sequenceListener);
+            currentSequence.startStep();
             return;
         }
         loadAndShowSequence(sequenceId);
@@ -122,7 +160,10 @@ public class ChatbotFragment extends Fragment {
     public void loadAndShowSequence(String sequenceId) {
         chatAdapter.getBotCommandsView().showLoadingView();
         DataLoader.instance().loadSequenceById(sequenceId)
-                .subscribe(botSequence -> new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener).startStep()
+                .subscribe(botSequence -> {
+                            currentSequence = new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener);
+                            currentSequence.startStep();
+                        }
                         , throwable -> {
                             Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
                             finish();
@@ -179,7 +220,8 @@ public class ChatbotFragment extends Fragment {
 
     private void showSequence(BotSequence botSequence) {
         if (botSequence != null && botSequence.getId() != null) {
-            new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener).startStep();
+            currentSequence = new SequenceHandler(botName, chatAdapter, botSequence, sequenceListener);
+            currentSequence.startStep();
             PrefManager.instance().setLastSequenceId(botName, botSequence.getId());
         } else {
             finish();
