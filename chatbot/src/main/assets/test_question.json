@@ -1,154 +1,88 @@
 {
   "Type": "Node",
-  "Id": "MonaDuplicates",
+  "Id": "VibrationTest",
   "Steps": [
     {
       "Type": "Text",
       "Label": {
-        "en": "Here's a cool fact for you: the Mona Lisa is the most copied painting in the world!",
-        "fr": "Cest aussi sûrement le tableau le plus parodié...",
-        "es": "",
-        "zh": ""
-      }
-    },
-    {
-      "Type": "Action",
-      "Name": "ShowTextForPrototype",
-      "Comment": "Say good morning",
-      "Parameters": {
-        "PrototypeId": "63B92D"
+        "en": "Here are three steps with vibrations. You should have your phone vibrate 3 times",
+        "fr": "Here are three steps with vibrations. You should have your phone vibrate 3 times"
       }
     },
     {
       "Type": "Text",
       "Label": {
-        "en": "This includes some pretty funny parodies...",
-        "fr": "Cest aussi sûrement le tableau le plus parodié...",
-        "es": "",
-        "zh": ""
-      }
+        "en": "One",
+        "fr": "One"
+      },
+      "Vibration": "true"
     },
     {
-      "Type": "Text",
-      "Label": {
-        "en": "How are you?"
-      }
-    },
-    {
-      "Type": "Action",
-      "Name": "TypingBarShow"
-    },
-    {
-      "Type": "WaitForUserInput",
-      "AutoSkip": {
-        "ms": 20000
-      }
-    },
-    {
-      "Type": "Action",
-      "Name": "TypingBarHide"
-    },
-    {
-      "Type": "Text",
-      "Label": {
-        "en": "Great to hear!"
-      }
-    },
-    {
-      "Type": "Action",
-      "Name": "ShowCardForPrototype",
-      "Comment": "Say good morning",
+      "Type": "AnimatedGif",
       "Parameters": {
-        "PrototypeId": "63B92D",
-        "DefaultImage": {
-          "Width": 1632,
-          "Height": 2284,
-          "Source": "Web",
-          "Path": "http://az767698.vo.msecnd.net/museums/artquest/small/chessmen.jpg"
-        }
-      }
+        "Source": "Giphy",
+        "Path": "xTiN0h0Kh5gH7yQYUw"
+      },
+      "Vibration": "true"
     },
     {
-      "Type": "Action",
-      "Name": "ShowCardForPrototype",
-      "Comment": "Say good morning",
+      "Type": "Image",
       "Parameters": {
-        "PrototypeId": "63B92D",
-        "DefaultImage": {
-          "Width": 1632,
-          "Height": 2284,
-          "Source": "Internal",
-          "Path": "museums/artquest/small/chessmen.jpg"
-        }
-      }
-    },
-    {
-      "Type": "Action",
-      "Name": "ShowCardForPrototype",
-      "Comment": "Say you're the best",
-      "Parameters": {
-        "PrototypeId": "587DD3"
-      }
-    },
-    {
-      "Type": "Text",
-      "Label": {
-        "en": "What do you think of them?",
-        "fr": "Et il attire plus de 6 millions de visiteurs par an !",
-        "es": "",
-        "zh": ""
-      }
+        "Source": "Web",
+        "Path": "https://upload.wikimedia.org/wikipedia/en/thumb/7/73/Logo_of_Three_UK.svg/225px-Logo_of_Three_UK.svg.png"
+      },
+      "Vibration": "true"
     }
   ],
   "Commands": [
     {
       "Type": "Node",
-      "Id": "MonaDuplicatesFunny",
-      "ElementValue": "1",
+      "Id": "VibrationTest1",
       "CommandLabel": {
-        "en": "Funny!",
-        "fr": "C'est énorme !",
-        "es": "",
-        "zh": ""
+        "en": "Cool",
+        "fr": "Cool"
       },
       "Steps": [
         {
           "Type": "Text",
           "Label": {
-            "en": "😆 Right?! But there are some serious ones, too!",
-            "fr": "En effet ! Tu te demandes sûrement pourquoi cette peinture est si célèbre",
-            "es": "",
-            "zh": ""
+            "en": "When you click on the next command, you should get a vibration too",
+            "fr": "When you click on the next command, you should get a vibration too"
           }
         }
       ],
-      "LinksToFragment": {
-        "FragmentPath": "MonaDuplicates2"
-      }
-    },
-    {
-      "Type": "Node",
-      "Id": "MonaDuplicatesWeird",
-      "ElementValue": "1",
-      "CommandLabel": {
-        "en": "Weird!",
-        "fr": "C'est énorme !",
-        "es": "",
-        "zh": ""
-      },
-      "Steps": [
-        {
-          "Type": "Text",
-          "Label": {
-            "en": "In that case, check out these more serious copies...",
-            "fr": "En effet ! Tu te demandes sûrement pourquoi cette peinture est si célèbre",
-            "es": "",
-            "zh": ""
+      "LinksTo": {
+        "Type": "Node",
+        "Id": "VibrationTest2",
+        "Steps": [
+          {
+            "Type": "Text",
+            "Label": {
+              "en": "Let's do this",
+              "fr": "Let's do this"
+            }
           }
-        }
-      ],
-      "LinksToFragment": {
-        "FragmentPath": "MonaDuplicates2"
+        ],
+        "Commands": [
+          {
+            "Type": "Leaf",
+            "Id": "VibrationTest3",
+            "CommandLabel": {
+              "en": "Ok",
+              "fr": "Ok"
+            },
+            "Vibration": "true",
+            "Steps": [
+              {
+                "Type": "Text",
+                "Label": {
+                  "en": "And that's it",
+                  "fr": "And that's it"
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   ]

@@ -15,6 +15,9 @@ public class BotSequence {
     @SerializedName("Id")
     @Expose
     private String id;
+    @SerializedName("Vibration")
+    @Expose
+    private Boolean vibration;
     @SerializedName("Steps")
     @Expose
     private List<Step> steps = null;
@@ -63,6 +66,10 @@ public class BotSequence {
     @SerializedName("MasterOrder")
     @Expose
     private Integer masterOrder = null;
+
+    public boolean isVibrate() {
+        return vibration != null && vibration;
+    }
 
     public String getDisplayCardAfterSelection() {
         return displayCardAfterSelection;
@@ -237,6 +244,9 @@ public class BotSequence {
         @SerializedName("Type")
         @Expose
         private String type;
+        @SerializedName("Vibration")
+        @Expose
+        private Boolean vibration;
         @SerializedName("AutoSkip")
         @Expose
         private AutoSelect autoSkip;
@@ -270,6 +280,10 @@ public class BotSequence {
         @SerializedName("AnimatedGifTranslation")
         @Expose
         private Parameters animatedGifTranslation;
+
+        public boolean isVibrate() {
+            return vibration != null && vibration;
+        }
 
         public AutoSelect getAutoSkip() {
             return autoSkip;

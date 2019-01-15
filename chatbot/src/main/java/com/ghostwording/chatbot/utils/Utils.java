@@ -10,6 +10,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.DisplayMetrics;
 
 import com.ghostwording.chatbot.ChatBotApplication;
@@ -183,6 +186,15 @@ public class Utils {
             ApiClient.clearData();
             AnalyticsHelper.sendEvent(AnalyticsHelper.Events.SET_LANGUAGE, languageToLoad);
             AnalyticsHelper.sendEvent(AnalyticsHelper.Events.LANGUAGE, languageToLoad);
+        }
+    }
+
+    public static void vibrate(Context context) {
+        Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            v.vibrate(500);
         }
     }
 

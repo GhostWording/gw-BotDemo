@@ -172,6 +172,10 @@ public class SequenceHandler {
         BotSequence.Step step = currentSequence.getSteps().get(currentStep);
         currentStep++;
 
+        if (step.isVibrate()) {
+            Utils.vibrate(chatAdapter.getActivity());
+        }
+
         switch (step.getType()) {
             case StepTypes.VIDEO:
                 handleVideoStep(step);
@@ -264,6 +268,10 @@ public class SequenceHandler {
             chatAdapter.addMessage(new ChatMessage(chatAdapter.getActivity().getString(R.string.skip_bot), true));
             sequenceListener.onSequenceEnd(false);
             return;
+        }
+
+        if (command.isVibrate()) {
+            Utils.vibrate(chatAdapter.getActivity());
         }
 
         AnalyticsHelper.setIsLast(command.getType().equals("Leaf"));
