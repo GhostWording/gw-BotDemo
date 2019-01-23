@@ -253,11 +253,24 @@ public class SequenceHandler {
 
     private void showFragment(BotSequence.LinksToFragment linksToFragment) {
         chatAdapter.getBotCommandsView().showLoadingView();
-        DataLoader.instance().loadSequenceById(linksToFragment.getFragmentPath()).subscribe(botSequence -> {
-            rootSequence = botSequence;
-            currentSequence = botSequence;
-            startStep();
-        }, throwable -> sequenceListener.onSequenceEnd(false));
+        FragmentRequest fragmentRequest;
+        if (linksToFragment.getTags() != null) {
+            fragmentRequest = new FragmentRequest(botName, currentSequence.getId(), linksToFragment.getTags());
+        } else {
+            fragmentRequest = new FragmentRequest(botName, currentSequence.getId(), linksToFragment.getFragmentPath());
+        }
+        ApiClient.getInstance().botService.getFragment(fragmentRequest).enqueue(new Callback<BotSequence>(chatAdapter.getActivity()) {
+            @Override
+            public void onDataLoaded(@Nullable BotSequence botSequence) {
+                if (botSequence != null) {
+                    rootSequence = currentSequence;
+                    currentSequence = botSequence;
+                    startStep();
+                } else {
+                    sequenceListener.onSequenceEnd(false);
+                }
+            }
+        });
     }
 
     public void handleCommand(BotSequence command) {

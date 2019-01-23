@@ -1,67 +1,114 @@
 {
-  "Type": "Leaf",
-  "Id": "MinuteArtDescribeDayScream1",
+  "Type": "Node",
+  "Comments": "it shows the fragment, breaks with menu and continue execution",
+  "Id": "firstFragmentForTag2And3",
+  "Tags":["testtag2","testtag3"],
   "Steps": [
     {
       "Type": "Text",
       "Label": {
-        "en": "Sorry to hear that",
-        "fr": "...",
-        "es": "...",
-        "zh": "..."
+        "en": "firstFragmentForTag2And3: inside fragment 1 for tag2 and tag3",
+        "fr": "firstFragmentForTag2And3: inside fragment 1 for tag2 and tag3"
+      }
+    }
+  ],
+  "Commands": [
+    {
+      "Type": "Node",
+      "Id": "nodeCommandContinueWithTag23",
+      "CommandLabel": {
+        "en": "tag2&3",
+        "fr": "tag2&3"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "continuing with one fragment for tag2 or tag3",
+            "fr": "continuing with one fragment for tag2 or tag3"
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "Tags":["testtag2","testtag3"]
       }
     },
     {
-      "Type": "Text",
-      "Label": {
-        "en": "From what I have heard...",
-        "fr": "...",
-        "es": "...",
-        "zh": "..."
+      "Type": "Node",
+      "Id": "nodeCommandContinueWithTag3",
+      "CommandLabel": {
+        "en": "tag3",
+        "fr": "tag3"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "continuing with one fragment for tag3",
+            "fr": "continuing with one fragment for tag3"
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "Tags":["testtag3"]
       }
     },
     {
-      "Type": "Action",
-      "Name": "ShowCardForPrototype",
-      "Comment": "Quote: Humankind cannot bear very much reality",
-      "Parameters": {
-        "PrototypeId": "CD2E33"
+      "Type": "Node",
+      "Id": "nodeCommandContinueWithTag2",
+      "CommandLabel": {
+        "en": "tag2",
+        "fr": "tag2"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "continuing with one fragment for tag2",
+            "fr": "continuing with one fragment for tag2"
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "Tags":["testtag2"]
       }
     },
     {
-      "Type": "Text",
-      "Label": {
-        "en": "and...",
-        "fr": "...",
-        "es": "...",
-        "zh": "..."
+      "Type": "Node",
+      "Id": "nodeCommandContinueWithTag1",
+      "CommandLabel": {
+        "en": "back to 1",
+        "fr": "back to 1"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "continuing with one fragment for tag1",
+            "fr": "continuing with one fragment for tag1"
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "Tags":["testtag1"]
       }
     },
     {
-      "Type": "Action",
-      "Name": "ShowCardForPrototype",
-      "Comment": "Quote: Everything that is simple is false",
-      "Parameters": {
-        "PrototypeId": "32D9A4"
-      }
-    },
-    {
-      "Type": "Text",
-      "Label": {
-        "en": "I made up my mind...",
-        "fr": "...",
-        "es": "...",
-        "zh": "..."
-      }
-    },
-    {
-      "Type": "Text",
-      "Label": {
-        "en": "I choose art!",
-        "fr": "...",
-        "es": "...",
-        "zh": "..."
-      }
+      "Type": "Leaf",
+      "Id": "leafCommandStopHere",
+      "CommandLabel": {
+        "en": "stop",
+        "fr": "stop"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "stop fragment, continue with next seq",
+            "fr": "stop fragment, continue with next seq"
+          }
+        }
+      ]
     }
   ]
 }
