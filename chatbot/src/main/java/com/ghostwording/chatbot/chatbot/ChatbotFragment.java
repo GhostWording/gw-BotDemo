@@ -194,7 +194,6 @@ public class ChatbotFragment extends Fragment {
         if (AppConfiguration.isOfflineMode()) {
             BotSequence botSequence = DataLoader.instance().getNextSequence();
             if (botSequence != null) {
-                Logger.e(botSequence.getId());
                 showSequence(botSequence);
                 return;
             }
