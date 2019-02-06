@@ -49,6 +49,13 @@
                 android:imeOptions="actionDone"
                 android:singleLine="true" />
 
+            <CheckBox
+                android:id="@+id/cb_offline_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/hint_load_masterfile" />
+
             <TextView
                 android:id="@+id/btn_start"
                 android:layout_width="match_parent"

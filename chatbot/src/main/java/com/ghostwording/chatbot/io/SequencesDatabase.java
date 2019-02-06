@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SequenceDatabase extends SQLiteOpenHelper {
+public class SequencesDatabase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "SequenceDatabase";
     private static final int DATABASE_VERSION = 1;
@@ -24,7 +24,7 @@ public class SequenceDatabase extends SQLiteOpenHelper {
         String SEQUENCE_JSON = "sequenceJson";
     }
 
-    public SequenceDatabase(Context context) {
+    public SequencesDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -80,6 +80,14 @@ public class SequenceDatabase extends SQLiteOpenHelper {
         }
         cursor.close();
         return result;
+    }
+
+    public void deleteAllSequences() {
+        getWritableDatabase().execSQL("DELETE FROM " + TABLE_SEQUENCES_NAME);
+    }
+
+    public void deleteSequence(BotSequence botSequence) {
+        getWritableDatabase().execSQL("DELETE FROM " + TABLE_SEQUENCES_NAME + " WHERE " + TABLE_SEQUENCES.SEQUENCE_ID + "=?", new String[]{botSequence.getId()});
     }
 
 }

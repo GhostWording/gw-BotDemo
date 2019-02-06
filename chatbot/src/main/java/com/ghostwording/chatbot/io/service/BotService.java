@@ -2,6 +2,7 @@ package com.ghostwording.chatbot.io.service;
 
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
 import com.ghostwording.chatbot.chatbot.model.ChatMessage;
+import com.ghostwording.chatbot.chatbot.model.SequenceMasterFileResponse;
 import com.ghostwording.chatbot.model.requests.FragmentRequest;
 import com.ghostwording.chatbot.model.requests.SequenceRequest;
 import com.ghostwording.chatbot.model.requests.UserProperty;
@@ -30,5 +31,8 @@ public interface BotService {
 
     @POST("botapis/sequences/fragment")
     Call<BotSequence> getFragment(@Body FragmentRequest sequenceRequest);
+
+    @GET("botapis/sequences/master/sequencesForMaster")
+    Call<List<SequenceMasterFileResponse>> getMasterSequences(@Query("botName") String botName);
 
 }

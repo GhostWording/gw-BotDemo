@@ -32,7 +32,7 @@ public class DataLoader {
     private static DataLoader instance;
 
     private QuoteDatabase quoteDatabase;
-    private SequenceDatabase sequenceDatabase;
+    private SequencesDatabase sequenceDatabase;
 
     public static void init(Context context) {
         instance = new DataLoader(context);
@@ -44,10 +44,11 @@ public class DataLoader {
 
     private DataLoader(Context context) {
         quoteDatabase = new QuoteDatabase(context);
-        sequenceDatabase = new SequenceDatabase(context);
+        sequenceDatabase = new SequencesDatabase(context);
     }
 
     public void saveSequences(List<BotSequence> sequences) {
+        sequenceDatabase.deleteAllSequences();
         for (BotSequence sequence : sequences) {
             sequenceDatabase.saveSequence(sequence);
         }
@@ -55,6 +56,16 @@ public class DataLoader {
 
     public List<BotSequence> getAllBotSequences() {
         return sequenceDatabase.getAllSequences();
+    }
+
+    public BotSequence getNextSequence() {
+        List<BotSequence> sequenceList = sequenceDatabase.getAllSequences();
+        if (sequenceList.size() > 0) {
+            BotSequence result = sequenceList.get(0);
+            sequenceDatabase.deleteSequence(result);
+            return result;
+        }
+        return null;
     }
 
     public Observable<BotSequence> loadSequenceById(final String sequenceId) {

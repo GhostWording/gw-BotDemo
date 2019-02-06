@@ -191,6 +191,14 @@ public class ChatbotFragment extends Fragment {
 
     public void showBotQuestion() {
         if (chatAdapter.getBotCommandsView() == null || getActivity() == null) return;
+        if (AppConfiguration.isOfflineMode()) {
+            BotSequence botSequence = DataLoader.instance().getNextSequence();
+            if (botSequence != null) {
+                Logger.e(botSequence.getId());
+                showSequence(botSequence);
+                return;
+            }
+        }
         loadNextSequenceUsingApi();
     }
 

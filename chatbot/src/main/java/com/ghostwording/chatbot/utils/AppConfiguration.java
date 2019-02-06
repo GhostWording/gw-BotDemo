@@ -54,6 +54,7 @@ public class AppConfiguration {
     private static boolean sIsBotWaitingForInput = false;
     private static boolean sIsAnimateButtons = true;
     private static boolean sIsPlayText = false;
+    private static boolean sIsOfflineMode = false;
 
     public static void create(Context context) {
         deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -98,6 +99,14 @@ public class AppConfiguration {
 
     public static BotSequence getTestSequence() {
         return sTestSequence;
+    }
+
+    public static boolean isOfflineMode() {
+        return sIsOfflineMode;
+    }
+
+    public static void setOfflineMode(boolean offlineMode) {
+        sIsOfflineMode = offlineMode;
     }
 
     public static boolean isWaitingForInput() {
