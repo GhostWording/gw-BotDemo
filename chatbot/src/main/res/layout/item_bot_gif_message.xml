@@ -14,9 +14,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="4dp">
 
-            <ImageView
-                android:id="@+id/iv_avatar"
-                style="@style/BotAvatar" />
+            <include layout="@layout/item_bot_avatar" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.ghostwording.chatbot.chatbot.model;
 
 import com.ghostwording.chatbot.io.service.PictureService;
+import com.ghostwording.chatbot.model.GifImages;
 import com.ghostwording.chatbot.utils.Utils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -455,6 +456,13 @@ public class BotSequence {
         @SerializedName("DefaultImage")
         @Expose
         private DefaultImage defaultImage;
+        @SerializedName("Image")
+        @Expose
+        private GifImages.Image imageParameter;
+
+        public GifImages.Image getImageParameter() {
+            return imageParameter;
+        }
 
         public DefaultImage getDefaultImage() {
             return defaultImage;

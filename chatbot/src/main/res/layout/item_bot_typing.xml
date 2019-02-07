@@ -7,9 +7,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/iv_avatar"
-            style="@style/BotAvatar" />
+        <include layout="@layout/item_bot_avatar" />
 
         <FrameLayout
             android:layout_width="wrap_content"

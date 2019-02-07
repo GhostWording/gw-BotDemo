@@ -118,7 +118,6 @@ public class ChatbotFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_chatbot, container, false);
         binding = DataBindingUtil.bind(rootView);
         chatAdapter = new ChatAdapter((AppCompatActivity) getActivity(), binding.recyclerMenuItems);
-        chatAdapter.setAvatarImage(botAvatarResource);
         binding.recyclerMenuItems.setAdapter(chatAdapter);
         binding.recyclerMenuItems.setLayoutManager(new LinearLayoutManager(getActivity()));
         scrollToBottom();
@@ -191,6 +190,11 @@ public class ChatbotFragment extends Fragment {
 
     public void showBotQuestion() {
         if (chatAdapter.getBotCommandsView() == null || getActivity() == null) return;
+        if (AppConfiguration.isTestMode()) {
+            currentSequence = new SequenceHandler(botName, chatAdapter, AppConfiguration.getTestSequence(), sequenceListener);
+            currentSequence.startStep();
+            return;
+        }
         if (AppConfiguration.isOfflineMode()) {
             BotSequence botSequence = DataLoader.instance().getNextSequence();
             if (botSequence != null) {

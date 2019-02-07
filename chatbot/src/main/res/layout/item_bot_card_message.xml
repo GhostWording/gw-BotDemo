@@ -14,9 +14,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="3dp">
 
-            <ImageView
-                android:id="@+id/iv_avatar"
-                style="@style/BotAvatar" />
+            <include layout="@layout/item_bot_avatar" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,10 +36,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -49,8 +47,8 @@
 
         <TextView
             style="@style/TapToSendStyle"
-            android:layout_alignRight="@+id/container_message"
-            android:layout_below="@+id/container_message" />
+            android:layout_below="@+id/container_message"
+            android:layout_alignRight="@+id/container_message" />
     </RelativeLayout>
 </layout>
 

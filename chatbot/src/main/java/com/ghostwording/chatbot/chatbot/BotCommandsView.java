@@ -27,6 +27,7 @@ import com.ghostwording.chatbot.model.intentions.IntentionsPopularComparator;
 import com.ghostwording.chatbot.model.recipients.Recipient;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
+import com.ghostwording.chatbot.utils.UtilsUI;
 import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 
 import java.util.ArrayList;
@@ -56,8 +57,6 @@ public class BotCommandsView {
     private LayoutInflater layoutInflater;
     private FrameLayout container;
     private Activity activity;
-    @DrawableRes
-    private Integer botAvatarResource = R.drawable.ic_huggy_avatar;
 
     public BotCommandsView(final Activity activity, final FrameLayout container) {
         this.activity = activity;
@@ -65,18 +64,10 @@ public class BotCommandsView {
         this.layoutInflater = LayoutInflater.from(activity);
     }
 
-    public void setAvatarImage(@DrawableRes Integer imageResource) {
-        botAvatarResource = imageResource;
-    }
-
     public void showLoadingView() {
         clearCommand();
         View menuItem = layoutInflater.inflate(R.layout.item_bot_typing, null);
-        try {
-            ((ImageView) menuItem.findViewById(R.id.iv_avatar)).setImageResource(botAvatarResource);
-        } catch (Exception ex) {
-            Logger.e(ex.toString());
-        }
+        UtilsUI.showBotAvatar(menuItem);
         container.addView(menuItem);
     }
 

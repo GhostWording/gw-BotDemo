@@ -75,9 +75,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     private BotCommandsView botCommandsView;
     private int width;
 
-    @DrawableRes
-    private Integer botAvatarResource = R.drawable.ic_huggy_avatar;
-
     interface MessageType {
         int BOT_CARD_MESSAGE = 0;
         int USER_MESSAGE = 1;
@@ -105,10 +102,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
 
     public AppCompatActivity getActivity() {
         return activity;
-    }
-
-    public void setAvatarImage(@DrawableRes Integer imageResource) {
-        botAvatarResource = imageResource;
     }
 
     public void addMessage(ChatMessage message) {
@@ -200,19 +193,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     @Override
     public void onBindViewHolder(BindingHolder holder, final int position) {
         final ChatMessage chatMessage = chatMessages.get(position);
-
-        if (holder.ivAvatar != null) {
-            try {
-                holder.ivAvatar.setImageResource(botAvatarResource);
-            } catch (Exception ex) {
-                Logger.e(ex.toString());
-            }
-        }
+        UtilsUI.showBotAvatar(holder.rowView);
 
         if (chatMessage == null) {
             initBotCommandsView(holder.rowView.findViewById(R.id.container));
             return;
         }
+
+        Logger.e(chatMessage.getMessage());
 
         if (chatMessage.getCarouselMessage() != null) {
             initCarouselMessage(chatMessage.getCarouselMessage(), (ViewGroup) holder.rowView);
@@ -431,7 +419,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
 
     private void initBotCommandsView(FrameLayout container) {
         botCommandsView = new BotCommandsView(activity, container);
-        botCommandsView.setAvatarImage(botAvatarResource);
     }
 
     private void initLink(final ChatMessage.Link link, BindingHolder holder) {
@@ -482,7 +469,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
         private TextView tvMessage;
         private ImageView ivImage;
         private View rowView;
-        private ImageView ivAvatar;
         private View btnNotification;
 
         public BindingHolder(View rowView) {
@@ -491,10 +477,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
             tvMessage = rowView.findViewById(R.id.tv_message);
             ivImage = rowView.findViewById(R.id.iv_image);
             btnNotification = rowView.findViewById(R.id.iv_notification);
-            View avatarView = rowView.findViewById(R.id.iv_avatar);
-            if (avatarView != null) {
-                ivAvatar = (ImageView) avatarView;
-            }
         }
     }
 

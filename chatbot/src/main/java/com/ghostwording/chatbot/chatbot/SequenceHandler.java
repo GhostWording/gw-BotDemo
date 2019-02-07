@@ -39,6 +39,7 @@ import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.PrefManager;
 import com.ghostwording.chatbot.utils.Utils;
 import com.ghostwording.chatbot.utils.UtilsMessages;
+import com.ghostwording.chatbot.utils.UtilsUI;
 
 import java.io.File;
 import java.util.Collections;
@@ -101,6 +102,7 @@ public class SequenceHandler {
         String SHOW_TEXT_PROTOTYPE = "ShowTextForPrototype";
         String SHOW_CARD_PROTOTYPE = "ShowCardForPrototype";
         String WAIT_FOR_USER_INPUT = "WaitForUserInput";
+        String CHATHEAD_CHANGE = "ChatheadChange";
     }
 
     public static abstract class SequenceListener {
@@ -134,6 +136,7 @@ public class SequenceHandler {
     private Handler handler = new Handler();
     private Handler autoSelectHandler = new Handler();
     private Handler userInputWaitHandler = new Handler();
+    private Handler chatHeadHandler = new Handler();
     private String botName;
 
     public SequenceHandler(String botName, ChatAdapter chatAdapter, BotSequence botSequence, SequenceListener sequenceListener) {
@@ -274,6 +277,7 @@ public class SequenceHandler {
     }
 
     public void handleCommand(BotSequence command) {
+        UtilsUI.clearImageChatHead(chatAdapter);
         autoSelectHandler.removeCallbacksAndMessages(null);
         PrefManager.instance().setBotUsed(botName);
         currentLevel++;
@@ -395,8 +399,19 @@ public class SequenceHandler {
                 AnalyticsHelper.sendEvent(AnalyticsHelper.Categories.APP, AnalyticsHelper.Events.FEEDBACK, step.getParameters().getSequenceId(), step.getParameters().getFeedbackValue());
                 startStep();
                 break;
+            case Actions.CHATHEAD_CHANGE:
+                changeChatHead(step);
+                startStep();
+                break;
             default:
                 startStep();
+        }
+    }
+
+    private void changeChatHead(BotSequence.Step step) {
+        UtilsUI.setImageChatHead(step, chatAdapter);
+        if (step.getParameters().getMs() != null) {
+            chatHeadHandler.postDelayed(() -> UtilsUI.clearImageChatHead(chatAdapter), step.getParameters().getMs());
         }
     }
 

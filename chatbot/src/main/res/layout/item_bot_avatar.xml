@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="50dp"
+    android:layout_height="40dp"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/iv_avatar_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_huggy_avatar" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_avatar_gif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
