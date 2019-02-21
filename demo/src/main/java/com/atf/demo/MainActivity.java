@@ -48,6 +48,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         binding.cbOfflineMode.setOnCheckedChangeListener((compoundButton, b) -> AppConfiguration.setOfflineMode(b));
+        binding.tvVersion.setText("v" + BuildConfig.VERSION_NAME);
         languageSettings.setSelectedItem(LocaleManager.getSelectedLanguage(this));
         binding.btnStart.setOnClickListener(view -> {
             String botName = binding.etBotname.getText().toString();
