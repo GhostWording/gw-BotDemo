@@ -11,8 +11,11 @@ import android.widget.ProgressBar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.chatbot.ChatAdapter;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
@@ -128,6 +131,7 @@ public class UtilsUI {
         try {
             ImageView ivImage = view.findViewById(R.id.iv_avatar_image);
             GifImageView gifImageView = view.findViewById(R.id.iv_avatar_gif);
+            ProgressBar progressBar = view.findViewById(R.id.progress_bar);
             if (ivImage != null) {
                 if (sChatHead != null) {
                     if (sChatHead.getParameters().getImageParameter().getSource().equals("Giphy")) {
@@ -138,11 +142,13 @@ public class UtilsUI {
                             public void onResponse(Call<GifResponse> call, Response<GifResponse> response) {
                                 if (response.isSuccessful()) {
                                     if (response.body().getData().size() > 0) {
+                                        progressBar.setVisibility(View.VISIBLE);
                                         GifResponse.GifImage gifImage = response.body().getData().get(0);
                                         Glide.with(gifImageView.getContext()).load(gifImage.getImages().getFixedHeight().getUrl())
                                                 .downloadOnly(new SimpleTarget<File>() {
                                                     @Override
                                                     public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
+                                                        progressBar.setVisibility(View.GONE);
                                                         gifImageView.setImageURI(Uri.parse("file://" + resource.getAbsolutePath()));
                                                     }
                                                 });
@@ -152,7 +158,7 @@ public class UtilsUI {
 
                             @Override
                             public void onFailure(Call<GifResponse> call, Throwable t) {
-
+                                progressBar.setVisibility(View.GONE);
                             }
                         });
                     } else {
@@ -162,9 +168,24 @@ public class UtilsUI {
                         if (sChatHead.getParameters().getImageParameter().getSource().equals("Internal")) {
                             imageUrl = PictureService.HOST_URL + imageUrl;
                         }
-                        Glide.with(ivImage.getContext()).load(imageUrl).crossFade().into(ivImage);
+                        progressBar.setVisibility(View.VISIBLE);
+                        Glide.with(ivImage.getContext()).load(imageUrl)
+                                .listener(new RequestListener<String, GlideDrawable>() {
+                                    @Override
+                                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                        progressBar.setVisibility(View.GONE);
+                                        return false;
+                                    }
+
+                                    @Override
+                                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                        progressBar.setVisibility(View.GONE);
+                                        return false;
+                                    }
+                                }).crossFade().into(ivImage);
                     }
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     ivImage.setImageResource(R.drawable.ic_huggy_avatar);
                     ivImage.setVisibility(View.VISIBLE);
                     gifImageView.setVisibility(View.INVISIBLE);
