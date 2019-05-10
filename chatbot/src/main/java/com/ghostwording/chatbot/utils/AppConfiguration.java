@@ -26,6 +26,7 @@ import java.util.List;
 public class AppConfiguration {
 
     public static final String ERROR_NO_SEQUENCES = "NoMoreSequencesAvailable";
+    public static final String GIPHY_URL_TEMPLATE = "https://media.giphy.com/media/%s/200.gif";
 
     private static File httpCacheDirectory;
     private static String deviceId;

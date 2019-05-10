@@ -19,7 +19,4 @@ public interface GiffyService {
     @GET("gifs/search?api_key=dc6zaTOxFJmzC")
     Call<GifResponse> searchGifs(@Query("q") String searchKeyword);
 
-    @GET("gifs?api_key=dc6zaTOxFJmzC")
-    Call<GifResponse> getGifByIds(@Query("ids") String ids);
-
 }

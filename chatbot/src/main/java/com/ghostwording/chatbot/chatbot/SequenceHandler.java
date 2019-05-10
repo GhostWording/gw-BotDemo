@@ -434,25 +434,11 @@ public class SequenceHandler {
             @Override
             public void onDataLoaded(@Nullable GifImages result) {
                 if (result != null) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String delimiter = "";
-                    for (GifImages.Image id : result.getImages()) {
-                        stringBuilder.append(delimiter + id.getPath());
-                        delimiter = ",";
-                    }
-                    ApiClient.getInstance().giffyService.getGifByIds(stringBuilder.toString()).enqueue(new Callback<GifResponse>(chatAdapter.getActivity()) {
-                        @Override
-                        public void onDataLoaded(@Nullable GifResponse result) {
-                            if (result != null) {
-                                final GifResponse.GifImage gifImage = result.getData().get(new Random().nextInt(result.getData().size()));
-                                chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifImage)));
-                            }
-                            startStep();
-                        }
-                    });
-                } else {
-                    startStep();
+                    String gifId = result.getImages().get(new Random().nextInt(result.getImages().size())).getPath();
+                    String gifUrl = String.format(AppConfiguration.GIPHY_URL_TEMPLATE, gifId);
+                    chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifUrl)));
                 }
+                startStep();
             }
         });
     }
@@ -653,26 +639,16 @@ public class SequenceHandler {
 
     private void handleGifStep(BotSequence.Step step) {
         chatAdapter.getBotCommandsView().showLoadingView();
+        GifImageModel gifImageModel;
         if (step.getParameters().getSource().equals("Web")) {
-            GifImageModel gifImageModel = new GifImageModel(step.getParameters().getPath());
-            chatAdapter.addMessage(new ChatMessage(gifImageModel));
-            chatAdapter.getBotCommandsView().clearCommand();
-            startStep();
+            gifImageModel = new GifImageModel(step.getParameters().getPath());
         } else {
-            ApiClient.getInstance().giffyService.getGifByIds(step.getParameters().getPath()).enqueue(new Callback<GifResponse>(chatAdapter.getActivity()) {
-                @Override
-                public void onDataLoaded(@Nullable GifResponse result) {
-                    if (result != null && result.getData().size() > 0) {
-                        GifResponse.GifImage gifImage = result.getData().get(0);
-                        GifImageModel gifImageModel = new GifImageModel(gifImage);
-                        gifImageModel.setFullWidth(step.getParameters().isFullWidth());
-                        chatAdapter.addMessage(new ChatMessage(gifImageModel));
-                    }
-                    chatAdapter.getBotCommandsView().clearCommand();
-                    startStep();
-                }
-            });
+            gifImageModel = new GifImageModel(String.format(AppConfiguration.GIPHY_URL_TEMPLATE, step.getParameters().getPath()));
+            gifImageModel.setFullWidth(step.getParameters().isFullWidth());
         }
+        chatAdapter.addMessage(new ChatMessage(gifImageModel));
+        chatAdapter.getBotCommandsView().clearCommand();
+        startStep();
     }
 
     private void showPickIntentionsCommands(final Recipient recipient) {
@@ -772,8 +748,8 @@ public class SequenceHandler {
         chatAdapter.getBotCommandsView().showLoadingView();
         DataManager.requestTrendingGifs(gifPath).subscribe(gifResponse -> {
             if (gifResponse != null) {
-                final GifResponse.GifImage gifImage = gifResponse.getData().get(new Random().nextInt(gifResponse.getData().size()));
-                chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifImage)));
+                final String gifImageUrl = gifResponse.get(new Random().nextInt(gifResponse.size()));
+                chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifImageUrl)));
                 if (showMenu) {
                     chatAdapter.getBotCommandsView().showGifCommands(new BotCommandsView.GifCommandsListener() {
                         @Override
@@ -783,7 +759,7 @@ public class SequenceHandler {
 
                         @Override
                         public void send() {
-                            GifPreviewActivity.openGifPreview(chatAdapter.getActivity(), gifImage.getImages().getFixedHeight().getUrl(), gifImage.getId());
+                            GifPreviewActivity.openGifPreview(chatAdapter.getActivity(), gifImageUrl, null);
                         }
                     });
                 } else {
@@ -799,8 +775,8 @@ public class SequenceHandler {
         chatAdapter.getBotCommandsView().showLoadingView();
         DataManager.requestTrendingGifs().subscribe(gifResponse -> {
             if (gifResponse != null) {
-                final GifResponse.GifImage gifImage = gifResponse.getData().get(new Random().nextInt(gifResponse.getData().size()));
-                chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifImage)));
+                final String gifImageUrl = gifResponse.get(new Random().nextInt(gifResponse.size()));
+                chatAdapter.addMessage(new ChatMessage(new GifImageModel(gifImageUrl)));
                 if (showMenu) {
                     chatAdapter.getBotCommandsView().showGifCommands(new BotCommandsView.GifCommandsListener() {
                         @Override
@@ -810,7 +786,7 @@ public class SequenceHandler {
 
                         @Override
                         public void send() {
-                            GifPreviewActivity.openGifPreview(chatAdapter.getActivity(), gifImage.getImages().getFixedHeight().getUrl(), gifImage.getId());
+                            GifPreviewActivity.openGifPreview(chatAdapter.getActivity(), gifImageUrl, null);
                         }
                     });
                 } else {
@@ -821,6 +797,7 @@ public class SequenceHandler {
             }
         });
     }
+
 
     private void showTextSuggestion(final String intentionId, final boolean showMenu) {
         chatAdapter.getBotCommandsView().showLoadingView();

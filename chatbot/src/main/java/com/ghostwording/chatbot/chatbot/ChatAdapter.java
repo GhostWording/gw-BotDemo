@@ -36,6 +36,7 @@ import com.ghostwording.chatbot.chatbot.model.GifImageModel;
 import com.ghostwording.chatbot.model.SuggestionsModel;
 import com.ghostwording.chatbot.model.YoutubeVideo;
 import com.ghostwording.chatbot.model.texts.Quote;
+import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.Utils;
 import com.ghostwording.chatbot.utils.UtilsUI;
@@ -248,21 +249,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
 
         if (chatMessage.getMessage() != null) {
             if (chatMessage.getStep() != null && chatMessage.getStep().getAnimatedGifTranslation() != null) {
-                ApiClient.getInstance().giffyService.getGifByIds(chatMessage.getStep().getAnimatedGifTranslation().getPath()).enqueue(new Callback<GifResponse>(activity) {
-                    @Override
-                    public void onDataLoaded(@Nullable GifResponse result) {
-                        if (result != null && result.getData().size() > 0) {
-                            GifResponse.GifImage gifImage = result.getData().get(0);
-                            int gifWidth = Integer.parseInt(gifImage.getImages().getFixedHeight().getWidth());
-                            int gifHeight = Integer.parseInt(gifImage.getImages().getFixedHeight().getHeight());
-                            holder.btnNotification.setOnClickListener(view -> {
-                                double heightCoef = (width - Utils.convertDpToPixel(30, activity)) / (gifWidth * 1.0);
-                                int height = (int) (gifHeight * heightCoef);
-                                GifPreviewDialog.show(activity, gifImage.getImages().getFixedHeight().getUrl(), height);
-                            });
-                        }
-                    }
-                });
+                final String gifUrl = String.format(AppConfiguration.GIPHY_URL_TEMPLATE, chatMessage.getStep().getAnimatedGifTranslation().getPath());
+                holder.btnNotification.setOnClickListener(view -> GifPreviewDialog.show(activity, gifUrl, 300));
                 holder.btnNotification.setVisibility(View.VISIBLE);
             } else {
                 if (holder.btnNotification != null) {

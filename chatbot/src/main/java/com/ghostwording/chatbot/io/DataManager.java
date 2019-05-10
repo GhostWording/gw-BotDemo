@@ -170,82 +170,15 @@ public class DataManager {
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<String> loadHugGifImage() {
-        return Observable.create((ObservableOnSubscribe<String>) subscriber -> {
-            GifImages gifImages = ApiClient.getInstance().configService.getHugGifs().execute().body();
-            StringBuilder stringBuilder = new StringBuilder();
-            String delimiter = "";
-            for (GifImages.Image id : gifImages.getImages()) {
-                stringBuilder.append(delimiter + id.getPath());
-                delimiter = ",";
-            }
-            GifResponse gifResponse = ApiClient.getInstance().giffyService.getGifByIds(stringBuilder.toString()).execute().body();
-            GifResponse.GifImage gifImage = gifResponse.getData().get(new Random().nextInt(gifResponse.getData().size()));
-            subscriber.onNext(gifImage.getImages().getFixedHeight().getUrl());
-            subscriber.onComplete();
-        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public static Observable<List<MediaModel>> loadMediaMixedContent() {
-        return Observable.create((ObservableOnSubscribe<List<MediaModel>>) subscriber -> {
-            final int COUNT_MEDIA_CONTENT = 15;
-            List<MediaModel> result = new ArrayList<>();
-            String imagePath = null;
-            int randomImagePath = new Random().nextInt(5);
-            switch (randomImagePath) {
-                case 0:
-                    imagePath = "data/common/gifsnewformat/hugslove.json";
-                    break;
-                case 1:
-                    imagePath = "data/common/gifsnewformat/hugsdog.json";
-                    break;
-                case 2:
-                    imagePath = "data/common/gifsnewformat/hugscartoon.json";
-                    break;
-                case 3:
-                    imagePath = "data/common/gifsnewformat/hugsanimals.json";
-                    break;
-            }
-
-            if (imagePath != null) {
-                GifImages gifIdsResponse = ApiClient.getInstance().configService.getGiffsByPath(imagePath).execute().body();
-                StringBuilder stringBuilder = new StringBuilder();
-                String delimiter = "";
-                for (GifImages.Image id : gifIdsResponse.getImages()) {
-                    stringBuilder.append(delimiter + id.getPath());
-                    delimiter = ",";
-                }
-                List<GifResponse.GifImage> gifImages = ApiClient.getInstance().giffyService.getGifByIds(stringBuilder.toString()).execute().body().getData();
-                Collections.shuffle(gifImages);
-                for (int i = 0; i < Math.min(COUNT_MEDIA_CONTENT, gifImages.size()); i++) {
-                    result.add(new MediaModel(gifImages.get(i)));
-                }
-            } else {
-                List<String> pictures = ApiClient.getInstance().pictureService.getPicturesByPath("themes/hugs2").execute().body();
-                Collections.shuffle(pictures);
-                for (int i = 0; i < Math.min(COUNT_MEDIA_CONTENT, pictures.size()); i++) {
-                    result.add(new MediaModel(PictureService.HOST_URL + pictures.get(i)));
-                }
-            }
-            subscriber.onNext(result);
-            subscriber.onComplete();
-        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public static Observable<GifResponse> requestTrendingGifs(final String gifPath) {
-        return Observable.create((ObservableOnSubscribe<GifResponse>) emitter -> {
+    public static Observable<List<String>> requestTrendingGifs(final String gifPath) {
+        return Observable.create((ObservableOnSubscribe<List<String>>) emitter -> {
             try {
+                List<String> result = new ArrayList<>();
                 GifImages gifIdsResponse = ApiClient.getInstance().configService.getGiffsByPath(gifPath).execute().body();
-                StringBuilder stringBuilder = new StringBuilder();
-                String delimiter = "";
-                for (GifImages.Image id : gifIdsResponse.getImages()) {
-                    stringBuilder.append(delimiter + id.getPath());
-                    delimiter = ",";
+                for (GifImages.Image item : gifIdsResponse.getImages()) {
+                    result.add(String.format(AppConfiguration.GIPHY_URL_TEMPLATE, item.getPath()));
                 }
-                GifResponse result = ApiClient.getInstance().giffyService.getGifByIds(stringBuilder.toString()).execute().body();
-                if (result != null) {
-                    emitter.onNext(result);
-                }
+                emitter.onNext(result);
             } catch (Exception ex) {
                 Logger.e("Gifs loading error", ex);
             }
@@ -253,20 +186,15 @@ public class DataManager {
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Observable<GifResponse> requestTrendingGifs() {
-        return Observable.create((ObservableOnSubscribe<GifResponse>) emitter -> {
+    public static Observable<List<String>> requestTrendingGifs() {
+        return Observable.create((ObservableOnSubscribe<List<String>>) emitter -> {
             try {
+                List<String> result = new ArrayList<>();
                 GifIdsResponse gifIdsResponse = ApiClient.getInstance().configService.getTrendingGifIds().execute().body();
-                StringBuilder stringBuilder = new StringBuilder();
-                String delimiter = "";
                 for (String id : gifIdsResponse.getAll()) {
-                    stringBuilder.append(delimiter + id);
-                    delimiter = ",";
+                    result.add(String.format(AppConfiguration.GIPHY_URL_TEMPLATE, id));
                 }
-                GifResponse result = ApiClient.getInstance().giffyService.getGifByIds(stringBuilder.toString()).execute().body();
-                if (result != null) {
-                    emitter.onNext(result);
-                }
+                emitter.onNext(result);
             } catch (Exception ex) {
                 Logger.e("Gifs loading error", ex);
             }

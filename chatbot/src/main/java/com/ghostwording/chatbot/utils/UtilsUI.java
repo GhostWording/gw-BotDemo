@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.File;
 
 import androidx.annotation.StringRes;
+
 import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -137,30 +138,16 @@ public class UtilsUI {
                     if (sChatHead.getParameters().getImageParameter().getSource().equals("Giphy")) {
                         ivImage.setVisibility(View.INVISIBLE);
                         gifImageView.setVisibility(View.VISIBLE);
-                        ApiClient.getInstance().giffyService.getGifByIds(sChatHead.getParameters().getImageParameter().getPath()).enqueue(new retrofit2.Callback<GifResponse>() {
-                            @Override
-                            public void onResponse(Call<GifResponse> call, Response<GifResponse> response) {
-                                if (response.isSuccessful()) {
-                                    if (response.body().getData().size() > 0) {
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        GifResponse.GifImage gifImage = response.body().getData().get(0);
-                                        Glide.with(gifImageView.getContext()).load(gifImage.getImages().getFixedHeight().getUrl())
-                                                .downloadOnly(new SimpleTarget<File>() {
-                                                    @Override
-                                                    public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
-                                                        progressBar.setVisibility(View.GONE);
-                                                        gifImageView.setImageURI(Uri.parse("file://" + resource.getAbsolutePath()));
-                                                    }
-                                                });
+                        String gifUrl = String.format(AppConfiguration.GIPHY_URL_TEMPLATE, sChatHead.getParameters().getImageParameter().getPath());
+                        progressBar.setVisibility(View.VISIBLE);
+                        Glide.with(gifImageView.getContext()).load(gifUrl)
+                                .downloadOnly(new SimpleTarget<File>() {
+                                    @Override
+                                    public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
+                                        progressBar.setVisibility(View.GONE);
+                                        gifImageView.setImageURI(Uri.parse("file://" + resource.getAbsolutePath()));
                                     }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<GifResponse> call, Throwable t) {
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        });
+                                });
                     } else {
                         ivImage.setVisibility(View.VISIBLE);
                         gifImageView.setVisibility(View.INVISIBLE);
