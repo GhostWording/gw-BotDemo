@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -132,7 +133,7 @@ public class UtilsUI {
         try {
             ImageView ivImage = view.findViewById(R.id.iv_avatar_image);
             GifImageView gifImageView = view.findViewById(R.id.iv_avatar_gif);
-            ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+            ProgressBar progressBar = view.findViewById(R.id.progress_bar_avatar);
             if (ivImage != null) {
                 if (sChatHead != null) {
                     if (sChatHead.getParameters().getImageParameter().getSource().equals("Giphy")) {

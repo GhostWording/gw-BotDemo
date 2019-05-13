@@ -15,27 +15,28 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.ghostwording.chatbot.dialog.GifPreviewDialog;
-import com.ghostwording.chatbot.io.ApiClient;
-import com.ghostwording.chatbot.io.Callback;
-import com.ghostwording.chatbot.io.DataLoader;
-import com.ghostwording.chatbot.model.GifResponse;
-import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
 import com.ghostwording.chatbot.chatbot.model.CarouselMessage;
 import com.ghostwording.chatbot.chatbot.model.ChatMessage;
-import com.ghostwording.chatbot.chatbot.model.ImageMessage;
-import com.ghostwording.chatbot.model.DailySuggestion;
 import com.ghostwording.chatbot.chatbot.model.GifImageModel;
+import com.ghostwording.chatbot.chatbot.model.ImageMessage;
+import com.ghostwording.chatbot.dialog.GifPreviewDialog;
+import com.ghostwording.chatbot.io.DataLoader;
+import com.ghostwording.chatbot.model.DailySuggestion;
 import com.ghostwording.chatbot.model.SuggestionsModel;
 import com.ghostwording.chatbot.model.YoutubeVideo;
 import com.ghostwording.chatbot.model.texts.Quote;
+import com.ghostwording.chatbot.textimagepreviews.GifPreviewActivity;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.Logger;
 import com.ghostwording.chatbot.utils.Utils;
@@ -45,11 +46,6 @@ import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import pl.droidsonroids.gif.GifImageView;
 
 import static com.ghostwording.chatbot.chatbot.ChatAdapter.MessageType.BOT_CARD_MESSAGE;

@@ -642,6 +642,8 @@ public class SequenceHandler {
         GifImageModel gifImageModel;
         if (step.getParameters().getSource().equals("Web")) {
             gifImageModel = new GifImageModel(step.getParameters().getPath());
+        } else if (step.getParameters().getSource().equals("Internal")) {
+            gifImageModel = new GifImageModel(AppConfiguration.INTERNAL_GIF_HOST + step.getParameters().getPath());
         } else {
             gifImageModel = new GifImageModel(String.format(AppConfiguration.GIPHY_URL_TEMPLATE, step.getParameters().getPath()));
             gifImageModel.setFullWidth(step.getParameters().isFullWidth());
