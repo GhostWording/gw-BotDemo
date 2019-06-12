@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
         binding.cbOfflineMode.setOnCheckedChangeListener((compoundButton, b) -> AppConfiguration.setOfflineMode(b));
         binding.tvVersion.setText("v" + BuildConfig.VERSION_NAME);
         languageSettings.setSelectedItem(LocaleManager.getSelectedLanguage(this));
+        binding.etBotname.setText(AppConfiguration.getBotName());
         binding.btnStart.setOnClickListener(view -> {
             String botName = binding.etBotname.getText().toString();
             String sequenceName = binding.etFragmentName.getText().toString();

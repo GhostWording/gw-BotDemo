@@ -36,7 +36,7 @@ public class AppConfiguration {
     private static String appAreaAnalytics = "SaveTheKitten";
     private static String pictureArea = "sweetheart";
     private static String appName = "ineedhugs";
-    private static String sBotName = "savethekitten";
+    private static String sBotName = "billyshotbot";
 
     private static boolean sRestartMainActivity;
     private static boolean displayAdMob;
