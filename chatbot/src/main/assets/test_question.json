@@ -1,44 +1,137 @@
 {
-  "Type": "Leaf",
-  "Id": "GifTestExperiment",
+  "Type": "Node",
+  "Id": "SalesIntro",
   "Steps": [
     {
       "Type": "Text",
       "Label": {
-        "en": "should show a gif from web source"
+        "en": "Hi! 😁",
+        "fr": "Hi! 😁",
+        "es": "Hi! 😁"
       }
     },
     {
-      "Type": "AnimatedGif",
+      "Type": "Action",
+      "Name": "ChatheadChange",
       "Parameters": {
-        "Source": "Web",
-        "Path": "http://gw-static.azurewebsites.net/museums/gifs/paintingslideshow.gif"
+        "Image": {
+          "Source": "Web",
+          "Path": "http://gw-static.azurewebsites.net/owls/gifs/chathead/avtar_happy132x132.gif"
+        }
       }
     },
     {
       "Type": "Text",
       "Label": {
-        "en": "should show a gif from internal source"
+        "en": "It's a pleasure to meet you",
+        "fr": "It's a pleasure to meet you",
+        "es": "It's a pleasure to meet you"
+      }
+    }
+  ],
+  "Commands": [
+    {
+      "Type": "Node",
+      "Id": "SalesIntroHi",
+      "ElementValue": "1",
+      "CommandLabel": {
+        "en": "Hi!",
+        "fr": "Hi!",
+        "es": "Hi!"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "I'm a lucky owl with a fondness for unlikely causes",
+            "fr": "I'm a lucky owl with a fondness for unlikely causes",
+            "es": "I'm a lucky owl with a fondness for unlikely causes"
+          }
+        },
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "My friends call me Robin Hoot",
+            "fr": "My friends call me Robin Hoot",
+            "es": "My friends call me Robin Hoot"
+          }
+        },
+        {
+          "Type": "Pause",
+          "Parameters": {
+            "Mode": "Wait",
+            "ms": 3000
+          }
+        },
+        {
+          "Type": "Image",
+          "Parameters": {
+            "Source": "Internal",
+            "Path": "/owls/images/small/Quoteo.jpg"
+          }
+        },
+        {
+          "Type": "Pause",
+          "Parameters": {
+            "Mode": "Wait",
+            "ms": 3000
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "FragmentPath": "SalesIntro2"
       }
     },
     {
-      "Type": "AnimatedGif",
-      "Parameters": {
-        "Source": "Internal",
-        "Path": "/museums/gifs/paintingslideshow.gif"
-      }
-    },
-    {
-      "Type": "Text",
-      "Label": {
-        "en": "should show a gif from giphy source"
-      }
-    },
-    {
-      "Type": "AnimatedGif",
-      "Parameters": {
-        "Source": "Giphy",
-        "Path": "3iwRn4BjxN5VrxtMEV"
+      "Type": "Node",
+      "Id": "SalesIntroWho",
+      "ElementValue": "1",
+      "CommandLabel": {
+        "en": "Who are you?",
+        "fr": "Who are you?",
+        "es": "Who are you?"
+      },
+      "Steps": [
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "I'm a lucky owl with a fondness for unlikely causes",
+            "fr": "I'm a lucky owl with a fondness for unlikely causes",
+            "es": "I'm a lucky owl with a fondness for unlikely causes"
+          }
+        },
+        {
+          "Type": "Text",
+          "Label": {
+            "en": "My friends call me Robin Hoot",
+            "fr": "My friends call me Robin Hoot",
+            "es": "My friends call me Robin Hoot"
+          }
+        },
+        {
+          "Type": "Pause",
+          "Parameters": {
+            "Mode": "Wait",
+            "ms": 3000
+          }
+        },
+        {
+          "Type": "Image",
+          "Parameters": {
+            "Source": "Internal",
+            "Path": "/owls/images/small/Quoteo.jpg"
+          }
+        },
+        {
+          "Type": "Pause",
+          "Parameters": {
+            "Mode": "Wait",
+            "ms": 3000
+          }
+        }
+      ],
+      "LinksToFragment": {
+        "FragmentPath": "SalesIntro2"
       }
     }
   ]

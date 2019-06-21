@@ -498,4 +498,5 @@
     <string name="error_bot_loading">This bot is unavailable</string>
     <string name="no_more_sequences">No sequences to show</string>
     <string name="scroll_for_more"><![CDATA[scroll for more --->]]></string>
+    <string name="tutorial_select">select</string>
 </resources>

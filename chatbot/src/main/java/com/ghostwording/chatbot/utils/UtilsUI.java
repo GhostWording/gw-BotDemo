@@ -37,10 +37,12 @@ import retrofit2.Response;
 public class UtilsUI {
 
     private static BotSequence.Step sChatHead;
+    private static int sChatHeadPosition;
 
     public static void setImageChatHead(BotSequence.Step step, ChatAdapter chatAdapter) {
         sChatHead = step;
-        chatAdapter.notifyDataSetChanged();
+        sChatHeadPosition = chatAdapter.getItemCount() - 2;
+        chatAdapter.notifyItemChanged(sChatHeadPosition);
     }
 
     public static void clearImageChatHead(ChatAdapter chatAdapter) {
@@ -129,23 +131,20 @@ public class UtilsUI {
         }
     }
 
-    public static void showBotAvatar(View view) {
+    public static void showBotAvatar(View view, int position) {
         try {
             ImageView ivImage = view.findViewById(R.id.iv_avatar_image);
             GifImageView gifImageView = view.findViewById(R.id.iv_avatar_gif);
-            ProgressBar progressBar = view.findViewById(R.id.progress_bar_avatar);
             if (ivImage != null) {
-                if (sChatHead != null) {
+                if (sChatHead != null && position == sChatHeadPosition) {
                     if (sChatHead.getParameters().getImageParameter().getSource().equals("Giphy")) {
                         ivImage.setVisibility(View.INVISIBLE);
                         gifImageView.setVisibility(View.VISIBLE);
                         String gifUrl = String.format(AppConfiguration.GIPHY_URL_TEMPLATE, sChatHead.getParameters().getImageParameter().getPath());
-                        progressBar.setVisibility(View.VISIBLE);
                         Glide.with(gifImageView.getContext()).load(gifUrl)
                                 .downloadOnly(new SimpleTarget<File>() {
                                     @Override
                                     public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
-                                        progressBar.setVisibility(View.GONE);
                                         gifImageView.setImageURI(Uri.parse("file://" + resource.getAbsolutePath()));
                                     }
                                 });
@@ -156,24 +155,20 @@ public class UtilsUI {
                         if (sChatHead.getParameters().getImageParameter().getSource().equals("Internal")) {
                             imageUrl = PictureService.HOST_URL + imageUrl;
                         }
-                        progressBar.setVisibility(View.VISIBLE);
                         Glide.with(ivImage.getContext()).load(imageUrl)
                                 .listener(new RequestListener<String, GlideDrawable>() {
                                     @Override
                                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                                        progressBar.setVisibility(View.GONE);
                                         return false;
                                     }
 
                                     @Override
                                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                                        progressBar.setVisibility(View.GONE);
                                         return false;
                                     }
                                 }).crossFade().into(ivImage);
                     }
                 } else {
-                    progressBar.setVisibility(View.GONE);
                     ivImage.setImageResource(R.drawable.ic_huggy_avatar);
                     ivImage.setVisibility(View.VISIBLE);
                     gifImageView.setVisibility(View.INVISIBLE);

@@ -295,4 +295,5 @@
     <string name="tap_to_send">Cliquer pour envoyer</string>
     <string name="start">COMMENCER</string>
     <string name="back">RETOUR</string>
+    <string name="tutorial_select">choix</string>
 </resources>

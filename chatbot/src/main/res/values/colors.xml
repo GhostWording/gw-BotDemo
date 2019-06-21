@@ -29,5 +29,6 @@
     <color name="help_us_header_bg">#ebebeb</color>
     <color name="green">#0a0</color>
     <color name="orange">#FFA500</color>
+    <color name="tutorial_text_color">#ED1A23</color>
 
 </resources>

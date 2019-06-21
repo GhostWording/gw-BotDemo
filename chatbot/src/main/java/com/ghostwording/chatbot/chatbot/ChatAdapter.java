@@ -190,7 +190,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     @Override
     public void onBindViewHolder(BindingHolder holder, final int position) {
         final ChatMessage chatMessage = chatMessages.get(position);
-        UtilsUI.showBotAvatar(holder.rowView);
+        UtilsUI.showBotAvatar(holder.rowView, position);
 
         if (chatMessage == null) {
             initBotCommandsView(holder.rowView.findViewById(R.id.container));

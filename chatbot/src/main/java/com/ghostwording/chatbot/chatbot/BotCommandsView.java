@@ -67,7 +67,7 @@ public class BotCommandsView {
     public void showLoadingView() {
         clearCommand();
         View menuItem = layoutInflater.inflate(R.layout.item_bot_typing, null);
-        UtilsUI.showBotAvatar(menuItem);
+        UtilsUI.showBotAvatar(menuItem, -1);
         container.addView(menuItem);
     }
 
@@ -172,13 +172,14 @@ public class BotCommandsView {
         }
 
         if (AppConfiguration.isAnimateButtons()) {
+            llCommands.addView(layoutInflater.inflate(R.layout.item_arrow_animation, null), 0);
             animateButtons(llCommands);
         }
         container.addView(commandsContainerView);
     }
 
     private void animateButtons(ViewGroup buttonsLayout) {
-        for (int i = 0; i < buttonsLayout.getChildCount(); i++) {
+        for (int i = 1; i < buttonsLayout.getChildCount(); i++) {
             View view = buttonsLayout.getChildAt(i);
             startViewAnimation(view, (i + 1) * 1000);
         }
