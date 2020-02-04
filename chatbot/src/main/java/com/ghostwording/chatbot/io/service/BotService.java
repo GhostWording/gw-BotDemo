@@ -6,6 +6,7 @@ import com.ghostwording.chatbot.chatbot.model.SequenceMasterFileResponse;
 import com.ghostwording.chatbot.model.requests.FragmentRequest;
 import com.ghostwording.chatbot.model.requests.SequenceRequest;
 import com.ghostwording.chatbot.model.requests.UserProperty;
+import com.ghostwording.chatbot.model.texts.UserInfo;
 
 import java.util.List;
 
@@ -34,5 +35,8 @@ public interface BotService {
 
     @GET("botapis/sequences/master/sequencesForMaster")
     Call<List<SequenceMasterFileResponse>> getMasterSequences(@Query("botName") String botName);
+
+    @POST("botapis/sequences/clear")
+    Call<ResponseBody> clearBotHistory(@Body UserInfo userInfo);
 
 }

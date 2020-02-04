@@ -1,15 +1,20 @@
 package com.ghostwording.chatbot;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.ChatbotFragment;
 import com.ghostwording.chatbot.databinding.ActivityBotBinding;
+import com.ghostwording.chatbot.io.ApiClient;
+import com.ghostwording.chatbot.io.Callback;
+import com.ghostwording.chatbot.model.texts.UserInfo;
 import com.ghostwording.chatbot.utils.AppConfiguration;
+
+import okhttp3.ResponseBody;
 
 public class BotActivity extends BaseActivity {
 
@@ -35,6 +40,17 @@ public class BotActivity extends BaseActivity {
             AppConfiguration.setIsPlayText(!AppConfiguration.isPlayText());
             updateBtnPlayTextState();
         });
+
+        binding.btnReset.setOnClickListener(view -> ApiClient.getInstance().botService.clearBotHistory(new UserInfo(AppConfiguration.getBotName())).enqueue(new Callback<ResponseBody>(BotActivity.this) {
+            @Override
+            public void onDataLoaded(@Nullable ResponseBody result) {
+                if (result != null) {
+                    Toast.makeText(BotActivity.this, R.string.success_bot_history_clean, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(BotActivity.this, R.string.error_bot_loading, Toast.LENGTH_LONG).show();
+                }
+            }
+        }));
     }
 
     private void updateBtnPlayTextState() {

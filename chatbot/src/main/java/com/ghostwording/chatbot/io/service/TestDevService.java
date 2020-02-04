@@ -14,9 +14,6 @@ public interface TestDevService {
 
     String BASE_URL = "http://gw-bot-apis.azurewebsites.net/";
 
-    @GET("admin/command/history/clear?adminkey=61fd4333-61b1-4236-83c6-33bda5a9d6e6&facebookid=")
-    Call<ResponseBody> clearBotHistory(@Query("botName") String botName, @Query("deviceId") String deviceId);
-
     @POST("api/sequences/keywordsearch")
     Call<BotSequence> searchBotSequence(@Body SearchRequest searchRequest);
 

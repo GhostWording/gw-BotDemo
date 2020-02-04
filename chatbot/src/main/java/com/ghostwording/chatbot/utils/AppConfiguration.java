@@ -34,7 +34,7 @@ public class AppConfiguration {
     private static String appVersionNumber;
 
     private static String appAreaId = "humourapp";
-    private static String appAreaAnalytics = "SaveTheKitten";
+    private static String appAreaAnalytics = "TestApp";
     private static String pictureArea = "sweetheart";
     private static String appName = "ineedhugs";
     private static String sBotName = "billyshotbot";

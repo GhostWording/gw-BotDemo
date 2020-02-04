@@ -14,6 +14,7 @@ import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.databinding.DialogDeveloperModeBinding;
 import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.Callback;
+import com.ghostwording.chatbot.model.texts.UserInfo;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.PrefManager;
 import com.ghostwording.chatbot.utils.Utils;
@@ -44,7 +45,7 @@ public class DeveloperModeDialog extends BaseDialog {
         binding.btnReset.setOnClickListener(view -> {
             PrefManager.instance().setHuggyShown(false);
             PrefManager.instance().setLastSequenceId(binding.etBotname.getText().toString(), null);
-            ApiClient.getInstance().testDevService.clearBotHistory(binding.etBotname.getText().toString(), AppConfiguration.getDeviceId()).enqueue(new Callback<ResponseBody>(getActivity()) {
+            ApiClient.getInstance().botService.clearBotHistory(new UserInfo(binding.etBotname.getText().toString())).enqueue(new Callback<ResponseBody>(getActivity()) {
                 @Override
                 public void onDataLoaded(@Nullable ResponseBody result) {
                     Toast.makeText(getContext(), R.string.saved, Toast.LENGTH_SHORT).show();

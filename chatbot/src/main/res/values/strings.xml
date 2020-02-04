@@ -499,4 +499,6 @@
     <string name="no_more_sequences">No sequences to show</string>
     <string name="scroll_for_more"><![CDATA[scroll for more --->]]></string>
     <string name="tutorial_select">select</string>
+    <string name="label_reset">Reset</string>
+    <string name="success_bot_history_clean">Chatbot history cleared</string>
 </resources>

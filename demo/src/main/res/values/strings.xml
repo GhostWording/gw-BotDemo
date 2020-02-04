@@ -3,4 +3,5 @@
     <string name="hint_fragment_name">Please enter a fragment name</string>
     <string name="error_fill_bot_name">Please fill only a bot name or a fragment name</string>
     <string name="hint_load_masterfile">Load as masterfile</string>
+    <string name="label_reset">Reset</string>
 </resources>
