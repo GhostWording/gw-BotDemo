@@ -57,6 +57,8 @@ public class BotCommandsView {
     private LayoutInflater layoutInflater;
     private FrameLayout container;
     private Activity activity;
+    @DrawableRes
+    private Integer botAvatarResource = R.drawable.ic_huggy_avatar;
 
     public BotCommandsView(final Activity activity, final FrameLayout container) {
         this.activity = activity;
@@ -67,7 +69,7 @@ public class BotCommandsView {
     public void showLoadingView() {
         clearCommand();
         View menuItem = layoutInflater.inflate(R.layout.item_bot_typing, null);
-        UtilsUI.showBotAvatar(menuItem, -1);
+        UtilsUI.showBotAvatar(menuItem, -1, botAvatarResource);
         container.addView(menuItem);
     }
 

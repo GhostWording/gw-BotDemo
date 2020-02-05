@@ -1,11 +1,13 @@
 package com.ghostwording.chatbot.utils;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
 import com.ghostwording.chatbot.io.ApiClient;
+import com.ghostwording.chatbot.io.DataManager;
 import com.ghostwording.chatbot.model.NotificationsModel;
 import com.ghostwording.chatbot.model.recipients.Recipient;
 import com.ghostwording.chatbot.model.requests.UserProperty;
@@ -234,17 +236,7 @@ public class PrefManager {
     }
 
     public void setUserAnswer(String questionId, String answer) {
-        ApiClient.getInstance().botService.postUserProperty(new UserProperty(questionId, answer)).enqueue(new retrofit2.Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                Logger.d(response.isSuccessful() ? "Property saved" : "Error saving user property");
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+        DataManager.postUserProperty(new UserProperty(AppConfiguration.getBotName(), questionId, answer)).subscribe();
         preferences.edit().putInt(KEY_COUNT_ANSWERED, preferences.getInt(KEY_COUNT_ANSWERED, 0) + 1).apply();
         preferences.edit().putString(KEY_QUESTION_PREFIX + questionId, answer).commit();
     }

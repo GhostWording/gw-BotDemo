@@ -409,9 +409,11 @@ public class SequenceHandler {
     }
 
     private void changeChatHead(BotSequence.Step step) {
-        UtilsUI.setImageChatHead(step, chatAdapter);
-        if (step.getParameters().getMs() != null) {
-            chatHeadHandler.postDelayed(() -> UtilsUI.clearImageChatHead(chatAdapter), step.getParameters().getMs());
+        if (chatAdapter instanceof ChatAdapter) {
+            UtilsUI.setImageChatHead(step, (ChatAdapter) chatAdapter);
+            if (step.getParameters().getMs() != null) {
+                chatHeadHandler.postDelayed(() -> UtilsUI.clearImageChatHead((ChatAdapter) chatAdapter), step.getParameters().getMs());
+            }
         }
     }
 

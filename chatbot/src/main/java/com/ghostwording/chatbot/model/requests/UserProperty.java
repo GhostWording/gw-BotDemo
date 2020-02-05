@@ -10,7 +10,7 @@ public class UserProperty {
 
     @SerializedName("BotName")
     @Expose
-    public final String botName = "Stickers";
+    private String botName = "Stickers";
 
     @SerializedName("DeviceId")
     @Expose
@@ -29,6 +29,12 @@ public class UserProperty {
     public final String propertyValue;
 
     public UserProperty(String propertyName, String propertyValue) {
+        this.propertyName = propertyName;
+        this.propertyValue = propertyValue;
+    }
+
+    public UserProperty(String botName, String propertyName, String propertyValue) {
+        this.botName = botName;
         this.propertyName = propertyName;
         this.propertyValue = propertyValue;
     }

@@ -51,6 +51,8 @@ public class BotActivity extends BaseActivity {
                 }
             }
         }));
+
+        ChatBotApplication.sendUserProperties(this, AppConfiguration.getBotName());
     }
 
     private void updateBtnPlayTextState() {

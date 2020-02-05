@@ -4,35 +4,27 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.annotation.StringRes;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.ghostwording.chatbot.R;
 import com.ghostwording.chatbot.chatbot.ChatAdapter;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
-import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.service.PictureService;
-import com.ghostwording.chatbot.model.GifResponse;
 import com.ghostwording.chatbot.widget.RoundedCornersTransformation;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 
-import androidx.annotation.StringRes;
-
 import pl.droidsonroids.gif.GifImageView;
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class UtilsUI {
 
@@ -131,47 +123,23 @@ public class UtilsUI {
         }
     }
 
-    public static void showBotAvatar(View view, int position) {
+    public static void showBotAvatar(View view, int position, Integer avatarImage) {
         try {
             ImageView ivImage = view.findViewById(R.id.iv_avatar_image);
-            GifImageView gifImageView = view.findViewById(R.id.iv_avatar_gif);
             if (ivImage != null) {
                 if (sChatHead != null && position == sChatHeadPosition) {
                     if (sChatHead.getParameters().getImageParameter().getSource().equals("Giphy")) {
-                        ivImage.setVisibility(View.INVISIBLE);
-                        gifImageView.setVisibility(View.VISIBLE);
                         String gifUrl = String.format(AppConfiguration.GIPHY_URL_TEMPLATE, sChatHead.getParameters().getImageParameter().getPath());
-                        Glide.with(gifImageView.getContext()).load(gifUrl)
-                                .downloadOnly(new SimpleTarget<File>() {
-                                    @Override
-                                    public void onResourceReady(File resource, GlideAnimation<? super File> glideAnimation) {
-                                        gifImageView.setImageURI(Uri.parse("file://" + resource.getAbsolutePath()));
-                                    }
-                                });
+                        Glide.with(ivImage.getContext()).load(gifUrl).into(ivImage);
                     } else {
-                        ivImage.setVisibility(View.VISIBLE);
-                        gifImageView.setVisibility(View.INVISIBLE);
                         String imageUrl = sChatHead.getParameters().getImageParameter().getPath();
                         if (sChatHead.getParameters().getImageParameter().getSource().equals("Internal")) {
-                            imageUrl = PictureService.HOST_URL + imageUrl;
+                            imageUrl = PictureService.ALTERNATIVE_HOST_URL + imageUrl;
                         }
-                        Glide.with(ivImage.getContext()).load(imageUrl)
-                                .listener(new RequestListener<String, GlideDrawable>() {
-                                    @Override
-                                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                                        return false;
-                                    }
-                                }).crossFade().into(ivImage);
+                        Glide.with(ivImage.getContext()).load(imageUrl).into(ivImage);
                     }
                 } else {
-                    ivImage.setImageResource(R.drawable.ic_huggy_avatar);
-                    ivImage.setVisibility(View.VISIBLE);
-                    gifImageView.setVisibility(View.INVISIBLE);
+                    ivImage.setImageResource(avatarImage);
                 }
             }
         } catch (Exception ex) {

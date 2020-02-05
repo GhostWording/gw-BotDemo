@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +72,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     private AppCompatActivity activity;
     private BotCommandsView botCommandsView;
     private int width;
+    @DrawableRes
+    private Integer botAvatarResource = R.drawable.ic_huggy_avatar;
 
     interface MessageType {
         int BOT_CARD_MESSAGE = 0;
@@ -190,7 +193,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BindingHolder>
     @Override
     public void onBindViewHolder(BindingHolder holder, final int position) {
         final ChatMessage chatMessage = chatMessages.get(position);
-        UtilsUI.showBotAvatar(holder.rowView, position);
+        UtilsUI.showBotAvatar(holder.rowView, position, botAvatarResource);
 
         if (chatMessage == null) {
             initBotCommandsView(holder.rowView.findViewById(R.id.container));

@@ -1,5 +1,8 @@
 package com.ghostwording.chatbot.io;
 
+import android.os.Bundle;
+
+import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.chatbot.model.BotSequence;
 import com.ghostwording.chatbot.chatbot.model.ChatMessage;
 import com.ghostwording.chatbot.io.service.PictureService;
@@ -10,6 +13,7 @@ import com.ghostwording.chatbot.model.MediaModel;
 import com.ghostwording.chatbot.model.PopularImages;
 import com.ghostwording.chatbot.model.VotingCounters;
 import com.ghostwording.chatbot.model.WeightAble;
+import com.ghostwording.chatbot.model.requests.UserProperty;
 import com.ghostwording.chatbot.model.texts.PopularTexts;
 import com.ghostwording.chatbot.model.texts.Quote;
 import com.ghostwording.chatbot.model.texts.QuoteLanguageComparator;
@@ -107,6 +111,19 @@ public class DataManager {
             }
 
             subscriber.onNext(result);
+            subscriber.onComplete();
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public static Observable<Boolean> postUserProperty(UserProperty userProperty) {
+        return Observable.create((ObservableOnSubscribe<Boolean>) subscriber -> {
+            try {
+                AnalyticsHelper.sendEvent(userProperty.propertyName, userProperty.propertyValue);
+                ApiClient.getInstance().botService.postUserProperty(userProperty).execute();
+            } catch (Exception ex) {
+                subscriber.onNext(false);
+            }
+            subscriber.onNext(true);
             subscriber.onComplete();
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
     }

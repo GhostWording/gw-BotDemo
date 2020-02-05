@@ -9,9 +9,12 @@ import com.ghostwording.chatbot.analytics.AnalyticsHelper;
 import com.ghostwording.chatbot.analytics.GhostAnalytics;
 import com.ghostwording.chatbot.chatbot.BotQuestionsManager;
 import com.ghostwording.chatbot.chatbot.RedirectionManager;
+import com.ghostwording.chatbot.chatbot.model.UserProperties;
 import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.DataLoader;
+import com.ghostwording.chatbot.io.DataManager;
 import com.ghostwording.chatbot.io.QuotesLoader;
+import com.ghostwording.chatbot.model.requests.UserProperty;
 import com.ghostwording.chatbot.model.texts.Quote;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.LocaleManager;
@@ -28,6 +31,8 @@ import io.reactivex.subjects.PublishSubject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.ghostwording.chatbot.utils.Utils.getLanguageString;
 
 public class ChatBotApplication extends Application {
 
@@ -68,6 +73,9 @@ public class ChatBotApplication extends Application {
             Logger.i("Current app variation : " + variationId);
             PrefManager.instance().setVariationId(variationId);
             AnalyticsHelper.sendEvent(AnalyticsHelper.Events.LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage());
+            DataManager.postUserProperty(new UserProperty(AppConfiguration.getBotName(), UserProperties.VARIATION, String.valueOf(variationId))).subscribe();
+            DataManager.postUserProperty(new UserProperty(AppConfiguration.getBotName(), UserProperties.OS_TYPE, "android")).subscribe();
+
         }
 
         AnalyticsHelper.sendOneTimeEvent(AnalyticsHelper.Events.FIRST_LAUNCH);
@@ -114,6 +122,16 @@ public class ChatBotApplication extends Application {
             }
         });
     }
+
+    public static void sendUserProperties(Context context, String botName) {
+        String selectedLanguage = getLanguageString(LocaleManager.getSelectedLanguage(context));
+        String genderString = PrefManager.instance().getGenderStringMaleFormat();
+        String country = PrefManager.instance().getUserCountry();
+        DataManager.postUserProperty(new UserProperty(botName, UserProperties.LANGUAGE, selectedLanguage)).subscribe();
+        DataManager.postUserProperty(new UserProperty(botName, UserProperties.COUNTRY, country)).subscribe();
+        DataManager.postUserProperty(new UserProperty(botName, UserProperties.GENDER, genderString)).subscribe();
+    }
+
 
 
 }
