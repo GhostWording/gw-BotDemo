@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.atf.demo.databinding.ActivityMainBinding;
@@ -20,6 +21,7 @@ import com.ghostwording.chatbot.chatbot.model.SequenceMasterFileResponse;
 import com.ghostwording.chatbot.io.ApiClient;
 import com.ghostwording.chatbot.io.Callback;
 import com.ghostwording.chatbot.io.DataLoader;
+import com.ghostwording.chatbot.io.SequencesDatabase;
 import com.ghostwording.chatbot.model.texts.UserInfo;
 import com.ghostwording.chatbot.utils.AppConfiguration;
 import com.ghostwording.chatbot.utils.LocaleManager;
@@ -89,6 +91,11 @@ public class MainActivity extends BaseActivity {
             } else {
                 showBot(botName);
             }
+        });
+        binding.btnClearCache.setOnClickListener(view -> {
+            DataLoader.instance().clearDatabase();
+            ApiClient.clearData();
+            Toast.makeText(MainActivity.this, R.string.cache_cleared, Toast.LENGTH_LONG).show();
         });
     }
 

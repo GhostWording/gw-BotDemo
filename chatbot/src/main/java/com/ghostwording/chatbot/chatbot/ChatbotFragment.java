@@ -164,7 +164,6 @@ public class ChatbotFragment extends Fragment {
                             currentSequence.startStep();
                         }
                         , throwable -> {
-                            Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
                             finish();
                         }
                 );
@@ -172,7 +171,7 @@ public class ChatbotFragment extends Fragment {
 
     private void finish() {
         Toast.makeText(getContext(), R.string.no_more_sequences, Toast.LENGTH_LONG).show();
-        getActivity().finish();
+        new Handler().postDelayed(() -> getActivity().finish(), 1000);
     }
 
     public void scrollToBottom() {

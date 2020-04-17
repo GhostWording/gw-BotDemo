@@ -47,6 +47,10 @@ public class DataLoader {
         sequenceDatabase = new SequencesDatabase(context);
     }
 
+    public void clearDatabase() {
+        sequenceDatabase.deleteAllSequences();
+    }
+
     public void saveSequences(List<BotSequence> sequences) {
         sequenceDatabase.deleteAllSequences();
         for (BotSequence sequence : sequences) {
